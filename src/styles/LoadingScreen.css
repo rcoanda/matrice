@@ -1,0 +1,43 @@
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gallery-light);
+}
+
+.loading-title {
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-weight: 200;
+  color: var(--color-gallery);
+}
+
+.loading-bar-track {
+  margin-top: 1.5rem;
+  width: 12rem;
+  height: 0.25rem;
+  background-color: var(--color-gallery);
+  opacity: 0.2;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background-color: var(--color-gallery);
+  border-radius: 9999px;
+  transition: all 300ms;
+}
+
+.loading-text {
+  margin-top: 0.75rem;
+  font-family: var(--font-para);
+  font-size: 0.75rem;
+  color: var(--color-gallery-muted2);
+  letter-spacing: 0.05em;
+}

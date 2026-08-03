@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gallery: #313927;
+  --color-gallery-light: #E4D3B5;
+  --color-gallery-muted: #31392755;
+  --color-gallery-muted2: #31392777;
+  --font-heading: 'Kalnia', Georgia, serif;
+  --font-para: 'Almendra Sans', system-ui, sans-serif;
+  --tracking-wider-custom: 0.18em;
+  --leading-custom: 1.1;
+  --bottom-custom: 10%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background: #E4D3B5;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}

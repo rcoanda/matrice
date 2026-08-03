@@ -1,0 +1,98 @@
+.overlay-content {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.selector-controls-wrapper {
+  position: absolute;
+  width: 60%;
+  bottom: 10%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+@media (width >= 48rem) {
+  .selector-controls-wrapper {
+    width: 25%;
+  }
+}
+
+.selector-controls-wrapper-data {
+  position: absolute;
+  width: 60%;
+  bottom: 18%;
+  left: 50%;
+  translate: -50% 0;
+}
+
+@media (width >= 48rem) {
+  .selector-controls-wrapper-data {
+    width: 25%;
+  }
+}
+
+.selector-controls {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid var(--color-gallery);
+  color: var(--color-gallery);
+}
+
+.selector-label {
+  font-family: var(--font-para);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (width >= 48rem) {
+  .selector-label {
+    font-size: 0.875rem;
+  }
+}
+
+.selector-btn {
+  padding: 0.375rem 0.5rem;
+  font-family: var(--font-para);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  transition: all 300ms;
+}
+
+@media (width >= 48rem) {
+  .selector-btn {
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+.selector-btn-active {
+  background-color: var(--color-gallery);
+  color: var(--color-gallery-light);
+}
+
+.selector-btn-inactive {
+  color: var(--color-gallery);
+}
+
+.selector-btn-hover {
+  background-color: rgb(255 255 255 / 0.3);
+  transform: scale(1.08);
+}
+
+.selector-btn-active.selector-btn-hover {
+  background-color: color-mix(in srgb, var(--color-gallery) 85%, white);
+}
+
+.selector-btn-click {
+  transform: scale(0.95);
+}
