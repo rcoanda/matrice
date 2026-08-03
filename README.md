@@ -1,4 +1,4 @@
-# Projet 2 : Matrix - Phase « Do-As-I-Say » (Management directif)
+# Projet 2 : Matrice - Phase « Do-As-I-Say » (Management directif)
 
 ## 1. Titre / Thème général
 Deuxième projet de la suite dédiée à l'expérimentation du codage par IA (*AI-assisted development*), visant à concevoir un site web artistique (React, Three.js, WebGL / Vite, Node.js) en appliquant les leçons tirées du projet *Sandbox*.
