@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "oxc"],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": ["warn", { "allowConstantExport": true }],
+    "react/jsx-no-literals": "off",
+    "react/jsx-max-depth": "off",
+    "react/forbid-component-props": "off",
+    "react/no-unknown-property": "off",
+    "react/no-multi-comp": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/button-has-type": "off",
+    "eslint/func-style": "off",
+    "eslint/sort-imports": "off",
+    "eslint/id-length": "off",
+    "eslint/no-magic-numbers": "off",
+    "eslint/max-lines-per-function": "off",
+    "eslint/max-statements": "off",
+    "eslint/no-ternary": "off",
+    "eslint/no-plusplus": "off",
+    "eslint/sort-keys": "off",
+    "eslint/curly": "off",
+    "eslint/no-inline-comments": "off"
+  }
+}
