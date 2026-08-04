@@ -22,7 +22,7 @@ export default function Home() {
     if (viewMode && dataSource) {
       setStage('transition')
       setTimeout(() => {
-        navigate('/gallery')
+        navigate('/galerie')
       }, 1500)
     } else {
       setStage('idle')
