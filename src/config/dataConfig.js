@@ -10,7 +10,7 @@ const LOCAL_SOURCES = [
 ]
 
 const DATA_SOURCES = [
-  ...LOCAL_SOURCES,
+  // ...LOCAL_SOURCES,
   { key: 'metropolitanKey', label: 'Metropolitan', loader: getMetArtworks },
   { key: 'clevelandKey', label: 'Cleveland', loader: getCleArtworks },
 ]

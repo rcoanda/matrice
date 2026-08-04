@@ -1,0 +1,23 @@
+.about-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  color: var(--color-gallery);
+  font-family: 'Almendra Sans', sans-serif;
+}
+
+.about-title {
+  font-family: 'Kalnia', serif;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-description {
+  max-width: 32rem;
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--color-gallery-muted);
+}

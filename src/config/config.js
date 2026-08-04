@@ -1,3 +1,5 @@
+export const IS_LOCAL = import.meta.env.DEV
+
 const INIT = [
   { config: 'langConfig', default: 'frKey', init: null },
   { config: 'viewConfig', default: null, init: null },

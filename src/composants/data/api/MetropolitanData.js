@@ -1,6 +1,9 @@
+import { IS_LOCAL } from '../../../config/config'
+
 const COUNT = 10
 
 const MET_API_BASE = 'https://collectionapi.metmuseum.org/public/collection/v1'
+const MET_IMAGE_BASE = IS_LOCAL ? `${import.meta.env.BASE_URL}met-image` : 'https://images.metmuseum.org'
 
 async function searchObjectIds() {
   const res = await fetch(
@@ -31,7 +34,7 @@ export async function getArtworks() {
     title: obj.title || 'Untitled',
     artist: obj.artistDisplayName || '',
     date: obj.objectDate || '',
-    image: obj.primaryImage ? obj.primaryImage.replace('https://images.metmuseum.org', '/met-image') : '',
+    image: obj.primaryImage ? obj.primaryImage.replace('https://images.metmuseum.org', MET_IMAGE_BASE) : '',
   })).filter((art) => art.image)
 
   console.log(`Met: ${artworks.length} artworks avec image`)

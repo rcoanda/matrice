@@ -21,7 +21,7 @@ export async function getLocalData({ images }) {
     date: typeof image === 'string' ? '' : image.date,
     place: typeof image === 'string' ? '' : image.place,
     folder: image.folder,
-    image: `/data/${image.folder}/${image.file}`,
+    image: `${import.meta.env.BASE_URL}data/${image.folder}/${image.file}`,
   }))
   await preloadImages(artworks)
   return artworks

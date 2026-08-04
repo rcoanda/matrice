@@ -1,3 +1,11 @@
 {
-  "title": "Contact"
+  "title": "Contact",
+  "emailLabel": "E-mail",
+  "email": "atelier@matrice-photo.fr",
+  "phoneLabel": "Téléphone",
+  "phone": "+33 1 42 00 00 00",
+  "addressLabel": "Studio",
+  "address": "12 rue des Lumières, 75011 Paris",
+  "hoursLabel": "Horaires",
+  "hours": "Mar – Sam, 10h – 18h"
 }

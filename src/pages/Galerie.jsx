@@ -7,7 +7,7 @@ import Overlay from '../composants/Overlay'
 import { SelectionContext } from '../composants/SelectionContext'
 import '../styles/Gallery.css'
 
-export default function Gallery() {
+export default function Galerie() {
   const { viewMode, dataSource, reset } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
 

@@ -1,6 +1,9 @@
+import { IS_LOCAL } from '../../../config/config'
+
 const COUNT = 10
 
 const CLE_API_BASE = 'https://openaccess-api.clevelandart.org/api'
+const CLE_IMAGE_BASE = IS_LOCAL ? `${import.meta.env.BASE_URL}cleveland-image` : 'https://openaccess-cdn.clevelandart.org'
 
 export async function getArtworks() {
   const url = `${CLE_API_BASE}/artworks?limit=${COUNT}&has_image=1&q=paintings`
@@ -14,7 +17,7 @@ export async function getArtworks() {
     artist: item.creators?.[0]?.description || '',
     date: item.creation_date || '',
     image: item.images?.web?.url
-      ? item.images.web.url.replace('https://openaccess-cdn.clevelandart.org', '/cleveland-image')
+      ? item.images.web.url.replace('https://openaccess-cdn.clevelandart.org', CLE_IMAGE_BASE)
       : '',
   })).filter((art) => art.image)
 

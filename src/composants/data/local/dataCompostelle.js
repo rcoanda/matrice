@@ -8,8 +8,6 @@ const COMPOSTELLE_IMAGES = [
   { folder: 'compostelle', file: 'P1030032.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1030044.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1030057.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
-  { folder: 'compostelle', file: 'P1030075.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
-  { folder: 'compostelle', file: 'P1030099.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1030113.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1030124.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1030131.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
