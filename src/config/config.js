@@ -3,7 +3,7 @@ const INIT = [
   { config: 'viewConfig', default: null, init: null },
   { config: 'dataConfig', default: null, init: null },
   { config: 'selectorConfig', default: 'btnKey', init: null },
-  { config: 'heroConfig', default: 'cameraKey', init: 'spaceKey' },
+  { config: 'heroConfig', default: 'cameraKey', init: null },
 ]
 
 export function getAllInit() {
