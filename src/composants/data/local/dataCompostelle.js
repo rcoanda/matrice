@@ -1,5 +1,4 @@
 const COMPOSTELLE_IMAGES = [
-  { folder: 'compostelle', file: 'P1020629.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1020705.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1020712.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
   { folder: 'compostelle', file: 'P1020726.JPG', artist: 'Local', date: '01/01/2000', place: 'Compostelle' },
