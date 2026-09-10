@@ -7,15 +7,15 @@ export default defineConfig({
   base: '/studio/',
   server: {
     proxy: {
-      '/matrice/met-image': {
+      '/studio/met-image': {
         target: 'https://images.metmuseum.org',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/matrice\/met-image/, ''),
+        rewrite: (path) => path.replace(/^\/studio\/met-image/, ''),
       },
-      '/matrice/cleveland-image': {
+      '/studio/cleveland-image': {
         target: 'https://openaccess-cdn.clevelandart.org',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/matrice\/cleveland-image/, ''),
+        rewrite: (path) => path.replace(/^\/studio\/cleveland-image/, ''),
       },
     },
   },

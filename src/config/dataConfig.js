@@ -3,14 +3,14 @@ import { getArtworks as getMetArtworks } from '../composants/data/api/Metropolit
 import { getArtworks as getCleArtworks } from '../composants/data/api/ClevelandData'
 
 const LOCAL_SOURCES = [
-  { key: 'compostelleKey', label: 'Compostelle', loader: () => loadLocalPhotos('data/nature.json') },
-  { key: 'santorinKey', label: 'Santorin', loader: () => loadLocalPhotos('data/mongolfiere.json') },
+  { key: 'natureKey', label: 'Nature', loader: () => loadLocalPhotos('data/nature.json') },
+  { key: 'mongolfiereKey', label: 'Mongolfière', loader: () => loadLocalPhotos('data/mongolfiere.json') },
 ]
 
 const DATA_SOURCES = [
   ...LOCAL_SOURCES,
   { key: 'metropolitanKey', label: 'Metropolitan', loader: getMetArtworks },
-  { key: 'clevelandKey', label: 'Cleveland', loader: getCleArtworks },
+  //{ key: 'clevelandKey', label: 'Cleveland', loader: getCleArtworks }, //ça ne marche pa l'api
 ]
 
 export function getAllDataSources() {
