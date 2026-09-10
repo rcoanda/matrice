@@ -4,18 +4,18 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/studio/',
+  base: '/matrice/',
   server: {
     proxy: {
-      '/studio/met-image': {
+      '/matrice/met-image': {
         target: 'https://images.metmuseum.org',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/studio\/met-image/, ''),
+        rewrite: (path) => path.replace(/^\/matrice\/met-image/, ''),
       },
-      '/studio/cleveland-image': {
+      '/matrice/cleveland-image': {
         target: 'https://openaccess-cdn.clevelandart.org',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/studio\/cleveland-image/, ''),
+        rewrite: (path) => path.replace(/^\/matrice\/cleveland-image/, ''),
       },
     },
   },
