@@ -1,28 +1,13 @@
-const COUNT = 10
+import { getPhotoUrls } from '../../../services/photoService'
 
-function preloadImages(artworks) {
-  return Promise.all(
-    artworks.map((art) => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        img.onload = resolve
-        img.onerror = resolve
-        img.src = art.image
-      })
-    })
-  )
-}
-
-export async function getLocalData({ images }) {
-  const artworks = images.slice(0, COUNT).map((image, i) => ({
+export async function loadLocalPhotos(source) {
+  const urls = await getPhotoUrls(source)
+  return urls.map((url, i) => ({
     id: i + 1,
-    title: (typeof image === 'string' ? image : image.file).replace(/\.(JPG|jpg)$/, '').replace(/_HDR$/, '').replace(/ \(\d+\)$/, ''),
-    artist: typeof image === 'string' ? '' : image.artist,
-    date: typeof image === 'string' ? '' : image.date,
-    place: typeof image === 'string' ? '' : image.place,
-    folder: image.folder,
-    image: `${import.meta.env.BASE_URL}data/${image.folder}/${image.file}`,
+    title: '',
+    artist: '',
+    date: '',
+    place: '',
+    image: url,
   }))
-  await preloadImages(artworks)
-  return artworks
 }

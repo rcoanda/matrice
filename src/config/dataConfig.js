@@ -1,12 +1,10 @@
-import { getLocalData } from '../composants/data/local/LocalData'
-import { getAllCompostelleImages } from '../composants/data/local/dataCompostelle'
-import { getAllSantorinImages } from '../composants/data/local/dataSantorin'
+import { loadLocalPhotos } from '../composants/data/local/LocalData'
 import { getArtworks as getMetArtworks } from '../composants/data/api/MetropolitanData'
 import { getArtworks as getCleArtworks } from '../composants/data/api/ClevelandData'
 
 const LOCAL_SOURCES = [
-  { key: 'compostelleKey', label: 'Compostelle', loader: () => getLocalData({ images: getAllCompostelleImages() }) },
-  { key: 'santorinKey', label: 'Santorin', loader: () => getLocalData({ images: getAllSantorinImages() }) },
+  { key: 'compostelleKey', label: 'Compostelle', loader: () => loadLocalPhotos('data/nature.json') },
+  { key: 'santorinKey', label: 'Santorin', loader: () => loadLocalPhotos('data/mongolfiere.json') },
 ]
 
 const DATA_SOURCES = [
