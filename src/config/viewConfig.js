@@ -1,11 +1,15 @@
 import SphereView from '../composants/view/SphereView'
 import CylinderView from '../composants/view/CylinderView'
 import EllipseView from '../composants/view/EllipseView'
+import ListView from '../composants/view/ListView'
+import GridView from '../composants/view/GridView'
 
 const VIEW_MODES = [
   { key: 'sphereKey', label: 'sphere', component: SphereView },
   { key: 'cylinderKey', label: 'cylinder', component: CylinderView },
   { key: 'ellipseKey', label: 'ellipse', component: EllipseView },
+  { key: 'listKey', label: 'list', component: ListView },
+  { key: 'gridKey', label: 'grid', component: GridView },
 ]
 
 export function getAllViewModes() {
