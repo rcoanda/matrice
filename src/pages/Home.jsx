@@ -15,8 +15,13 @@ export default function Home() {
   const navigate = useNavigate()
   const { viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
+  const [dataSourceOptions, setDataSourceOptions] = useState([])
   const Selector = getSelectorType(getInit('selectorConfig')).component
   const Hero = getHeroType(getInit('heroConfig')).component
+
+  useEffect(() => {
+    getAllDataSources().then(setDataSourceOptions)
+  }, [])
 
   useEffect(() => {
     if (viewMode && dataSource) {
@@ -43,7 +48,7 @@ export default function Home() {
           viewModeOptions={getAllViewModes()}
           viewMode={viewMode}
           onViewModeChange={setViewMode}
-          dataSourceOptions={getAllDataSources()}
+          dataSourceOptions={dataSourceOptions}
           dataSource={dataSource}
           onDataSourceChange={setDataSource}
         />

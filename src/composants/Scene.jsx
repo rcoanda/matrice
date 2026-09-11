@@ -13,10 +13,14 @@ export default function Scene({ viewMode, dataSource, onSelect }) {
   const [artworks, setArtworks] = useState([])
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
+  const [dataSourceItem, setDataSourceItem] = useState(null)
 
   const viewModeItem = getViewMode(viewMode)
   const ViewComponent = viewModeItem ? viewModeItem.component : null
-  const dataSourceItem = getDataSource(dataSource)
+
+  useEffect(() => {
+    getDataSource(dataSource).then(setDataSourceItem)
+  }, [dataSource])
 
   useEffect(() => {
     if (!dataSourceItem) return
@@ -30,7 +34,7 @@ export default function Scene({ viewMode, dataSource, onSelect }) {
       setTimeout(() => setLoading(false), 300)
     }
     load()
-  }, [dataSource])
+  }, [dataSourceItem])
 
   if (!viewMode || !dataSource) return null
 

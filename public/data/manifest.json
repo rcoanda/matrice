@@ -1,0 +1,8 @@
+{
+  "files": [
+    { "file": "nature.json", "key": "natureKey", "label": "Nature" },
+    { "file": "mongolfiere.json", "key": "mongolfiereKey", "label": "Mongolfière" },
+    { "file": "karnak.json", "key": "karnakKey", "label": "Karnak" },
+    { "file": "people.json", "key": "peopleKey", "label": "People" }
+  ]
+}
