@@ -20,13 +20,11 @@ function renderButtons(options, value, onChange) {
 export default function BtnSelector({ viewModeOptions, viewMode, onViewModeChange, dataSourceOptions, dataSource, onDataSourceChange }) {
   return (
     <div className="overlay-content">
-      <div className="selector-controls-wrapper">
-        <div className="selector-controls">
+      <div className="selector-groups">
+        <div className="selector-row">
           {renderButtons(viewModeOptions, viewMode, onViewModeChange)}
         </div>
-      </div>
-      <div className="selector-controls-wrapper-data">
-        <div className="selector-controls">
+        <div className="selector-row">
           {renderButtons(dataSourceOptions, dataSource, onDataSourceChange)}
         </div>
       </div>
