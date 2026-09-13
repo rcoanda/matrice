@@ -21,13 +21,11 @@ export default {
     display: {
       families: ['Orbitron'],
       weights: '500;700;900',
-      importUrl: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap',
       fallbacks: ['monospace'],
     },
     body: {
       families: ['IBM Plex Sans'],
       weights: '400;600',
-      importUrl: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap',
       fallbacks: ['system-ui', 'sans-serif'],
     },
   },

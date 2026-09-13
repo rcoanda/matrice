@@ -20,7 +20,7 @@
 
 body {
   overflow: hidden;
-  background: #E4D3B5;
+  background: var(--color-gallery-light);
 }
 
 #root {

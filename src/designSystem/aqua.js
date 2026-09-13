@@ -21,13 +21,11 @@ export default {
     display: {
       families: ['Syncopate'],
       weights: '400;700',
-      importUrl: 'https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap',
       fallbacks: ['Georgia', 'serif'],
     },
     body: {
       families: ['Manrope'],
       weights: '400;700',
-      importUrl: 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap',
       fallbacks: ['system-ui', 'sans-serif'],
     },
   },

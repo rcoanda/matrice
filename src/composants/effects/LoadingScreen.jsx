@@ -15,6 +15,11 @@ export default function LoadingScreen({ progress }) {
         </div>
         <p className="loading-text">
           {t('loadingMessage', 'loadingScreen')}
+          <span className="loading-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </p>
       </div>
     </div>

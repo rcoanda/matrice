@@ -1,0 +1,119 @@
+/* ========================================================================
+   Consommation des tokens publiés par DesignSystemeProvider.
+   Chaque token du DS est consommé ici (couleurs, fonts+poids, radius,
+   spacing, motion, accessibilité, meta).
+   ======================================================================== */
+
+/* --- meta -> attributs data-ds-* : baseline conditionnée au DS actif --- */
+html[data-ds-id] {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- fonts : stacks + background pilotés par le DS --- */
+html[data-ds-id] body {
+  background: var(--color-gallery-light);
+  font-family: var(--font-para);
+}
+
+/* --- colors : accent & cream consommés (sélection + focus) --- */
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-color);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- radius : cards / buttons / fields --- */
+.overlay-window,
+.listview-photo,
+.gridview-cell {
+  border-radius: var(--radius-2xl);
+}
+
+.lang-toggle,
+.selector-btn,
+.carousel-option-btn,
+.rosette-btn,
+.icon-btn {
+  border-radius: var(--radius-full);
+}
+
+input,
+textarea,
+select {
+  border-radius: var(--radius-xl);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: background-color 200ms ease;
+}
+
+.icon-btn:hover {
+  background-color: var(--color-gallery-muted);
+}
+
+/* --- spacing -> largeur max du conteneur --- */
+.about-layout,
+.contact-layout {
+  width: 100%;
+  max-width: var(--container-6xl);
+  margin-inline: auto;
+}
+
+/* --- motion : marquee --- */
+@keyframes ds-marquee {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(-100%); }
+}
+
+.ds-marquee {
+  display: block;
+  overflow: hidden;
+  margin-top: 1rem;
+  white-space: nowrap;
+  color: var(--color-gallery-muted);
+  animation: ds-marquee var(--motion-marquee-duration) var(--motion-marquee-timing) var(--motion-marquee-iteration);
+}
+
+/* --- motion : clignotement (blink) --- */
+@keyframes ds-blink {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 1; }
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.loading-dots span {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 50%;
+  background: var(--color-gallery);
+  animation: ds-blink var(--motion-blink-duration) var(--motion-blink-timing) var(--motion-blink-iteration);
+}
+
+.loading-dots span:nth-child(2) { animation-delay: calc(var(--motion-blink-duration) / 3); }
+.loading-dots span:nth-child(3) { animation-delay: calc(var(--motion-blink-duration) * 2 / 3); }
+
+/* --- motion : flip des cartes (overlay) --- */
+@keyframes ds-flip {
+  from { opacity: 0; transform: perspective(700px) rotateY(-8deg) translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.overlay-window {
+  animation: ds-flip var(--motion-flip-duration) ease-out both;
+}

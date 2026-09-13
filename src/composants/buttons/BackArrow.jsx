@@ -11,6 +11,7 @@ export default function BackArrow({ onClick }) {
         onClick?.()
         navigate('/')
       }}
+      className="icon-btn"
       style={{
         position: 'fixed',
         top: '5rem',

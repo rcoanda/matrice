@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { getInit } from '../config/config'
 import { getDesignSystem } from '../config/designSystemConfig'
-import { buildCssStack } from '../utils/designTokens'
+import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
 export default function DesignSystemeProvider({ children }) {
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function DesignSystemeProvider({ children }) {
 
     // imports Google Fonts (display + body, dédupliqués)
     const urls = [
-      ...new Set([ds.font.display.importUrl, ds.font.body.importUrl].filter(Boolean)),
+      ...new Set([buildGoogleFontsUrl(ds.font.display), buildGoogleFontsUrl(ds.font.body)].filter(Boolean)),
     ]
     for (const href of urls) {
       if (!document.head.querySelector(`link[href="${href}"]`)) {

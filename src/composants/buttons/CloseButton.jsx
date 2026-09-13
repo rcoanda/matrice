@@ -11,7 +11,7 @@ export default function CloseButton({ onClick, className }) {
         if (onClick) onClick()
         else navigate('/')
       }}
-      className={className}
+      className={['icon-btn', className].filter(Boolean).join(' ')}
       style={className ? undefined : {
         position: 'fixed',
         top: '5rem',

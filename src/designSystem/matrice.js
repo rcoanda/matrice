@@ -21,13 +21,11 @@ export default {
     display: {
       families: ['Kalnia'],
       weights: '400;500;600',
-      importUrl: 'https://fonts.googleapis.com/css2?family=Kalnia:wght@400;500;600&display=swap',
       fallbacks: ['Georgia', 'serif'],
     },
     body: {
       families: ['Almendra Sans'],
       weights: '400;700',
-      importUrl: 'https://fonts.googleapis.com/css2?family=Almendra+Sans:wght@400;700&display=swap',
       fallbacks: ['system-ui', 'sans-serif'],
     },
   },
