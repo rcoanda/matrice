@@ -1,7 +1,7 @@
-import { useEffect, useState, Suspense } from 'react'
+import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getViewMode } from '../../config/viewConfig'
-import { getDataSource } from '../../config/dataConfig'
+import { useArtworkLoader } from '../../hooks/useArtworkLoader'
 import LoadingScreen from '../effects/LoadingScreen'
 import HeadLine from '../layout/HeadLine'
 
@@ -10,31 +10,10 @@ function GalleryFallback() {
 }
 
 export default function Scene({ viewMode, dataSource, onSelect }) {
-  const [artworks, setArtworks] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [progress, setProgress] = useState(0)
-  const [dataSourceItem, setDataSourceItem] = useState(null)
+  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
 
   const viewModeItem = getViewMode(viewMode)
   const ViewComponent = viewModeItem ? viewModeItem.component : null
-
-  useEffect(() => {
-    getDataSource(dataSource).then(setDataSourceItem)
-  }, [dataSource])
-
-  useEffect(() => {
-    if (!dataSourceItem) return
-    setLoading(true)
-    setProgress(10)
-
-    const load = async () => {
-      const data = await dataSourceItem.loader()
-      setProgress(100)
-      setArtworks(data)
-      setTimeout(() => setLoading(false), 300)
-    }
-    load()
-  }, [dataSourceItem])
 
   if (!viewMode || !dataSource) return null
 
