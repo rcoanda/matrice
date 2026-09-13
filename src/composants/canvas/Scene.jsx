@@ -1,6 +1,8 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getViewMode } from '../../config/viewConfig'
+import { getInit } from '../../config/config'
+import { getDesignSystem } from '../../config/designSystemConfig'
 import { useArtworkLoader } from '../../hooks/useArtworkLoader'
 import LoadingScreen from '../effects/LoadingScreen'
 import HeadLine from '../layout/HeadLine'
@@ -11,6 +13,7 @@ function GalleryFallback() {
 
 export default function Scene({ viewMode, dataSource, onSelect }) {
   const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
+  const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
   const viewModeItem = getViewMode(viewMode)
   const ViewComponent = viewModeItem ? viewModeItem.component : null
@@ -29,7 +32,7 @@ export default function Scene({ viewMode, dataSource, onSelect }) {
         gl={{ antialias: true, alpha: false }}
         style={{ width: '100%', height: '100%' }}
       >
-        <color attach="background" args={['#E4D3B5']} />
+        <color attach="background" args={[background]} />
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} intensity={0.5} />
         <Suspense fallback={<GalleryFallback />}>

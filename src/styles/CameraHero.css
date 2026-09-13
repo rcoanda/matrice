@@ -3,5 +3,5 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(49, 57, 39, 0.18));
+  background: radial-gradient(ellipse at center, transparent 55%, var(--color-hero-vignette));
 }

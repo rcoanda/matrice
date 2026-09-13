@@ -6,12 +6,12 @@
   min-height: 100vh;
   padding: 2rem;
   color: var(--color-gallery);
-  font-family: 'Almendra Sans', sans-serif;
+  font-family: var(--font-para);
 }
 
 .contact-title {
-  font-family: 'Kalnia', serif;
-  font-size: 3rem;
+  font-family: var(--font-heading);
+  font-size: var(--type-hero);
   margin-bottom: 3rem;
 }
 

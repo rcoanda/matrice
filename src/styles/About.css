@@ -6,18 +6,18 @@
   min-height: 100vh;
   padding: 2rem;
   color: var(--color-gallery);
-  font-family: 'Almendra Sans', sans-serif;
+  font-family: var(--font-para);
 }
 
 .about-title {
-  font-family: 'Kalnia', serif;
-  font-size: 3rem;
+  font-family: var(--font-heading);
+  font-size: var(--type-hero);
   margin-bottom: 1.5rem;
 }
 
 .about-description {
   max-width: 32rem;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: var(--type-lead);
   color: var(--color-gallery-muted);
 }

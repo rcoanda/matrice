@@ -19,9 +19,9 @@
 
 .listview-photo {
   position: relative;
-  background: #fffdf7;
+  background: var(--color-surface);
   padding: 1rem 1rem 1.2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-card);
   cursor: zoom-in;
 }
 
@@ -42,11 +42,11 @@
 
 .listview-info h3 {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: var(--type-cardTitle);
 }
 
 .listview-info p {
-  font-size: 0.95rem;
+  font-size: var(--type-base);
   opacity: 0.85;
 }
 
@@ -66,8 +66,8 @@
 
 .listview-counter {
   font-family: var(--font-para);
-  font-size: 0.85rem;
+  font-size: var(--type-small);
   color: var(--color-gallery);
-  letter-spacing: var(--tracking-wider-custom);
+  letter-spacing: var(--tracking-wider);
   pointer-events: auto;
 }

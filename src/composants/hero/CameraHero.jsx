@@ -1,8 +1,12 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
+import { getInit } from '../../config/config'
+import { getDesignSystem } from '../../config/designSystemConfig'
 import '../../styles/Hero.css'
 import '../../styles/CameraHero.css'
+
+const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
 function CameraFrustum() {
   const groupRef = useRef()
@@ -260,8 +264,8 @@ export default function Hero() {
         gl={{ antialias: true, alpha: false }}
         style={{ width: '100%', height: '100%' }}
       >
-        <color attach="background" args={['#E4D3B5']} />
-        <fog attach="fog" args={['#E4D3B5', 6, 14]} />
+        <color attach="background" args={[background]} />
+        <fog attach="fog" args={[background, 6, 14]} />
         <ambientLight intensity={0.5} />
         <pointLight position={[3, 2, 4]} intensity={0.8} color="#E8A33D" />
         <pointLight position={[-3, -1, 2]} intensity={0.6} color="#4A7B8C" />
