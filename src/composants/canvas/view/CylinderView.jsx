@@ -1,4 +1,4 @@
-import { useCylinderTrajectory } from '../../../hooks/useCylinderTrajectory'
+import { useCylinderTrajectory } from '../../../hooks/trajectory/useCylinderTrajectory'
 import View from './View'
 
 export default function CylinderView({ artworks, onSelect }) {

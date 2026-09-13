@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { getEllipseTrajectory } from '../utils/ellipseTrajectory'
+import { getEllipseTrajectory } from '../../utils/trajectory/ellipseTrajectory'
 
 export function useEllipseTrajectory(artworks, options) {
   const positions = useMemo(

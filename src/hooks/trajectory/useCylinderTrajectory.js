@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { getCylinderTrajectory } from '../utils/cylinderTrajectory'
+import { getCylinderTrajectory } from '../../utils/trajectory/cylinderTrajectory'
 
 export function useCylinderTrajectory(artworks, options) {
   const positions = useMemo(

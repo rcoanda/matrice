@@ -1,4 +1,4 @@
-import { useSphereTrajectory } from '../../../hooks/useSphereTrajectory'
+import { useSphereTrajectory } from '../../../hooks/trajectory/useSphereTrajectory'
 import View from './View'
 
 export default function SphereView({ artworks, onSelect }) {

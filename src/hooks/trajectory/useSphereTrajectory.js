@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { getSphereTrajectory } from '../utils/sphereTrajectory'
+import { getSphereTrajectory } from '../../utils/trajectory/sphereTrajectory'
 
 export function useSphereTrajectory(artworks, options) {
   const positions = useMemo(

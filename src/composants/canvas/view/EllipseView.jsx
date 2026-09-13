@@ -1,4 +1,4 @@
-import { useEllipseTrajectory } from '../../../hooks/useEllipseTrajectory'
+import { useEllipseTrajectory } from '../../../hooks/trajectory/useEllipseTrajectory'
 import View from './View'
 
 export default function EllipseView({ artworks, onSelect }) {
