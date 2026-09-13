@@ -1,5 +1,5 @@
 import BackArrow from '../composants/buttons/BackArrow'
-import { useDico } from '../providers/Dico'
+import { useDico } from '../providers/DicoProvider'
 import '../styles/shared.css'
 import '../styles/Contact.css'
 

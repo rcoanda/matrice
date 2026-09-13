@@ -3,8 +3,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
-import { SelectionProvider } from './providers/SelectionContext'
-import { DicoProvider } from './providers/Dico'
+import { SelectionProvider } from './providers/SelectionProvider'
+import { DicoProvider } from './providers/DicoProvider'
 
 function App() {
   return (

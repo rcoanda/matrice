@@ -7,7 +7,7 @@ import { getAllViewModes } from '../config/viewConfig'
 import { getAllDataSources } from '../config/dataConfig'
 import { getSelectorType } from '../config/selectorConfig'
 import { getHeroType } from '../config/heroConfig'
-import { SelectionContext } from '../providers/SelectionContext'
+import { SelectionContext } from '../providers/SelectionProvider'
 import '../styles/shared.css'
 import '../styles/Home.css'
 

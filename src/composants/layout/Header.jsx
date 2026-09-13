@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { useDico } from '../../providers/Dico'
+import { useDico } from '../../providers/DicoProvider'
 import { getInit } from '../../config/config'
 import { getAllLangues, getLangue } from '../../config/langConfig'
 import '../../styles/shared.css'

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useDico } from '../../providers/Dico'
+import { useDico } from '../../providers/DicoProvider'
 
 export default function BackArrow({ onClick }) {
   const navigate = useNavigate()

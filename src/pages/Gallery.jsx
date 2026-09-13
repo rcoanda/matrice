@@ -4,7 +4,7 @@ import Scene from '../composants/canvas/Scene'
 import BackArrow from '../composants/buttons/BackArrow'
 
 import Overlay from '../composants/effects/Overlay'
-import { SelectionContext } from '../providers/SelectionContext'
+import { SelectionContext } from '../providers/SelectionProvider'
 import '../styles/Gallery.css'
 
 export default function Gallery() {
