@@ -7,7 +7,7 @@ const DEFAULT_OPTIONS = {
   frequencyY: 2,
 }
 
-export function getEllipseTrajectory(count, options = {}) {
+export function getEllipseHolder(count, options = {}) {
   const { rx, rz, amplitudeY, frequencyY } = { ...DEFAULT_OPTIONS, ...options }
 
   const positions = []

@@ -8,7 +8,7 @@ const DEFAULT_OPTIONS = {
   offset: -Math.PI * 0.75,
 }
 
-export function getCylinderTrajectory(count, options = {}) {
+export function getCylinderHolder(count, options = {}) {
   const { cols, radius, spacingY, arc, offset } = { ...DEFAULT_OPTIONS, ...options }
   const actualCols = Math.min(cols, count)
   const rows = Math.ceil(count / actualCols)

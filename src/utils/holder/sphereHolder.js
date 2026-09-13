@@ -4,7 +4,7 @@ const DEFAULT_OPTIONS = {
   radius: 4,
 }
 
-export function getSphereTrajectory(count, options = {}) {
+export function getSphereHolder(count, options = {}) {
   const { radius } = { ...DEFAULT_OPTIONS, ...options }
 
   const positions = []
