@@ -1,20 +1,17 @@
 import { useRef } from 'react'
-import { useFrame, useLoader } from '@react-three/fiber'
-import { TextureLoader, Vector3 } from 'three'
+import { useFrame } from '@react-three/fiber'
+import { Vector3 } from 'three'
+import { usePhotoTexture } from '../../../hooks/usePhotoTexture'
 
 function ArtworkImage({ url, position, onClick }) {
-  const texture = useLoader(TextureLoader, url)
-  const aspect = texture.image ? texture.image.width / texture.image.height : 1
-  const h = 1.6
-  const w = h * Math.min(aspect, 1.8)
+  const { texture, size } = usePhotoTexture(url)
 
   return (
     <sprite position={position} onClick={onClick}>
-      <spriteMaterial map={texture} transparent size={[w, h]} />
+      <spriteMaterial map={texture} transparent size={size} />
     </sprite>
   )
 }
-
 export default function View({ cameraZ, artworks, positions, onSelect }) {
   const groupRef = useRef()
   const cameraPos = useRef(new Vector3(0, 0.5, cameraZ))
