@@ -6,6 +6,7 @@ const INIT = [
   { config: 'dataConfig', default: null, init: null },
   { config: 'selectorConfig', default: 'btnKey', init: null },
   { config: 'heroConfig', default: 'cameraKey', init: null },
+  { config: 'designSystemConfig', default: 'neonKey', init: null },
 ]
 
 export function getAllInit() {
