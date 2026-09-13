@@ -1,6 +1,6 @@
-import { getPhotoUrls } from '../../../services/photoService'
+import { getPhotoUrls } from './photoUrlsService'
 
-export async function loadLocalPhotos(source) {
+export async function loadCloudPhotos(source) {
   const urls = await getPhotoUrls(source)
   return urls.map((url, i) => ({
     id: i + 1,

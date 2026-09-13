@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom'
-import { useDico } from './lang/Dico'
-import { getInit } from '../config/config'
-import { getAllLangues, getLangue } from '../config/langConfig'
-import '../styles/shared.css'
-import '../styles/Header.css'
+import { useDico } from '../../providers/Dico'
+import { getInit } from '../../config/config'
+import { getAllLangues, getLangue } from '../../config/langConfig'
+import '../../styles/shared.css'
+import '../../styles/Header.css'
 
 export default function Header() {
   const { t, lang, setLang } = useDico()

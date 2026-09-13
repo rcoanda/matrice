@@ -1,5 +1,5 @@
-import '../styles/Overlay.css'
-import CloseButton from './assets/CloseButton'
+import '../../styles/Overlay.css'
+import CloseButton from '../buttons/CloseButton'
 
 export default function Overlay({ artwork, onClose }) {
   if (!artwork) return null

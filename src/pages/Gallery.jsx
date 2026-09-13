@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import Scene from '../composants/Scene'
-import BackArrow from '../composants/assets/BackArrow'
+import Scene from '../composants/canvas/Scene'
+import BackArrow from '../composants/buttons/BackArrow'
 
-import Overlay from '../composants/Overlay'
-import { SelectionContext } from '../composants/SelectionContext'
+import Overlay from '../composants/effects/Overlay'
+import { SelectionContext } from '../providers/SelectionContext'
 import '../styles/Gallery.css'
 
 export default function Gallery() {

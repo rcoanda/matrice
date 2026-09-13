@@ -1,4 +1,4 @@
-import '../styles/HeadLine.css'
+import '../../styles/HeadLine.css'
 
 export default function HeadLine({ currentView, currentData }) {
   return (

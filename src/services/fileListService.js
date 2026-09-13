@@ -1,3 +1,5 @@
+// Service qui récupère les noms de fichiers depuis un fichier data/manifest.json
+
 const cache = {}
 
 async function fetchFileList() {

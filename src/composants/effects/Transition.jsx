@@ -1,4 +1,4 @@
-import '../styles/Transition.css'
+import '../../styles/Transition.css'
 
 export default function Transition({ visible }) {
   if (!visible) return null

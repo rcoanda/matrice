@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { getInit } from '../../config/config'
-import { getLangue } from '../../config/langConfig'
+import { getInit } from '../config/config'
+import { getLangue } from '../config/langConfig'
 
 const LanguageContext = createContext(null)
 

@@ -1,6 +1,6 @@
-import '../styles/shared.css'
-import '../styles/LoadingScreen.css'
-import { useDico } from './lang/Dico'
+import '../../styles/shared.css'
+import '../../styles/LoadingScreen.css'
+import { useDico } from '../../providers/Dico'
 
 export default function LoadingScreen({ progress }) {
   const { t } = useDico()

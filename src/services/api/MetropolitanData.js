@@ -1,4 +1,4 @@
-import { IS_LOCAL } from '../../../config/config'
+import { IS_LOCAL } from '../../config/config'
 
 const COUNT = 10
 

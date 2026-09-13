@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
-import '../../styles/ListView.css'
+import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {
   const [index, setIndex] = useState(0)

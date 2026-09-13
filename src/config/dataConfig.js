@@ -1,7 +1,7 @@
-import { loadLocalPhotos } from '../composants/data/local/LocalData'
-import { getFileList } from '../services/fileService'
-import { getArtworks as getMetArtworks } from '../composants/data/api/MetropolitanData'
-import { getArtworks as getCleArtworks } from '../composants/data/api/ClevelandData'
+import { loadCloudPhotos } from '../services/cloudPhotosLoader'
+import { getFileList } from '../services/fileListService'
+import { getArtworks as getMetArtworks } from '../services/api/MetropolitanData'
+import { getArtworks as getCleArtworks } from '../services/api/ClevelandData'
 
 const API_SOURCES = [
     { key: 'metropolitanKey', label: 'Metropolitan', loader: getMetArtworks },
@@ -17,7 +17,7 @@ async function buildLocalSources() {
     localSources = files.map((file) => ({
         key: file.key,
         label: file.label,
-        loader: () => loadLocalPhotos(`data/${file.file}`),
+        loader: () => loadCloudPhotos(`data/${file.file}`),
     }))
     localSourcesReady = true
 }

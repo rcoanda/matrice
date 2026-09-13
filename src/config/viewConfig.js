@@ -1,8 +1,8 @@
-import SphereView from '../composants/view/SphereView'
-import CylinderView from '../composants/view/CylinderView'
-import EllipseView from '../composants/view/EllipseView'
-import ListView from '../composants/view/ListView'
-import GridView from '../composants/view/GridView'
+import SphereView from '../composants/canvas/view/SphereView'
+import CylinderView from '../composants/canvas/view/CylinderView'
+import EllipseView from '../composants/canvas/view/EllipseView'
+import ListView from '../composants/canvas/view/ListView'
+import GridView from '../composants/canvas/view/GridView'
 
 const VIEW_MODES = [
   { key: 'sphereKey', label: 'sphere', component: SphereView },

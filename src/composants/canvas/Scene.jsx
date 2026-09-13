@@ -1,9 +1,9 @@
 import { useEffect, useState, Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getViewMode } from '../config/viewConfig'
-import { getDataSource } from '../config/dataConfig'
-import LoadingScreen from './LoadingScreen'
-import HeadLine from './HeadLine'
+import { getViewMode } from '../../config/viewConfig'
+import { getDataSource } from '../../config/dataConfig'
+import LoadingScreen from '../effects/LoadingScreen'
+import HeadLine from '../layout/HeadLine'
 
 function GalleryFallback() {
   return null
@@ -54,7 +54,7 @@ export default function Scene({ viewMode, dataSource, onSelect }) {
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} intensity={0.5} />
         <Suspense fallback={<GalleryFallback />}>
-        //affichage artworks
+          {/* affichage artworks */}
           {ViewComponent && <ViewComponent artworks={artworks} onSelect={onSelect} />}
         </Suspense>
       </Canvas>
