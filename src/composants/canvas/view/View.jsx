@@ -1,7 +1,5 @@
-import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { Vector3 } from 'three'
 import { usePhotoTexture } from '../../../hooks/usePhotoTexture'
+import { useViewMotion } from '../../../hooks/useViewMotion'
 
 function ArtworkImage({ url, position, onClick }) {
   const { texture, size } = usePhotoTexture(url)
@@ -12,18 +10,9 @@ function ArtworkImage({ url, position, onClick }) {
     </sprite>
   )
 }
-export default function View({ cameraZ, artworks, positions, onSelect }) {
-  const groupRef = useRef()
-  const cameraPos = useRef(new Vector3(0, 0.5, cameraZ))
 
-  useFrame(({ camera }, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.15
-    }
-    cameraPos.current.lerp(new Vector3(0, 0.5, cameraZ), 0.05)
-    camera.position.copy(cameraPos.current)
-    camera.lookAt(0, 0, 0)
-  })
+export default function View({ cameraZ, artworks, positions, onSelect }) {
+  const groupRef = useViewMotion(cameraZ)
 
   return (
     <group ref={groupRef}>
