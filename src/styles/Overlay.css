@@ -30,10 +30,16 @@
   color: var(--color-gallery);
 }
 
-.overlay-image {
+.overlay-image,
+.overlay-media {
   max-width: 90%;
   max-height: 70%;
   object-fit: contain;
+}
+
+.overlay-glb {
+  width: min(70vw, 60vh);
+  aspect-ratio: 1;
 }
 
 .overlay-info {
