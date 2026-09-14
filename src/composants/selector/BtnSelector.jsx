@@ -21,12 +21,16 @@ export default function BtnSelector({ motionOptions, motion, onMotionChange, vie
   return (
     <div className="overlay-content">
       <div className="selector-groups">
-        <div className="selector-row">
-          {renderButtons(motionOptions, motion, onMotionChange)}
-        </div>
-        <div className="selector-row">
-          {renderButtons(viewModeOptions, viewMode, onViewModeChange)}
-        </div>
+        {motionOptions.length > 0 && (
+          <div className="selector-row">
+            {renderButtons(motionOptions, motion, onMotionChange)}
+          </div>
+        )}
+        {viewModeOptions.length > 0 && (
+          <div className="selector-row">
+            {renderButtons(viewModeOptions, viewMode, onViewModeChange)}
+          </div>
+        )}
         <div className="selector-row">
           {renderButtons(dataSourceOptions, dataSource, onDataSourceChange)}
         </div>

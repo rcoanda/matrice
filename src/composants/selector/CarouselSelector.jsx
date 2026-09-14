@@ -13,13 +13,13 @@ export default function CarouselSelector({
   const langOptions = getAllLangues()
 
   const items = [
-    { label: 'Motion', options: motionOptions, value: motion, onChange: onMotionChange },
-    { label: 'View', options: viewModeOptions, value: viewMode, onChange: onViewModeChange },
+    ...(motionOptions.length > 0 ? [{ label: 'Motion', options: motionOptions, value: motion, onChange: onMotionChange }] : []),
+    ...(viewModeOptions.length > 0 ? [{ label: 'View', options: viewModeOptions, value: viewMode, onChange: onViewModeChange }] : []),
     { label: 'Data', options: dataSourceOptions, value: dataSource, onChange: onDataSourceChange },
     { label: 'Lang', options: langOptions, value: lang, onChange: setLang },
   ]
 
-  const active = items[activeIndex]
+  const active = items[activeIndex % items.length]
 
   function goTo(index) {
     setActiveIndex(((index % items.length) + items.length) % items.length)

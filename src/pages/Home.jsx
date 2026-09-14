@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Transition from '../composants/effects/Transition'
 import Header from '../composants/layout/Header'
-import { getInit } from '../config/config'
+import { getAllInit, getInit } from '../config/config'
 import { getAllMotionModes } from '../config/motionConfig'
 import { getAllViewModes } from '../config/viewConfig'
 import { getAllDataSources } from '../config/dataConfig'
@@ -19,6 +19,8 @@ export default function Home() {
   const [dataSourceOptions, setDataSourceOptions] = useState([])
   const Selector = getSelectorType(getInit('selectorConfig')).component
   const Hero = getHeroType(getInit('heroConfig')).component
+  const motionEnabled = getAllInit().some((i) => i.config === 'motionConfig')
+  const viewEnabled = getAllInit().some((i) => i.config === 'viewConfig')
 
   useEffect(() => {
     getAllDataSources().then(setDataSourceOptions)
@@ -46,10 +48,10 @@ export default function Home() {
           </div>
         </div>
         <Selector
-          motionOptions={getAllMotionModes()}
+          motionOptions={motionEnabled ? getAllMotionModes() : []}
           motion={motion}
           onMotionChange={setMotion}
-          viewModeOptions={getAllViewModes()}
+          viewModeOptions={viewEnabled ? getAllViewModes() : []}
           viewMode={viewMode}
           onViewModeChange={setViewMode}
           dataSourceOptions={dataSourceOptions}
