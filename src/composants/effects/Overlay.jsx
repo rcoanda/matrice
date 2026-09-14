@@ -14,7 +14,7 @@ export default function Overlay({ artwork, onClose }) {
         ) : artwork.video ? (
           <video className="overlay-media" src={artwork.video} autoPlay muted loop playsInline />
         ) : artwork.glb ? (
-          <GlbView url={artwork.glb} className="overlay-glb" />
+          <GlbView url={artwork.glb} className="overlay-glb" orbit />
         ) : null}
         <div className="overlay-info">
           {artwork.title && <h2>{artwork.title}</h2>}

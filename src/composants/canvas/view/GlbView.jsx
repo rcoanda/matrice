@@ -1,9 +1,9 @@
 import { Suspense, useLayoutEffect, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { OrbitControls, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
-function GlbModel({ url }) {
+function GlbModel({ url, rotate = true }) {
   const gltf = useGLTF(url)
   const scene = useMemo(() => gltf.scene.clone(true), [gltf])
 
@@ -17,13 +17,13 @@ function GlbModel({ url }) {
   }, [scene])
 
   useFrame((_, delta) => {
-    scene.rotation.y += delta * 0.4
+    if (rotate) scene.rotation.y += delta * 0.4
   })
 
   return <primitive object={scene} />
 }
 
-export default function GlbView({ url, className, position, onClick, scene = false }) {
+export default function GlbView({ url, className, position, onClick, scene = false, orbit = false }) {
   if (scene) {
     return (
       <group position={position} onClick={onClick}>
@@ -45,8 +45,9 @@ export default function GlbView({ url, className, position, onClick, scene = fal
       <hemisphereLight intensity={0.4} />
       <directionalLight position={[4, 5, 6]} intensity={1.4} />
       <Suspense fallback={null}>
-        <GlbModel url={url} />
+        <GlbModel url={url} rotate={!orbit} />
       </Suspense>
+      {orbit && <OrbitControls enablePan={false} autoRotate autoRotateSpeed={1.5} />}
     </Canvas>
   )
 }

@@ -40,6 +40,11 @@
 .overlay-glb {
   width: min(70vw, 60vh);
   aspect-ratio: 1;
+  cursor: grab;
+}
+
+.overlay-glb:active {
+  cursor: grabbing;
 }
 
 .overlay-info {
