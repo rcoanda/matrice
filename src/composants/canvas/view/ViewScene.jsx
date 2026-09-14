@@ -1,17 +1,17 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getViewMode } from '../../config/viewConfig'
-import { getInit } from '../../config/config'
-import { getDesignSystem } from '../../config/designSystemConfig'
-import { useArtworkLoader } from '../../hooks/useArtworkLoader'
-import LoadingScreen from '../effects/LoadingScreen'
-import HeadLine from '../layout/HeadLine'
+import { getViewMode } from '../../../config/viewConfig'
+import { getInit } from '../../../config/config'
+import { getDesignSystem } from '../../../config/designSystemConfig'
+import { useArtworkLoader } from '../../../hooks/useArtworkLoader'
+import LoadingScreen from '../../effects/LoadingScreen'
+import HeadLine from '../../layout/HeadLine'
 
 function GalleryFallback() {
   return null
 }
 
-export default function Scene({ viewMode, dataSource, onSelect }) {
+export default function ViewScene({ viewMode, dataSource, onSelect }) {
   const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
   const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
