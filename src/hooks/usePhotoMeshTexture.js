@@ -55,7 +55,7 @@ function loadCanvas(url) {
   return pendingLoads.get(url)
 }
 
-export function usePhotoTexture(index, source) {
+export function usePhotoMeshTexture(index, source) {
   const [texture, setTexture] = useState(null)
 
   useEffect(() => {

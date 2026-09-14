@@ -27,7 +27,8 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    if (viewMode && dataSource) {
+    const ready = dataSource && ((motionEnabled && motion) || (viewEnabled && viewMode))
+    if (ready) {
       setStage('transition')
       setTimeout(() => {
         navigate('/galerie')
@@ -35,7 +36,7 @@ export default function Home() {
     } else {
       setStage('idle')
     }
-  }, [viewMode, dataSource, navigate])
+  }, [motion, viewMode, dataSource, navigate, motionEnabled, viewEnabled])
 
   return (
     <>
@@ -51,9 +52,11 @@ export default function Home() {
           motionOptions={motionEnabled ? getAllMotionModes() : []}
           motion={motion}
           onMotionChange={setMotion}
+
           viewModeOptions={viewEnabled ? getAllViewModes() : []}
           viewMode={viewMode}
           onViewModeChange={setViewMode}
+
           dataSourceOptions={dataSourceOptions}
           dataSource={dataSource}
           onDataSourceChange={setDataSource}

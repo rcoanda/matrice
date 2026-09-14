@@ -29,7 +29,7 @@ export default function MotionScene({ motionMode, viewMode, dataSource, onSelect
       <Canvas camera={{ position: [0, 5, 7], fov: 50, up: [0, 1, 0] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <MotionComponent artworks={artworks} onSelect={onSelect} />
+        <MotionComponent artworks={artworks} source={dataSourceItem?.file ? `data/${dataSourceItem.file}` : undefined} onSelect={onSelect} />
       </Canvas>
     </>
   )

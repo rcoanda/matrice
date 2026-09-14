@@ -17,6 +17,7 @@ async function buildLocalSources() {
     localSources = files.map((file) => ({
         key: file.key,
         label: file.label,
+        file: file.file,
         loader: () => loadCloudPhotos(`data/${file.file}`),
     }))
     localSourcesReady = true
