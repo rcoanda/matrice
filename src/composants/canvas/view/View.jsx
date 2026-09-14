@@ -1,8 +1,8 @@
-import { usePhotoTexture } from '../../../hooks/usePhotoTexture'
+import { usePhotoSpiriteTexture } from '../../../hooks/usePhotoSpiriteTexture'
 import { useViewMotion } from '../../../hooks/useViewMotion'
 
 function ArtworkImage({ url, position, onClick }) {
-  const { texture, size } = usePhotoTexture(url)
+  const { texture, size } = usePhotoSpiriteTexture(url)
 
   return (
     <sprite position={position} onClick={onClick}>
