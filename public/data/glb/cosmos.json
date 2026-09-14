@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "asteroid-1999-rq36.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "bp-tauri.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "cassiopeia-a.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "cassiopeia-a-2023.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "cassiopeia-a-2025.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "crab-nebula.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "cygnus-loop.glb"
+    },
+    {
+      "title": "Titre fictif",
+      "artist": "Artiste fictif",
+      "date": "2026",
+      "place": "Lieu fictif",
+      "file": "g292-snr.glb"
+    }
+  ]
+}

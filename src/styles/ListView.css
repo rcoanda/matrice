@@ -33,6 +33,11 @@
   object-fit: contain;
 }
 
+.listview-photo .listview-glb {
+  width: min(58vw, 58vh);
+  aspect-ratio: 1;
+}
+
 .listview-info {
   text-align: center;
   margin-top: 0.8rem;

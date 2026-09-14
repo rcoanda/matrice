@@ -1,4 +1,5 @@
 import { Html } from '@react-three/drei'
+import GlbView from './GlbView'
 import '../../../styles/GridView.css'
 
 export default function GridView({ artworks, onSelect }) {
@@ -11,6 +12,8 @@ export default function GridView({ artworks, onSelect }) {
               <img src={art.image} alt={art.title || ''} />
             ) : art.video ? (
               <video src={art.video} autoPlay muted loop playsInline />
+            ) : art.glb ? (
+              <GlbView url={art.glb} className="gridview-glb" />
             ) : null}
           </div>
         ))}

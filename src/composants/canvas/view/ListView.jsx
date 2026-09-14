@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
+import GlbView from './GlbView'
 import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {
@@ -39,6 +40,8 @@ export default function ListView({ artworks, onSelect }) {
               <img src={art.image} alt={art.title || ''} />
             ) : art.video ? (
               <video src={art.video} autoPlay muted loop playsInline />
+            ) : art.glb ? (
+              <GlbView url={art.glb} className="listview-glb" />
             ) : null}
             <div className="listview-info">
               {art.title && <h3>{art.title}</h3>}

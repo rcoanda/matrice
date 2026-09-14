@@ -32,3 +32,9 @@
   object-fit: cover;
   aspect-ratio: 1;
 }
+
+.gridview-cell .gridview-glb {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+}

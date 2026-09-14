@@ -1,5 +1,5 @@
-// Service qui récupère les noms de fichiers depuis les manifests (images et vidéos)
-import { IMG_MANIFEST_PATH, VIDEO_MANIFEST_PATH } from '../utils/mediaPaths'
+// Service qui récupère les noms de fichiers depuis les manifests (images, vidéos et glbs)
+import { IMG_MANIFEST_PATH, VIDEO_MANIFEST_PATH, GLB_MANIFEST_PATH } from '../utils/mediaPaths'
 
 const cache = {}
 
@@ -18,4 +18,9 @@ export function getFileList() {
 export function getVideoFileList() {
     if (!cache.video) cache.video = fetchFileList(VIDEO_MANIFEST_PATH)
     return cache.video
+}
+
+export function getGlbFileList() {
+    if (!cache.glb) cache.glb = fetchFileList(GLB_MANIFEST_PATH)
+    return cache.glb
 }
