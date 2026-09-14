@@ -2,9 +2,15 @@
 // et fournit les URLs Cloudinary correspondantes, avec mise en cache.
 const cache = {}
 
-function buildUrl(fileName) {
+function buildEntry(entry) {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-    return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,w_512,c_scale/${fileName}`
+    return {
+        url: `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,w_512,c_scale/${entry.file}`,
+        title: entry.title || '',
+        artist: entry.artist || '',
+        date: entry.date || '',
+        place: entry.place || '',
+    }
 }
 
 function imageExists(url) {
@@ -19,9 +25,9 @@ function imageExists(url) {
 async function fetchUrls(source) {
     const res = await fetch(`${import.meta.env.BASE_URL}${source}`)
     const data = await res.json()
-    const urls = data.files.map(buildUrl)
-    const exists = await Promise.all(urls.map(imageExists))
-    return urls.filter((_, i) => exists[i])
+    const entries = data.files.map(buildEntry)
+    const exists = await Promise.all(entries.map((e) => imageExists(e.url)))
+    return entries.filter((_, i) => exists[i])
 }
 
 export function getPhotoUrls(source) {

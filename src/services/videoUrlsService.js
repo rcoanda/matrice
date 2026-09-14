@@ -2,9 +2,15 @@
 // et fournit les URLs Cloudinary correspondantes, avec mise en cache.
 const cache = {}
 
-function buildVideoUrl(fileName) {
+function buildEntry(entry) {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-    return `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_mp4/${fileName}`
+    return {
+        url: `https://res.cloudinary.com/${cloudName}/video/upload/q_auto,f_mp4/${entry.file}`,
+        title: entry.title || '',
+        artist: entry.artist || '',
+        date: entry.date || '',
+        place: entry.place || '',
+    }
 }
 
 function videoExists(url) {
@@ -21,9 +27,9 @@ async function fetchUrls(source) {
     const res = await fetch(`${import.meta.env.BASE_URL}${source}`)
     if (!res.ok) return []
     const data = await res.json()
-    const urls = data.files.map(buildVideoUrl)
-    const exists = await Promise.all(urls.map(videoExists))
-    return urls.filter((_, i) => exists[i])
+    const entries = data.files.map(buildEntry)
+    const exists = await Promise.all(entries.map((e) => videoExists(e.url)))
+    return entries.filter((_, i) => exists[i])
 }
 
 export function getVideoUrls(source) {
