@@ -64,11 +64,15 @@ export function usePhotoMeshTexture(index, source) {
     const dispose = () => { if (texture) { texture.dispose(); texture = null } }
 
     const url = source[index % source.length]
+    if (!url) return
+
     loadCanvas(url).then((canvas) => {
       if (cancelled) return
       texture = new THREE.CanvasTexture(canvas)
       texture.colorSpace = THREE.SRGBColorSpace
       setTexture(texture)
+    }).catch(() => {
+      if (!cancelled) setTexture(null)
     })
 
     return () => { cancelled = true; dispose() }

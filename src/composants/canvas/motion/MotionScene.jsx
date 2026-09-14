@@ -18,8 +18,7 @@ export default function MotionScene({ motionMode, dataSource, onSelect }) {
   const MotionComponent = motionItem ? motionItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 
-
-  if (!motionMode || !dataSource) return null
+  if (!motionMode || !dataSource || !source || source.length === 0) return null
 
   if (loading) {
     return <LoadingScreen progress={progress} />
