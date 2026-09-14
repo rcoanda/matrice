@@ -1,16 +1,13 @@
-import { Suspense } from 'react'
+
 import { Canvas } from '@react-three/fiber'
 import { getMotionMode } from '../../../config/motionConfig'
-import { getViewMode } from '../../../config/viewConfig'
 import { getInit } from '../../../config/config'
 import { getDesignSystem } from '../../../config/designSystemConfig'
 import { useArtworkLoader } from '../../../hooks/useArtworkLoader'
 import LoadingScreen from '../../effects/LoadingScreen'
 import HeadLine from '../../layout/HeadLine'
 
-function GalleryFallback() {
-  return null
-}
+
 
 export default function MotionScene({ motionMode, viewMode, dataSource, onSelect }) {
   const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
@@ -18,10 +15,9 @@ export default function MotionScene({ motionMode, viewMode, dataSource, onSelect
 
   const motionItem = getMotionMode(motionMode)
   const MotionComponent = motionItem ? motionItem.component : null
-  const viewItem = getViewMode(viewMode)
-  const ViewComponent = viewItem ? viewItem.component : null
 
-  if (!motionMode || !viewMode || !dataSource) return null
+
+  if (!motionMode || !dataSource) return null
 
   if (loading) {
     return <LoadingScreen progress={progress} />
@@ -29,23 +25,11 @@ export default function MotionScene({ motionMode, viewMode, dataSource, onSelect
 
   return (
     <>
-      <HeadLine currentView={viewItem?.label} currentData={dataSourceItem?.label} />
-      <Canvas
-        camera={{ position: [0, 0.5, 5], fov: 60, near: 0.1, far: 100 }}
-        gl={{ antialias: true, alpha: false }}
-        style={{ width: '100%', height: '100%' }}
-      >
-        <color attach="background" args={[background]} />
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
-        <Suspense fallback={<GalleryFallback />}>
-          {/* affichage view wrappée par le motion */}
-          {MotionComponent && ViewComponent && (
-            <MotionComponent>
-              <ViewComponent artworks={artworks} onSelect={onSelect} />
-            </MotionComponent>
-          )}
-        </Suspense>
+      <HeadLine currentView={motionItem?.label} currentData={dataSourceItem?.label} />
+      <Canvas camera={{ position: [0, 5, 7], fov: 50, up: [0, 1, 0] }}>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <MotionComponent artworks={artworks} onSelect={onSelect} />
       </Canvas>
     </>
   )
