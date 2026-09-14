@@ -1,15 +1,21 @@
-// Service qui récupère les noms de fichiers depuis un fichier data/manifest.json
+// Service qui récupère les noms de fichiers depuis les manifests (images et vidéos)
+import { IMG_MANIFEST_PATH, VIDEO_MANIFEST_PATH } from '../utils/mediaPaths'
 
 const cache = {}
 
-async function fetchFileList() {
-    const res = await fetch(`${import.meta.env.BASE_URL}data/manifest.json`)
+async function fetchFileList(path) {
+    const res = await fetch(`${import.meta.env.BASE_URL}${path}`)
     if (!res.ok) return []
     const data = await res.json()
     return data.files || []
 }
 
 export function getFileList() {
-    if (!cache.manifest) cache.manifest = fetchFileList()
-    return cache.manifest
+    if (!cache.img) cache.img = fetchFileList(IMG_MANIFEST_PATH)
+    return cache.img
+}
+
+export function getVideoFileList() {
+    if (!cache.video) cache.video = fetchFileList(VIDEO_MANIFEST_PATH)
+    return cache.video
 }

@@ -1,5 +1,6 @@
-import { loadCloudPhotos } from '../services/cloudPhotosLoader'
-import { getFileList } from '../services/fileListService'
+import { loadCloudData } from '../services/cloudDataLoader'
+import { getFileList, getVideoFileList } from '../services/fileListService'
+import { imgSource, videoSource } from '../utils/mediaPaths'
 import { getArtworks as getMetArtworks } from '../services/api/MetropolitanData'
 import { getArtworks as getCleArtworks } from '../services/api/ClevelandData'
 
@@ -11,24 +12,41 @@ const API_SOURCES = [
 let localSources = []
 let localSourcesReady = false
 
-async function buildLocalSources() {
+let videoSources = []
+let videoSourcesReady = false
+
+async function buildPhotoSources() {
     if (localSourcesReady) return
     const files = await getFileList()
     localSources = files.map((file) => ({
         key: file.key,
         label: file.label,
         file: file.file,
-        loader: () => loadCloudPhotos(`data/${file.file}`),
+        loader: () => loadCloudData(imgSource(file.file), 'image'),
     }))
     localSourcesReady = true
 }
 
+async function buildVideoSources() {
+    if (videoSourcesReady) return
+    const files = await getVideoFileList()
+    videoSources = files.map((file) => ({
+        key: `${file.key}Video`,
+        label: `${file.label} Video`,
+        file: file.file,
+        loader: () => loadCloudData(videoSource(file.file), 'video'),
+    }))
+    videoSourcesReady = true
+}
+
 export async function getAllDataSources() {
-    await buildLocalSources()
-    return [...API_SOURCES, ...localSources]
+    await buildPhotoSources()
+    await buildVideoSources()
+    return [...API_SOURCES, ...localSources, ...videoSources]
 }
 
 export async function getDataSource(key) {
-    await buildLocalSources()
-    return [...API_SOURCES, ...localSources].find((i) => i.key === key)
+    await buildPhotoSources()
+    await buildVideoSources()
+    return [...API_SOURCES, ...localSources, ...videoSources].find((i) => i.key === key)
 }
