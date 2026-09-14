@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Transition from '../composants/effects/Transition'
 import Header from '../composants/layout/Header'
 import { getInit } from '../config/config'
+import { getAllMotionModes } from '../config/motionConfig'
 import { getAllViewModes } from '../config/viewConfig'
 import { getAllDataSources } from '../config/dataConfig'
 import { getSelectorType } from '../config/selectorConfig'
@@ -13,7 +14,7 @@ import '../styles/Home.css'
 
 export default function Home() {
   const navigate = useNavigate()
-  const { viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
+  const { motion, setMotion, viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
   const [dataSourceOptions, setDataSourceOptions] = useState([])
   const Selector = getSelectorType(getInit('selectorConfig')).component
@@ -45,6 +46,9 @@ export default function Home() {
           </div>
         </div>
         <Selector
+          motionOptions={getAllMotionModes()}
+          motion={motion}
+          onMotionChange={setMotion}
           viewModeOptions={getAllViewModes()}
           viewMode={viewMode}
           onViewModeChange={setViewMode}

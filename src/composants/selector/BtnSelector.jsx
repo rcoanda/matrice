@@ -17,10 +17,13 @@ function renderButtons(options, value, onChange) {
   ))
 }
 
-export default function BtnSelector({ viewModeOptions, viewMode, onViewModeChange, dataSourceOptions, dataSource, onDataSourceChange }) {
+export default function BtnSelector({ motionOptions, motion, onMotionChange, viewModeOptions, viewMode, onViewModeChange, dataSourceOptions, dataSource, onDataSourceChange }) {
   return (
     <div className="overlay-content">
       <div className="selector-groups">
+        <div className="selector-row">
+          {renderButtons(motionOptions, motion, onMotionChange)}
+        </div>
         <div className="selector-row">
           {renderButtons(viewModeOptions, viewMode, onViewModeChange)}
         </div>

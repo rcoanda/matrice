@@ -3,6 +3,7 @@ import { getAllLangues } from '../../config/langConfig'
 import '../../styles/CarouselSelector.css'
 
 export default function CarouselSelector({
+  motionOptions, motion, onMotionChange,
   viewModeOptions, viewMode, onViewModeChange,
   dataSourceOptions, dataSource, onDataSourceChange,
 }) {
@@ -12,6 +13,7 @@ export default function CarouselSelector({
   const langOptions = getAllLangues()
 
   const items = [
+    { label: 'Motion', options: motionOptions, value: motion, onChange: onMotionChange },
     { label: 'View', options: viewModeOptions, value: viewMode, onChange: onViewModeChange },
     { label: 'Data', options: dataSourceOptions, value: dataSource, onChange: onDataSourceChange },
     { label: 'Lang', options: langOptions, value: lang, onChange: setLang },
@@ -20,7 +22,7 @@ export default function CarouselSelector({
   const active = items[activeIndex]
 
   function goTo(index) {
-    setActiveIndex(((index % 3) + 3) % 3)
+    setActiveIndex(((index % items.length) + items.length) % items.length)
   }
 
   return (

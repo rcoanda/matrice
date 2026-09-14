@@ -2,6 +2,7 @@ export const IS_LOCAL = import.meta.env.DEV
 
 const INIT = [
   { config: 'langConfig', default: 'frKey', init: null },
+  { config: 'motionConfig', default: 'circlesKey', init: null },
   { config: 'viewConfig', default: null, init: null },
   { config: 'dataConfig', default: null, init: null },
   { config: 'selectorConfig', default: 'btnKey', init: null },
