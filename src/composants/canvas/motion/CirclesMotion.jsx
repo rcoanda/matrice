@@ -1,12 +1,12 @@
 // Scène de la galerie People : des photos défilent sur des trajectoires
-// circulaires, la source des photos (json) est transmise en paramètre.
+// circulaires, la source (liste d'URLs Cloudinary) est transmise en paramètre.
 import Motion from './Motion'
 import { circlesTrajectory } from '../../../utils/trajectory/circlesTrajectory'
 
 export default function CirclesMotion({ source }) {
   const trajectories = circlesTrajectory()
 
-  if (!source) return null
+  if (!source || source.length === 0) return null
 
   return (
     <group>

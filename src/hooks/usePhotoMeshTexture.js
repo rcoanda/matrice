@@ -1,10 +1,9 @@
 // Hook qui charge la texture d'une photo à la position `index` dans la liste
-// fournie par photoService (URLs Cloudinary construites depuis un fichier json SOURCE).
+// source (URLs Cloudinary transmises depuis la datasource dataConfig).
 // Le canvas réduit/orienté est mis en cache au niveau du module : le réseau et
 // le décodage n'ont lieu qu'une seule fois, au premier passage sur la page.
 import { useEffect, useState } from 'react'
 import * as THREE from 'three'
-import { getPhotoUrls } from '../services/photoUrlsService'
 
 const loader = new THREE.TextureLoader()
 const MAX_SIZE = 512
@@ -59,18 +58,17 @@ export function usePhotoMeshTexture(index, source) {
   const [texture, setTexture] = useState(null)
 
   useEffect(() => {
+    if (!source || source.length === 0) return
     let cancelled = false
     let texture = null
     const dispose = () => { if (texture) { texture.dispose(); texture = null } }
 
-    getPhotoUrls(source).then((urls) => {
-      const url = urls[index % urls.length]
-      loadCanvas(url).then((canvas) => {
-        if (cancelled) return
-        texture = new THREE.CanvasTexture(canvas)
-        texture.colorSpace = THREE.SRGBColorSpace
-        setTexture(texture)
-      })
+    const url = source[index % source.length]
+    loadCanvas(url).then((canvas) => {
+      if (cancelled) return
+      texture = new THREE.CanvasTexture(canvas)
+      texture.colorSpace = THREE.SRGBColorSpace
+      setTexture(texture)
     })
 
     return () => { cancelled = true; dispose() }
