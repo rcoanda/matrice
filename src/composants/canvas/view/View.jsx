@@ -1,8 +1,8 @@
-import { usePhotoSpiriteTexture } from '../../../hooks/usePhotoSpiriteTexture'
+import { useSpriteTexture } from '../../../hooks/useSpriteTexture'
 import { useViewMotion } from '../../../hooks/useViewMotion'
 
-function ArtworkImage({ url, position, onClick }) {
-  const { texture, size } = usePhotoSpiriteTexture(url)
+function ArtworkSprite({ url, type, position, onClick }) {
+  const { texture, size } = useSpriteTexture(url, type)
 
   return (
     <sprite position={position} onClick={onClick}>
@@ -17,9 +17,10 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
   return (
     <group ref={groupRef}>
       {artworks.map((art, i) => (
-        <ArtworkImage
+        <ArtworkSprite
           key={art.id}
-          url={art.image}
+          url={art.video || art.image}
+          type={art.video ? 'video' : 'image'}
           position={positions[i] || [0, 0, 0]}
           onClick={() => onSelect?.(art)}
         />

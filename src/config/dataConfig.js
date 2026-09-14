@@ -31,8 +31,8 @@ async function buildVideoSources() {
     if (videoSourcesReady) return
     const files = await getVideoFileList()
     videoSources = files.map((file) => ({
-        key: `${file.key}Video`,
-        label: `${file.label} Video`,
+        key: file.key,
+        label: file.label,
         file: file.file,
         loader: () => loadCloudData(videoSource(file.file), 'video'),
     }))
