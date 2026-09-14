@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
-function RawModel({ url }) {
+function GlbModel({ url }) {
   const gltf = useGLTF(url)
   const scene = useMemo(() => gltf.scene.clone(true), [gltf])
 
@@ -23,7 +23,17 @@ function RawModel({ url }) {
   return <primitive object={scene} />
 }
 
-export default function GlbView({ url, className }) {
+export default function GlbView({ url, className, position, onClick, scene = false }) {
+  if (scene) {
+    return (
+      <group position={position} onClick={onClick}>
+        <Suspense fallback={null}>
+          <GlbModel url={url} />
+        </Suspense>
+      </group>
+    )
+  }
+
   return (
     <Canvas
       className={className}
@@ -35,7 +45,7 @@ export default function GlbView({ url, className }) {
       <hemisphereLight intensity={0.4} />
       <directionalLight position={[4, 5, 6]} intensity={1.4} />
       <Suspense fallback={null}>
-        <RawModel url={url} />
+        <GlbModel url={url} />
       </Suspense>
     </Canvas>
   )

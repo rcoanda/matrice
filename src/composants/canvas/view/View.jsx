@@ -1,15 +1,6 @@
-import { useSpriteTexture } from '../../../hooks/useSpriteTexture'
+import SpriteView from './SpriteView'
+import GlbView from './GlbView'
 import { useViewMotion } from '../../../hooks/useViewMotion'
-
-function ArtworkSprite({ url, type, position, onClick }) {
-  const { texture, size } = useSpriteTexture(url, type)
-
-  return (
-    <sprite position={position} onClick={onClick}>
-      <spriteMaterial map={texture} transparent size={size} />
-    </sprite>
-  )
-}
 
 export default function View({ cameraZ, artworks, positions, onSelect }) {
   const groupRef = useViewMotion(cameraZ)
@@ -17,13 +8,23 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
   return (
     <group ref={groupRef}>
       {artworks.map((art, i) => (
-        <ArtworkSprite
-          key={art.id}
-          url={art.video || art.image}
-          type={art.video ? 'video' : 'image'}
-          position={positions[i] || [0, 0, 0]}
-          onClick={() => onSelect?.(art)}
-        />
+        art.glb ? (
+          <GlbView
+            key={art.id}
+            scene
+            url={art.glb}
+            position={positions[i] || [0, 0, 0]}
+            onClick={() => onSelect?.(art)}
+          />
+        ) : (
+          <SpriteView
+            key={art.id}
+            image={art.image}
+            video={art.video}
+            position={positions[i] || [0, 0, 0]}
+            onClick={() => onSelect?.(art)}
+          />
+        )
       ))}
     </group>
   )
