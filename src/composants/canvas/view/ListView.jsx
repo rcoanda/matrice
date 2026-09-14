@@ -35,7 +35,11 @@ export default function ListView({ artworks, onSelect }) {
             </svg>
           </button>
           <div className="listview-photo" onClick={() => onSelect?.(art)}>
-            <img src={art.image} alt={art.title || ''} />
+            {art.image ? (
+              <img src={art.image} alt={art.title || ''} />
+            ) : art.video ? (
+              <video src={art.video} autoPlay muted loop playsInline />
+            ) : null}
             <div className="listview-info">
               {art.title && <h3>{art.title}</h3>}
               {art.artist && <p>{art.artist}</p>}
