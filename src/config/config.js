@@ -1,14 +1,9 @@
 export const IS_LOCAL = import.meta.env.DEV
 
-const INIT = [
-  { config: 'langConfig', default: 'frKey', init: null },
-  { config: 'motionConfig', default: 'circlesKey', init: null },
-  { config: 'viewConfig', default: null, init: null },
-  { config: 'dataConfig', default: null, init: null },
-  { config: 'selectorConfig', default: 'btnKey', init: null },
-  { config: 'heroConfig', default: 'cameraKey', init: null },
-  { config: 'designSystemConfig', default: 'matriceKey', init: null },
-]
+const CLIENT = import.meta.env.VITE_CLIENT || 'demo'
+const clientModules = import.meta.glob('./clients/*.js', { eager: true })
+const clientPath = `./clients/${CLIENT}.js`
+const INIT = clientModules[clientPath]?.default || []
 
 export function getAllInit() {
   return INIT
