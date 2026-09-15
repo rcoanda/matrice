@@ -9,7 +9,7 @@ export default function CloseButton({ onClick, className }) {
     <button
       onClick={() => {
         if (onClick) onClick()
-        else navigate('/')
+        else navigate(-1)
       }}
       className={['icon-btn', className].filter(Boolean).join(' ')}
       style={className ? undefined : {

@@ -1,4 +1,4 @@
-import BackArrow from '../composants/buttons/BackArrow'
+import CloseButton from '../composants/buttons/CloseButton'
 import { useDico } from '../providers/DicoProvider'
 import '../styles/shared.css'
 import '../styles/Contact.css'
@@ -7,7 +7,7 @@ export default function Contact() {
   const { t } = useDico()
   return (
     <>
-      <BackArrow />
+      <CloseButton />
       <div className="contact-layout">
         <h1 className="contact-title">{t('title', 'contact')}</h1>
         <dl className="contact-info">
