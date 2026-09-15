@@ -1,25 +1,10 @@
-import { Suspense, useLayoutEffect, useMemo } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF } from '@react-three/drei'
-import * as THREE from 'three'
+import { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import { useGlbModel } from '../../../hooks/useGlbModel'
 
 function GlbModel({ url, rotate = true }) {
-  const gltf = useGLTF(url)
-  const scene = useMemo(() => gltf.scene.clone(true), [gltf])
-
-  useLayoutEffect(() => {
-    const box = new THREE.Box3().setFromObject(scene)
-    const sphere = new THREE.Sphere()
-    box.getBoundingSphere(sphere)
-    const scale = sphere.radius > 0 ? 1.6 / sphere.radius : 1
-    scene.scale.setScalar(scale)
-    scene.position.sub(sphere.center.clone().multiplyScalar(scale))
-  }, [scene])
-
-  useFrame((_, delta) => {
-    if (rotate) scene.rotation.y += delta * 0.4
-  })
-
+  const scene = useGlbModel(url, rotate)
   return <primitive object={scene} />
 }
 

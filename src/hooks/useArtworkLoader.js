@@ -4,7 +4,9 @@ import { getDataSource } from '../config/dataConfig'
 const PROGRESS_START = 10
 const PROGRESS_READY = 100
 const APPLY_DELAY = 300
-
+//dataSource = datafileKey, exp. : peopleKey / people.json, astroKey / astro.json, karnakKey.karnak.json
+//dataSourceItem à partir d'un Key = un elem dans dataconfig (key, label, filename, loader)
+//artwork suite dataSourceItem.loader = une structure avec les infos de l'elem (url, date, lieu, artist)
 export function useArtworkLoader(dataSource) {
   const [artworks, setArtworks] = useState([])
   const [loading, setLoading] = useState(true)

@@ -1,4 +1,4 @@
-import { useSpriteTexture } from '../../../hooks/useSpriteTexture'
+import { useSpriteTexture } from '../../../hooks/texture/useSpriteTexture'
 
 export default function SpriteView({ image, video, position, onClick }) {
   const url = video || image

@@ -1,7 +1,7 @@
-// Photo qui se déplace sur une trajectoire circulaire dans la galerie People.
-// La texture (depuis Cloudinary) est chargée via usePhotoTexture.
+// Photos qui se déplace sur UNE trajectoire circulaire
+// moving photos
 import { useCircularMotion } from '../../../hooks/useCircularMotion'
-import { usePhotoMeshTexture } from '../../../hooks/usePhotoMeshTexture'
+import { usePhotoMeshTexture } from '../../../hooks/texture/usePhotoMeshTexture'
 
 export default function Motion({ radius, speed, direction, phase, length, width, index, source }) {
   const ref = useCircularMotion(radius, speed, direction, phase)

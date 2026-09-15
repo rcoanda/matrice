@@ -14,7 +14,7 @@ import '../styles/Home.css'
 
 export default function Home() {
   const navigate = useNavigate()
-  const { motion, setMotion, viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
+  const { motionMode, setMotionMode, viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
   const [dataSourceOptions, setDataSourceOptions] = useState([])
   const Selector = getSelectorType(getInit('selectorConfig')).component
@@ -27,7 +27,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const ready = dataSource && ((motionEnabled && motion) || (viewEnabled && viewMode))
+    const ready = dataSource && ((motionEnabled && motionMode) || (viewEnabled && viewMode))
     if (ready) {
       setStage('transition')
       setTimeout(() => {
@@ -36,7 +36,7 @@ export default function Home() {
     } else {
       setStage('idle')
     }
-  }, [motion, viewMode, dataSource, navigate, motionEnabled, viewEnabled])
+  }, [motionMode, viewMode, dataSource, navigate, motionEnabled, viewEnabled])
 
   return (
     <>
@@ -50,8 +50,8 @@ export default function Home() {
         </div>
         <Selector
           motionOptions={motionEnabled ? getAllMotionModes() : []}
-          motion={motion}
-          onMotionChange={setMotion}
+          motion={motionMode}
+          onMotionChange={setMotionMode}
 
           viewModeOptions={viewEnabled ? getAllViewModes() : []}
           viewMode={viewMode}

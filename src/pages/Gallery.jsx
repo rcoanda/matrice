@@ -10,7 +10,7 @@ import { SelectionContext } from '../providers/SelectionProvider'
 import '../styles/Gallery.css'
 
 export default function Gallery() {
-  const { motion, viewMode, dataSource, reset } = useContext(SelectionContext)
+  const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
 
   const motionEnabled = getAllInit().some((i) => i.config === 'motionConfig')
@@ -23,9 +23,9 @@ export default function Gallery() {
   return (
     <div className="gallery-layout">
       <BackArrow onClick={reset} />
-      {motionEnabled && motion ? (
+      {motionEnabled && motionMode ? (
         <>
-          <MotionScene motionMode={motion} dataSource={dataSource} />
+          <MotionScene motionMode={motionMode} dataSource={dataSource} />
         </>
       ) : (
         viewEnabled && viewMode && (

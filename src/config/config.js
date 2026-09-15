@@ -10,6 +10,7 @@ export function getAllInit() {
 }
 
 export function getInit(config) {
+  //retourn un Key
   const item = INIT.find((i) => i.config === config)
   return item ? item.init ?? item.default : undefined
 }
