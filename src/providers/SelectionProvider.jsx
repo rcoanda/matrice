@@ -1,5 +1,5 @@
-import { createContext, useState, useCallback } from 'react'
-import { getInit } from '../config/config'
+import { createContext, useState, useCallback, useEffect } from 'react'
+import { getInit, getInitList } from '../config/config'
 
 export const SelectionContext = createContext(null)
 //motionMode, viewMode, dataSources sont des Key
@@ -7,6 +7,15 @@ export function SelectionProvider({ children }) {
   const [motionMode, setMotionMode] = useState(getInit('motionConfig'))
   const [viewMode, setViewMode] = useState(getInit('viewConfig'))
   const [dataSource, setDataSource] = useState(getInit('dataConfig'))
+  const [motionOptions, setMotionOptions] = useState([])
+  const [viewModeOptions, setViewModeOptions] = useState([])
+  const [dataSourceOptions, setDataSourceOptions] = useState([])
+
+  useEffect(() => {
+    getInitList('motionConfig').then(setMotionOptions)
+    getInitList('viewConfig').then(setViewModeOptions)
+    getInitList('dataConfig').then(setDataSourceOptions)
+  }, [])
 
   const selectMotion = useCallback((key) => {
     setMotionMode(key)
@@ -25,7 +34,7 @@ export function SelectionProvider({ children }) {
   }, [])
 
   return (
-    <SelectionContext.Provider value={{ motionMode, viewMode, dataSource, setDataSource, selectMotion, selectView, reset }}>
+    <SelectionContext.Provider value={{ motionMode, selectMotion, viewMode, selectView, dataSource, setDataSource, reset, motionOptions, viewModeOptions, dataSourceOptions }}>
       {children}
     </SelectionContext.Provider>
   )

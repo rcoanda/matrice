@@ -1,17 +1,15 @@
 import { useContext } from 'react'
-import { getInitList } from '../../config/config'
 import { SelectionContext } from '../../providers/SelectionProvider'
 import { useDico } from '../../providers/DicoProvider'
 
 export default function NextArrow() {
-  const { dataSource, setDataSource } = useContext(SelectionContext)
+  const { dataSource, setDataSource, dataSourceOptions } = useContext(SelectionContext)
   const { t } = useDico()
 
-  const handleNext = async () => {
-    const list = await getInitList('dataConfig')
-    if (!list.length) return
-    const index = list.findIndex((item) => item.key === dataSource)
-    const next = list[(index + 1) % list.length]
+  const handleNext = () => {
+    if (!dataSourceOptions.length) return
+    const index = dataSourceOptions.findIndex((item) => item.key === dataSource)
+    const next = dataSourceOptions[(index + 1) % dataSourceOptions.length]
     setDataSource(next.key)
   }
 

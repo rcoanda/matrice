@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { getInitList } from '../../config/config'
+import { useContext } from 'react'
+import { SelectionContext } from '../../providers/SelectionProvider'
 import '../../styles/BtnSelector.css'
 
 function renderButtons(options, value, onChange) {
@@ -19,37 +19,31 @@ function renderButtons(options, value, onChange) {
   ))
 }
 
-export default function BtnSelector({
-  motion, onMotionChange,
-  viewMode, onViewModeChange,
-  dataSource, onDataSourceChange }) {
-
-  const [motionOptions, setMotionOptions] = useState([])
-  const [viewModeOptions, setViewModeOptions] = useState([])
-  const [dataSourceOptions, setDataSourceOptions] = useState([])
-
-  useEffect(() => {
-    getInitList('motionConfig').then(setMotionOptions)
-    getInitList('viewConfig').then(setViewModeOptions)
-    getInitList('dataConfig').then(setDataSourceOptions)
-  }, [])
+export default function BtnSelector() {
+  const {
+    motionOptions, motionMode, selectMotion,
+    viewModeOptions, viewMode, selectView,
+    dataSourceOptions, dataSource, setDataSource,
+  } = useContext(SelectionContext)
 
   return (
     <div className="overlay-content">
       <div className="selector-groups">
         {motionOptions.length > 0 && (
           <div className="selector-row">
-            {renderButtons(motionOptions, motion, onMotionChange)}
+            {renderButtons(motionOptions, motionMode, selectMotion)}
           </div>
         )}
         {viewModeOptions.length > 0 && (
           <div className="selector-row">
-            {renderButtons(viewModeOptions, viewMode, onViewModeChange)}
+            {renderButtons(viewModeOptions, viewMode, selectView)}
           </div>
         )}
-        <div className="selector-row">
-          {renderButtons(dataSourceOptions, dataSource, onDataSourceChange)}
-        </div>
+        {dataSourceOptions.length > 0 && (
+          <div className="selector-row">
+            {renderButtons(dataSourceOptions, dataSource, setDataSource)}
+          </div>
+        )}
       </div>
     </div>
   )

@@ -1,25 +1,21 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import Header from '../composants/layout/Header'
 import NextArrow from '../composants/buttons/NextArrow'
-import { getInitList } from '../config/config'
+import { getInit } from '../config/config'
+import { getSelectorType } from '../config/selectorConfig'
 
 import Overlay from '../composants/effects/Overlay'
 import { SelectionContext } from '../providers/SelectionProvider'
 import '../styles/Gallery.css'
 
 export default function Gallery() {
-  const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
+  const { motionMode, viewMode, dataSource } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
-  const [motionEnabled, setMotionEnabled] = useState(false)
-  const [viewEnabled, setViewEnabled] = useState(false)
 
-  useEffect(() => {
-    getInitList('motionConfig').then((list) => setMotionEnabled(list.length > 0))
-    getInitList('viewConfig').then((list) => setViewEnabled(list.length > 0))
-  }, [])
+  const SelectorComponent = getSelectorType(getInit('selectorConfig')).component
 
   if (!dataSource) {
     return <Navigate to="/" replace />
@@ -29,18 +25,19 @@ export default function Gallery() {
     <div className="gallery-layout">
       <Header />
       <NextArrow />
-      {motionEnabled && motionMode ? (
+      {motionMode ? (
         <>
           <MotionScene motionMode={motionMode} dataSource={dataSource} />
         </>
       ) : (
-        viewEnabled && viewMode && (
+        viewMode && (
           <>
             <ViewScene viewMode={viewMode} dataSource={dataSource} onSelect={setSelectedArtwork} />
             <Overlay artwork={selectedArtwork} onClose={() => setSelectedArtwork(null)} />
           </>
         )
       )}
+      <SelectorComponent />
     </div>
   )
 }
