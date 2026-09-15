@@ -1,10 +1,10 @@
 const INIT = [
-  { config: 'langConfig', default: 'frKey', init: null },
-  { config: 'motionConfig', default: 'circlesKey', init: null },
-  { config: 'dataConfig', default: null, init: null },
-  { config: 'selectorConfig', default: 'btnKey', init: null },
-  { config: 'heroConfig', default: 'cameraKey', init: null },
-  { config: 'designSystemConfig', default: 'matriceKey', init: null },
+  { config: 'langConfig', list: null, default: 'frKey', init: null },
+  { config: 'motionConfig', list: null, default: 'circlesKey', init: null },
+  { config: 'dataConfig', list: null, default: null, init: null },
+  { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
+  { config: 'heroConfig', list: null, default: 'cameraKey', init: null },
+  { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
 ]
 
 export default INIT

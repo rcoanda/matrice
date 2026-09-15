@@ -7,6 +7,14 @@ export function getAllLangues() {
   return LANGUES
 }
 
+export function getAllKeys() {
+  return LANGUES.map((l) => l.key)
+}
+
+export function getList(keys) {
+  return keys ? LANGUES.filter((l) => keys.includes(l.key)) : LANGUES
+}
+
 export function getLangue(key) {
   return LANGUES.find((l) => l.key === key)
 }

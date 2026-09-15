@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { getInitList } from '../../config/config'
 import '../../styles/BtnSelector.css'
 
 function renderButtons(options, value, onChange) {
@@ -17,7 +19,21 @@ function renderButtons(options, value, onChange) {
   ))
 }
 
-export default function BtnSelector({ motionOptions, motion, onMotionChange, viewModeOptions, viewMode, onViewModeChange, dataSourceOptions, dataSource, onDataSourceChange }) {
+export default function BtnSelector({
+  motion, onMotionChange,
+  viewMode, onViewModeChange,
+  dataSource, onDataSourceChange }) {
+
+  const [motionOptions, setMotionOptions] = useState([])
+  const [viewModeOptions, setViewModeOptions] = useState([])
+  const [dataSourceOptions, setDataSourceOptions] = useState([])
+
+  useEffect(() => {
+    getInitList('motionConfig').then(setMotionOptions)
+    getInitList('viewConfig').then(setViewModeOptions)
+    getInitList('dataConfig').then(setDataSourceOptions)
+  }, [])
+
   return (
     <div className="overlay-content">
       <div className="selector-groups">

@@ -54,6 +54,18 @@ export async function getAllDataSources() {
     return [...photoSources, ...videoSources, ...glbSources]
 }
 
+export async function getAllKeys() {
+    await buildPhotoSources()
+    await buildVideoSources()
+    await buildGlbSources()
+    return [...photoSources, ...videoSources, ...glbSources].map((i) => i.key)
+}
+
+export async function getList(keys) {
+    const all = await getAllDataSources()
+    return keys ? all.filter((i) => keys.includes(i.key)) : all
+}
+
 export async function getDataSource(key) {
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
     await buildPhotoSources()

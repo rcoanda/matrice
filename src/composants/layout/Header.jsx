@@ -1,15 +1,22 @@
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDico } from '../../providers/DicoProvider'
-import { getInit } from '../../config/config'
-import { getAllLangues, getLangue } from '../../config/langConfig'
+import { getInit, getInitList } from '../../config/config'
 import '../../styles/shared.css'
 import '../../styles/Header.css'
 
 export default function Header() {
   const { t, lang, setLang } = useDico()
-
   const currentLang = lang || getInit('langConfig')
-  const nextLangue = getAllLangues().find((l) => l.key !== currentLang)
+  const [nextLangue, setNextLangue] = useState(null)
+
+  useEffect(() => {
+    getInitList('langConfig').then((list) => {
+      setNextLangue(list.find((l) => l.key !== currentLang))
+    })
+  }, [currentLang])
+
+  if (!nextLangue) return null
 
   return (
     <header className="header">

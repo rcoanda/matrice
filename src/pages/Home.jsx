@@ -2,10 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Transition from '../composants/effects/Transition'
 import Header from '../composants/layout/Header'
-import { getAllInit, getInit } from '../config/config'
-import { getAllMotionModes } from '../config/motionConfig'
-import { getAllViewModes } from '../config/viewConfig'
-import { getAllDataSources } from '../config/dataConfig'
+import { getInit, getInitList } from '../config/config'
 import { getSelectorType } from '../config/selectorConfig'
 import { getHeroType } from '../config/heroConfig'
 import { SelectionContext } from '../providers/SelectionProvider'
@@ -16,15 +13,15 @@ export default function Home() {
   const navigate = useNavigate()
   const { motionMode, selectMotion, viewMode, selectView, dataSource, setDataSource } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
-  const [dataSourceOptions, setDataSourceOptions] = useState([])
+  const [motionEnabled, setMotionEnabled] = useState(false)
+  const [viewEnabled, setViewEnabled] = useState(false)
+
   const Selector = getSelectorType(getInit('selectorConfig')).component
   const Hero = getHeroType(getInit('heroConfig')).component
-  const motionEnabled = getAllInit().some((i) => i.config === 'motionConfig')
-  const viewEnabled = getAllInit().some((i) => i.config === 'viewConfig')
 
   useEffect(() => {
-    //data async
-    getAllDataSources().then(setDataSourceOptions)
+    getInitList('motionConfig').then((list) => setMotionEnabled(list.length > 0))
+    getInitList('viewConfig').then((list) => setViewEnabled(list.length > 0))
   }, [])
 
   useEffect(() => {
@@ -50,15 +47,10 @@ export default function Home() {
           </div>
         </div>
         <Selector
-          motionOptions={motionEnabled ? getAllMotionModes() : []}
           motion={motionMode}
           onMotionChange={selectMotion}
-
-          viewModeOptions={viewEnabled ? getAllViewModes() : []}
           viewMode={viewMode}
           onViewModeChange={selectView}
-
-          dataSourceOptions={dataSourceOptions}
           dataSource={dataSource}
           onDataSourceChange={setDataSource}
         />

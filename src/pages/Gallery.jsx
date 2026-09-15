@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import BackArrow from '../composants/buttons/BackArrow'
-import { getAllInit } from '../config/config'
+import { getInitList } from '../config/config'
 
 import Overlay from '../composants/effects/Overlay'
 import { SelectionContext } from '../providers/SelectionProvider'
@@ -12,9 +12,13 @@ import '../styles/Gallery.css'
 export default function Gallery() {
   const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
+  const [motionEnabled, setMotionEnabled] = useState(false)
+  const [viewEnabled, setViewEnabled] = useState(false)
 
-  const motionEnabled = getAllInit().some((i) => i.config === 'motionConfig')
-  const viewEnabled = getAllInit().some((i) => i.config === 'viewConfig')
+  useEffect(() => {
+    getInitList('motionConfig').then((list) => setMotionEnabled(list.length > 0))
+    getInitList('viewConfig').then((list) => setViewEnabled(list.length > 0))
+  }, [])
 
   if (!dataSource) {
     return <Navigate to="/" replace />

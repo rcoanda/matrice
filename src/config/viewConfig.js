@@ -16,6 +16,14 @@ export function getAllViewModes() {
   return VIEW_MODES
 }
 
+export function getAllKeys() {
+  return VIEW_MODES.map((v) => v.key)
+}
+
+export function getList(keys) {
+  return keys ? VIEW_MODES.filter((v) => keys.includes(v.key)) : VIEW_MODES
+}
+
 export function getViewMode(key) {
   return VIEW_MODES.find((m) => m.key === key)
 }
