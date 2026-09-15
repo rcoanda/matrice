@@ -1,13 +1,6 @@
 import { loadCloudData } from '../services/cloudDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
-import { getArtworks as getMetArtworks } from '../services/api/MetropolitanData'
-import { getArtworks as getCleArtworks } from '../services/api/ClevelandData'
-
-const API_SOURCES = [
-    { key: 'metropolitanKey', label: 'Metropolitan', loader: getMetArtworks },
-    //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
-]
 
 let photoSources = []
 let photoSourcesReady = false
@@ -58,7 +51,7 @@ export async function getAllDataSources() {
     await buildPhotoSources()
     await buildVideoSources()
     await buildGlbSources()
-    return [...API_SOURCES, ...photoSources, ...videoSources, ...glbSources]
+    return [...photoSources, ...videoSources, ...glbSources]
 }
 
 export async function getDataSource(key) {
