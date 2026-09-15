@@ -2,7 +2,7 @@ import { createContext, useState, useCallback, useEffect } from 'react'
 import { getInit, getInitList } from '../config/config'
 
 export const SelectionContext = createContext(null)
-//motionMode, viewMode, dataSources sont des Key
+//motionMode, viewMode, dataSources sont des Keys
 export function SelectionProvider({ children }) {
   const [motionMode, setMotionMode] = useState(getInit('motionConfig'))
   const [viewMode, setViewMode] = useState(getInit('viewConfig'))
