@@ -23,6 +23,7 @@ export default function Home() {
   const viewEnabled = getAllInit().some((i) => i.config === 'viewConfig')
 
   useEffect(() => {
+    //data async
     getAllDataSources().then(setDataSourceOptions)
   }, [])
 

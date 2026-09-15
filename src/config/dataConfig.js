@@ -59,5 +59,5 @@ export async function getDataSource(key) {
     await buildPhotoSources()
     await buildVideoSources()
     await buildGlbSources()
-    return [...API_SOURCES, ...photoSources, ...videoSources, ...glbSources].find((i) => i.key === key)
+    return [...photoSources, ...videoSources, ...glbSources].find((i) => i.key === key)
 }
