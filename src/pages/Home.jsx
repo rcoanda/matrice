@@ -14,8 +14,20 @@ export default function Home() {
   const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
 
-  const SelectorComponent = getSelectorType(getInit('selectorConfig')).component
-  const Hero = getHeroType(getInit('heroConfig')).component
+  const SelectorComponent = (() => {
+    try {
+      return getSelectorType(getInit('selectorConfig'))?.component ?? null
+    } catch {
+      return null
+    }
+  })()
+  const Hero = (() => {
+    try {
+      return getHeroType(getInit('heroConfig'))?.component ?? null
+    } catch {
+      return null
+    }
+  })()
 
   useEffect(() => {
     reset()
@@ -40,10 +52,10 @@ export default function Home() {
       <main className="main-layout">
         <div className="home-wrapper">
           <div className="home-inner">
-            <Hero />
+            {Hero && <Hero />}
           </div>
         </div>
-        <SelectorComponent />
+        {SelectorComponent && <SelectorComponent />}
       </main>
     </>
   )

@@ -15,7 +15,13 @@ export default function Gallery() {
   const { motionMode, viewMode, dataSource } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
 
-  const SelectorComponent = getSelectorType(getInit('selectorConfig')).component
+  const SelectorComponent = (() => {
+    try {
+      return getSelectorType(getInit('selectorConfig'))?.component ?? null
+    } catch {
+      return null
+    }
+  })()
 
   if (!dataSource) {
     return <Navigate to="/" replace />
@@ -37,7 +43,7 @@ export default function Gallery() {
           </>
         )
       )}
-      <SelectorComponent />
+      {SelectorComponent && <SelectorComponent />}
     </div>
   )
 }

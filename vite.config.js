@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/matrice/',
+  base: process.env.VERCEL ? '/' : '/matrice/',
   server: {
     proxy: {
       '/matrice/met-image': {
