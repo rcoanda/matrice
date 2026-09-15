@@ -8,6 +8,16 @@ export function SelectionProvider({ children }) {
   const [viewMode, setViewMode] = useState(getInit('viewConfig'))
   const [dataSource, setDataSource] = useState(getInit('dataConfig'))
 
+  const selectMotion = useCallback((key) => {
+    setMotionMode(key)
+    setViewMode(null)
+  }, [])
+
+  const selectView = useCallback((key) => {
+    setViewMode(key)
+    setMotionMode(null)
+  }, [])
+
   const reset = useCallback(() => {
     setMotionMode(getInit('motionConfig'))
     setViewMode(getInit('viewConfig'))
@@ -15,7 +25,7 @@ export function SelectionProvider({ children }) {
   }, [])
 
   return (
-    <SelectionContext.Provider value={{ motionMode, setMotionMode, viewMode, setViewMode, dataSource, setDataSource, reset }}>
+    <SelectionContext.Provider value={{ motionMode, viewMode, dataSource, setDataSource, selectMotion, selectView, reset }}>
       {children}
     </SelectionContext.Provider>
   )

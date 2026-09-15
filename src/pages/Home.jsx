@@ -14,7 +14,7 @@ import '../styles/Home.css'
 
 export default function Home() {
   const navigate = useNavigate()
-  const { motionMode, setMotionMode, viewMode, setViewMode, dataSource, setDataSource } = useContext(SelectionContext)
+  const { motionMode, selectMotion, viewMode, selectView, dataSource, setDataSource } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
   const [dataSourceOptions, setDataSourceOptions] = useState([])
   const Selector = getSelectorType(getInit('selectorConfig')).component
@@ -51,11 +51,11 @@ export default function Home() {
         <Selector
           motionOptions={motionEnabled ? getAllMotionModes() : []}
           motion={motionMode}
-          onMotionChange={setMotionMode}
+          onMotionChange={selectMotion}
 
           viewModeOptions={viewEnabled ? getAllViewModes() : []}
           viewMode={viewMode}
-          onViewModeChange={setViewMode}
+          onViewModeChange={selectView}
 
           dataSourceOptions={dataSourceOptions}
           dataSource={dataSource}
