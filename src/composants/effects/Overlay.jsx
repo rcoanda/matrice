@@ -1,6 +1,6 @@
 import '../../styles/Overlay.css'
 import CloseButton from '../buttons/CloseButton'
-import GlbView from '../canvas/view/GlbView'
+import GlbView from '../canvas/view/common/GlbView'
 
 export default function Overlay({ artwork, onClose }) {
   if (!artwork) return null

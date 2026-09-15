@@ -1,5 +1,5 @@
 import { useCylinderHolder } from '../../../hooks/holder/useCylinderHolder'
-import View from './View'
+import View from './common/View'
 
 export default function CylinderView({ artworks, onSelect }) {
   //calcule les positions sur géometrie

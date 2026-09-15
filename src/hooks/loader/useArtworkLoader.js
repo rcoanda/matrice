@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getDataSource } from '../config/dataConfig'
+import { getDataSource } from '../../config/dataConfig'
 
 const PROGRESS_START = 10
 const PROGRESS_READY = 100

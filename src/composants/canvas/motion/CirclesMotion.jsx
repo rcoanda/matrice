@@ -1,6 +1,6 @@
 // Scène de la galerie People : des photos défilent sur des trajectoires
 // circulaires, la source (liste d'URLs Cloudinary) est transmise en paramètre.
-import Motion from './Motion'
+import Motion from './common/Motion'
 import { circlesTrajectory } from '../../../utils/trajectory/circlesTrajectory'
 
 export default function CirclesMotion({ source }) {

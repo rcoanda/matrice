@@ -1,5 +1,5 @@
 import { useEllipseHolder } from '../../../hooks/holder/useEllipseHolder'
-import View from './View'
+import View from './common/View'
 
 export default function EllipseView({ artworks, onSelect }) {
   const positions = useEllipseHolder(artworks)

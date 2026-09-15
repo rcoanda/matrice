@@ -1,5 +1,5 @@
 import { Html } from '@react-three/drei'
-import GlbView from './GlbView'
+import GlbView from './common/GlbView'
 import '../../../styles/GridView.css'
 
 export default function GridView({ artworks, onSelect }) {

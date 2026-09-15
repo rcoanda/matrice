@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import { useGlbModel } from '../../../hooks/useGlbModel'
+import { useGlbModel } from '../../../../hooks/model/useGlbModel'
 
 function GlbModel({ url, rotate = true }) {
   const scene = useGlbModel(url, rotate)

@@ -1,12 +1,12 @@
 
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getMotionMode } from '../../../config/motionConfig'
-import { getInit } from '../../../config/config'
-import { getDesignSystem } from '../../../config/designSystemConfig'
-import { useArtworkLoader } from '../../../hooks/useArtworkLoader'
-import LoadingScreen from '../../effects/LoadingScreen'
-import HeadLine from '../../layout/HeadLine'
+import { getMotionMode } from '../../../../config/motionConfig'
+import { getInit } from '../../../../config/config'
+import { getDesignSystem } from '../../../../config/designSystemConfig'
+import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
+import LoadingScreen from '../../../effects/LoadingScreen'
+import HeadLine from '../../../layout/HeadLine'
 
 
 

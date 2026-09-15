@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
-import GlbView from './GlbView'
+import GlbView from './common/GlbView'
 import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {

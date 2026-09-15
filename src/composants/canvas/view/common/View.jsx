@@ -1,6 +1,6 @@
 import SpriteView from './SpriteView'
 import GlbView from './GlbView'
-import { useViewMotion } from '../../../hooks/useViewMotion'
+import { useViewMotion } from '../../../../hooks/motion/useViewMotion'
 
 export default function View({ cameraZ, artworks, positions, onSelect }) {
   const groupRef = useViewMotion(cameraZ)

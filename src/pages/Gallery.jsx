@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import ViewScene from '../composants/canvas/view/ViewScene'
-import MotionScene from '../composants/canvas/motion/MotionScene'
+import ViewScene from '../composants/canvas/view/common/ViewScene'
+import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import BackArrow from '../composants/buttons/BackArrow'
 import { getAllInit } from '../config/config'
 
