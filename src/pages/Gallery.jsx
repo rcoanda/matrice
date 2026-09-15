@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import Header from '../composants/layout/Header'
+import NextArrow from '../composants/buttons/NextArrow'
 import { getInitList } from '../config/config'
 
 import Overlay from '../composants/effects/Overlay'
@@ -27,6 +28,7 @@ export default function Gallery() {
   return (
     <div className="gallery-layout">
       <Header />
+      <NextArrow />
       {motionEnabled && motionMode ? (
         <>
           <MotionScene motionMode={motionMode} dataSource={dataSource} />

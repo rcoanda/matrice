@@ -4,7 +4,7 @@ import { getLangue } from '../config/langConfig'
 
 const LanguageContext = createContext(null)
 
-const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'loadingScreen']
+const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loadingScreen']
 
 export function DicoProvider({ children }) {
   const [lang, setLang] = useState(getInit('langConfig'))
