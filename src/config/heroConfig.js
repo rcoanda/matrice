@@ -1,13 +1,16 @@
 import CameraHero from '../composants/hero/CameraHero'
 import AquaHero from '../composants/hero/AquaHero'
 import SpaceHero from '../composants/hero/SpaceHero'
-import CirclesNatureHero from '../composants/hero/CirclesNatureHero'
+import CirclesHero from '../composants/hero/CirclesHero'
+import EllipseHero from '../composants/hero/EllipseHero'
+
 
 const HERO_TYPES = [
   { key: 'cameraKey', label: 'camera frustum', component: CameraHero },
   { key: 'aquaKey', label: 'aqua', component: AquaHero },
   { key: 'spaceKey', label: 'space', component: SpaceHero },
-  { key: 'circlesnatureKey', label: 'circlesnature', component: CirclesNatureHero },
+  { key: 'circlesKey', label: 'circles', component: CirclesHero },
+  { key: 'ellipseKey', label: 'ellipse', component: EllipseHero },
 ]
 
 export function getAllHeroTypes() {

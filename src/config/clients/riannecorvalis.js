@@ -7,7 +7,7 @@ const INIT = [
     { config: 'viewConfig', list: ['gridKey', 'listKey'], default: null, init: null },
     { config: 'dataConfig', list: null, default: null, init: 'natureKey' }, //toutes les sources
     { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
-    { config: 'heroConfig', list: null, default: null, init: 'circlesnatureKey' },
+    { config: 'heroConfig', list: null, default: null, init: 'ellipseKey' },
     { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
 ]
 
