@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { Navigate } from 'react-router-dom'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 import MotionScene from '../composants/canvas/motion/common/MotionScene'
-import BackArrow from '../composants/buttons/BackArrow'
+import Header from '../composants/layout/Header'
 import { getInitList } from '../config/config'
 
 import Overlay from '../composants/effects/Overlay'
@@ -26,7 +26,7 @@ export default function Gallery() {
 
   return (
     <div className="gallery-layout">
-      <BackArrow onClick={reset} />
+      <Header />
       {motionEnabled && motionMode ? (
         <>
           <MotionScene motionMode={motionMode} dataSource={dataSource} />
