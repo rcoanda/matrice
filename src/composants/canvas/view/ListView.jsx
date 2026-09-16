@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
 import GlbView from './common/GlbView'
+import CardView from './common/CardView'
+import { designSystemHasGroup } from '../../../config/designSystemConfig'
 import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {
   const [index, setIndex] = useState(0)
   const count = artworks.length
+  // Mise en page avancée (série à gauche, titre à droite) uniquement si le
+  // design system configuré fournit les tokens « list » (ex: julis).
+  const hasListTokens = designSystemHasGroup('list')
 
   useEffect(() => {
     setIndex(0)
@@ -26,39 +31,61 @@ export default function ListView({ artworks, onSelect }) {
   const art = artworks[Math.min(index, count - 1)]
   if (!art) return null
 
+  const media = art.image ? (
+    <img src={art.image} alt={art.title || ''} />
+  ) : art.video ? (
+    <video src={art.video} autoPlay muted loop playsInline />
+  ) : art.glb ? (
+    <GlbView url={art.glb} className="listview-glb" />
+  ) : (
+    <CardView dom className="listview-card" collection={art.collection} onClick={() => onSelect?.(art)} />
+  )
+
+  const info = (
+    <>
+      {art.title && <h3>{art.title}</h3>}
+      {art.artist && <p>{art.artist}</p>}
+      {art.date && <p>{art.date}</p>}
+      {art.place && <p>{art.place}</p>}
+    </>
+  )
+
+  const navPrev = (
+    <button className="listview-nav listview-prev" onClick={prev} aria-label="Photo précédente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+  )
+
+  const navNext = (
+    <button className="listview-nav listview-next" onClick={next} aria-label="Photo suivante">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+  )
+
   return (
     <Html fullscreen zIndexRange={[0, 0]}>
-      <div className="listview">
+      <div className={`listview${hasListTokens ? ' listview--ds' : ''}`}>
+        {hasListTokens ? <span className="listview-series">{art.collection}</span> : null}
         <div className="listview-stage">
-          <button className="listview-nav listview-prev" onClick={prev} aria-label="Photo précédente">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+          {navPrev}
           <div className="listview-photo" onClick={() => onSelect?.(art)}>
-            {art.card != null ? (
-              <div className="listview-card">{art.card}</div>
-            ) : art.image ? (
-              <img src={art.image} alt={art.title || ''} />
-            ) : art.video ? (
-              <video src={art.video} autoPlay muted loop playsInline />
-            ) : art.glb ? (
-              <GlbView url={art.glb} className="listview-glb" />
-            ) : null}
-            <div className="listview-info">
-              {art.title && <h3>{art.title}</h3>}
-              {art.artist && <p>{art.artist}</p>}
-              {art.date && <p>{art.date}</p>}
-              {art.place && <p>{art.place}</p>}
-            </div>
+            {media}
+            {!hasListTokens ? <div className="listview-info">{info}</div> : null}
           </div>
-          <button className="listview-nav listview-next" onClick={next} aria-label="Photo suivante">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+          {navNext}
         </div>
-        <div className="listview-counter">{index + 1} / {count}</div>
+        {hasListTokens ? (
+          <div className="listview-info">
+            {info}
+            <span className="listview-counter">{index + 1} / {count}</span>
+          </div>
+        ) : (
+          <div className="listview-counter">{index + 1} / {count}</div>
+        )}
       </div>
     </Html>
   )

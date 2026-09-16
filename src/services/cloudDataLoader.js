@@ -2,7 +2,7 @@ import { getPhotoUrls } from './photoUrlsService'
 import { getVideoUrls } from './videoUrlsService'
 import { getGlbUrls } from './glbUrlsService'
 
-export async function loadCloudData(source, type) {
+export async function loadCloudData(source, type, label) {
   const entries = type === 'video'
     ? await getVideoUrls(source)
     : type === 'glb'
@@ -10,7 +10,7 @@ export async function loadCloudData(source, type) {
       : await getPhotoUrls(source)
   return entries.map(({ url, title, artist, date, place }, i) => ({
     id: i + 1,
-    card: null,
+    collection: label || null,
     title: title || '',
     artist: artist || '',
     date: date || '',

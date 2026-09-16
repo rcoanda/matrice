@@ -9,10 +9,11 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
   return (
     <group ref={groupRef}>
       {artworks.map((art, i) => (
-        art.card != null ? (
-          <CardView
+        art.image || art.video ? (
+          <SpriteView
             key={art.id}
-            card={art.card}
+            image={art.image}
+            video={art.video}
             position={positions[i] || [0, 0, 0]}
             onClick={() => onSelect?.(art)}
           />
@@ -24,15 +25,14 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
             position={positions[i] || [0, 0, 0]}
             onClick={() => onSelect?.(art)}
           />
-        ) : ((art.image || art.video) ? (
-          <SpriteView
+        ) : (
+          <CardView
             key={art.id}
-            image={art.image}
-            video={art.video}
+            collection={art.collection}
             position={positions[i] || [0, 0, 0]}
             onClick={() => onSelect?.(art)}
           />
-        ) : null)
+        )
       ))}
     </group>
   )

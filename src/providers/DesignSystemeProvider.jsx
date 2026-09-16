@@ -3,6 +3,34 @@ import { getInit } from '../config/config'
 import { getDesignSystem } from '../config/designSystemConfig'
 import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
+function setToken(style, name, value) {
+  if (value !== null && value !== undefined) {
+    style.setProperty(name, String(value))
+  }
+}
+
+// Applique récursivement chaque token du design system en variable CSS --<group>-<key>
+function applyGroup(style, prefix, node) {
+  if (!node || typeof node !== 'object') return
+  for (const [key, val] of Object.entries(node)) {
+    const name = `${prefix}-${key}`
+    if (val && typeof val === 'object') {
+      if (Array.isArray(val)) {
+        setToken(style, name, val.join(', '))
+      } else if ('value' in val) {
+        setToken(style, name, val.value)
+      } else {
+        applyGroup(style, name, val)
+      }
+    } else {
+      setToken(style, name, val)
+    }
+  }
+}
+
+// Groupes déjà projetés explicitement (noms legacy) ci-dessous
+const MAPPED_GROUPS = new Set(['meta', 'key', 'label', 'colors', 'font', 'typography', 'spacing', 'motion', 'animations'])
+
 export default function DesignSystemeProvider({ children }) {
   useEffect(() => {
     const ds = getDesignSystem(getInit('designSystemConfig'))
@@ -32,16 +60,18 @@ export default function DesignSystemeProvider({ children }) {
       style.setProperty(`--tracking-${key}`, token.value)
     }
 
-    // radius
+    // radius (noms legacy) + nouveau nommage générique --radius-<key>
+    for (const [key, token] of Object.entries(ds.radius)) {
+      style.setProperty(`--radius-${key}`, token.value)
+    }
     style.setProperty('--radius-2xl', ds.radius.cards.value)
     style.setProperty('--radius-full', ds.radius.buttons.value)
     style.setProperty('--radius-xl', ds.radius.fields.value)
-    style.setProperty('--radius-md', ds.radius.md.value)
-    style.setProperty('--radius-sm', ds.radius.sm.value)
 
-    // shadow
-    style.setProperty('--shadow-card', ds.shadow.card.value)
-    style.setProperty('--shadow-lift', ds.shadow.lift.value)
+    // shadow (noms legacy) + nouveau nommage générique --shadow-<key>
+    for (const [key, token] of Object.entries(ds.shadow)) {
+      style.setProperty(`--shadow-${key}`, token.value)
+    }
 
     // spacing (largeur max du conteneur, utilisée par max-w-6xl)
     style.setProperty('--container-6xl', ds.spacing.containerMaxWidth.value)
@@ -56,10 +86,17 @@ export default function DesignSystemeProvider({ children }) {
     style.setProperty('--motion-flip-duration', ds.animations.cardFlip.duration)
     style.setProperty('--motion-transition-duration', ds.motion.transitionDuration.value)
     style.setProperty('--motion-slow-transition', ds.motion.slowTransition.value)
+    style.setProperty('--motion-ease-in-out-epic', ds.motion.easeInOutEpic?.value || 'cubic-bezier(0.75, 0.25, 0.25, 0.75)')
 
     // accessibility -> sélection basée sur les tokens couleurs
     style.setProperty('--selection-bg', ds.colors.accent.value)
     style.setProperty('--selection-color', ds.colors.cream.value)
+
+    // tout autre groupe de tokens (ex: grid, list) devient des variables CSS
+    for (const [group, node] of Object.entries(ds)) {
+      if (MAPPED_GROUPS.has(group)) continue
+      applyGroup(style, group, node)
+    }
 
     // imports Google Fonts (display + body, dédupliqués)
     const urls = [

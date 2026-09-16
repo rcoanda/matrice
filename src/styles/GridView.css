@@ -2,53 +2,130 @@
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: var(--grid-columns, repeat(auto-fill, minmax(160px, 1fr)));
+  grid-column-gap: var(--grid-column-gap, 0.8rem);
+  grid-row-gap: var(--grid-row-gap, 0.8rem);
   overflow-y: auto;
-  padding: 4rem 5rem 5rem;
+  overflow-x: hidden;
+  padding: var(--grid-padding, 4rem 5rem 5rem);
   pointer-events: auto;
   align-content: start;
 }
 
+/* Rendus spécifiques au design system (ex: julis) : scrollbar masquée */
+.gridview--ds {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.gridview--ds::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .gridview {
+    grid-template-columns: var(--grid-columns-tablet, var(--grid-columns, repeat(auto-fill, minmax(160px, 1fr))));
+  }
+}
+
+@media (max-width: 767px) {
+  .gridview {
+    grid-template-columns: var(--grid-columns-mobile, var(--grid-columns, repeat(auto-fill, minmax(160px, 1fr))));
+    grid-column-gap: var(--grid-gap-mobile, var(--grid-column-gap, 0.8rem));
+    grid-row-gap: var(--grid-gap-mobile, var(--grid-row-gap, 0.8rem));
+  }
+}
+
+@media (max-width: 479px) {
+  .gridview {
+    grid-template-columns: var(--grid-columns-mobile, var(--grid-columns, repeat(auto-fill, minmax(160px, 1fr))));
+    grid-column-gap: var(--grid-gap-small, var(--grid-column-gap, 0.8rem));
+    grid-row-gap: var(--grid-gap-small, var(--grid-row-gap, 0.8rem));
+  }
+}
+
 .gridview-cell {
-  background: var(--color-surface);
-  padding: 0.4rem;
-  cursor: zoom-in;
-  display: flex;
+  position: relative;
+  display: var(--grid-cell-display, flex);
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--grid-cell-bg, var(--color-surface));
+  padding: var(--grid-cell-padding, 0.4rem);
+  border: var(--grid-cell-border-width, 0) solid var(--grid-cell-border, transparent);
+  border-radius: var(--grid-cell-radius, 0);
+  cursor: zoom-in;
+  transition: transform var(--motion-transition-duration, 0.2s), box-shadow var(--motion-transition-duration, 0.2s);
 }
 
 .gridview-cell:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
+  transform: var(--grid-hover-lift, translateY(-4px));
+  box-shadow: var(--grid-hover-shadow, var(--shadow-lift));
 }
 
-.gridview-cell img {
+.gridview-cell img,
+.gridview-cell video {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 1;
+  height: var(--grid-media-height, 100%);
+  aspect-ratio: var(--grid-media-aspect, 1);
+  object-fit: var(--grid-media-fit, cover);
 }
 
 .gridview-cell .gridview-glb {
+  display: block;
   width: 100%;
   height: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: var(--grid-glb-aspect, 1);
+}
+
+/* Titre révélé au hover — pattern juliencalot.com (text-wrapper overflow hidden, translate -200% -> 0) */
+.gridview-titlewrap {
+  overflow: hidden;
+  padding-top: var(--grid-title-gap, max(8px, 0.44vw));
+}
+
+.gridview-title {
+  display: block;
+  font-family: var(--grid-title-family, var(--font-para));
+  font-size: var(--grid-title-size, max(8px, 0.44vw));
+  font-weight: var(--grid-title-weight, 900);
+  letter-spacing: var(--grid-title-spacing, 0.02em);
+  text-transform: uppercase;
+  color: var(--grid-title-color, var(--color-gallery));
+  text-align: var(--grid-title-align, center);
+  transform: translate3d(0, -200%, 0);
+  transition: transform var(--grid-reveal-duration, 0.5s) var(--motion-ease-in-out-epic, cubic-bezier(0.75, 0.25, 0.25, 0.75));
+}
+
+.gridview-cell:hover .gridview-title,
+.gridview-title.is-revealed {
+  transform: translate3d(0, 0%, 0);
 }
 
 .gridview-cell .gridview-card {
   width: 100%;
   height: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: var(--grid-glb-aspect, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surface);
-  color: var(--color-gallery);
-  font-family: var(--font-para);
+  background: var(--grid-card-bg, var(--color-surface));
+  color: var(--grid-card-color, var(--color-gallery));
+  font-family: var(--grid-title-family, var(--font-para));
   text-align: center;
   padding: 1rem;
+  border-radius: var(--grid-cell-radius, 0);
+}
+
+.gridview-label {
+  display: block;
+  margin-top: var(--grid-title-gap, max(8px, 0.44vw));
+  font-family: var(--grid-title-family, var(--font-para));
+  font-size: var(--grid-title-size, max(8px, 0.44vw));
+  font-weight: var(--grid-title-weight, 900);
+  letter-spacing: var(--grid-title-spacing, 0.02em);
+  text-transform: uppercase;
+  color: var(--grid-title-color, var(--color-gallery));
+  text-align: var(--grid-title-align, center);
+  opacity: 0.6;
 }

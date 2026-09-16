@@ -1,6 +1,14 @@
 import { Text } from '@react-three/drei'
 
-export default function CardView({ card, position, onClick }) {
+export default function CardView({ collection, position, onClick, dom = false, className = '' }) {
+  if (dom) {
+    return (
+      <div className={className} onClick={onClick}>
+        {collection}
+      </div>
+    )
+  }
+
   return (
     <group position={position} onClick={onClick}>
       <mesh>
@@ -16,7 +24,7 @@ export default function CardView({ card, position, onClick }) {
         maxWidth={2}
         textAlign="center"
       >
-        {card}
+        {collection}
       </Text>
     </group>
   )

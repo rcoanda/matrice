@@ -7,7 +7,7 @@ const INIT = [
     { config: 'dataConfig', list: null, default: null, init: 'natureKey' }, //toutes les sources
     { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
     { config: 'heroConfig', list: null, default: null, init: null },
-    { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
+    { config: 'designSystemConfig', list: null, default: 'matriceKey', init: 'julisKey' },
 ]
 
 export default INIT
