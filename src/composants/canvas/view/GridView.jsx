@@ -2,20 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 import { Html } from '@react-three/drei'
 import GlbView from './common/GlbView'
 import CardView from './common/CardView'
-import { designSystemHasGroup } from '../../../config/designSystemConfig'
 import '../../../styles/GridView.css'
 
 export default function GridView({ artworks, onSelect }) {
   const scrollRef = useRef(null)
   const [hovered, setHovered] = useState(null)
-  // Le rendu avancé (titre révélé, scroll lerp, libellé) n'est actif que si le
-  // design system configuré fournit les tokens « grid » (ex: julis).
-  const hasGridTokens = designSystemHasGroup('grid')
 
   // Scroll fluide façon Lenis (lerp) sur le conteneur de la grille
   useEffect(() => {
     const el = scrollRef.current
-    if (!el || !hasGridTokens) return
+    if (!el) return
     let target = el.scrollTop
     let raf = null
 
@@ -39,11 +35,11 @@ export default function GridView({ artworks, onSelect }) {
       el.removeEventListener('wheel', onWheel, { passive: false })
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [artworks, hasGridTokens])
+  }, [artworks])
 
   return (
     <Html fullscreen zIndexRange={[0, 0]}>
-      <div ref={scrollRef} className={`gridview${hasGridTokens ? ' gridview--ds' : ''}`}>
+      <div ref={scrollRef} className="gridview">
         {artworks.map((art) => (
           <div
             key={art.id}
@@ -61,12 +57,12 @@ export default function GridView({ artworks, onSelect }) {
             ) : (
               <CardView dom className="gridview-card" collection={art.collection} onClick={() => onSelect?.(art)} />
             )}
-            {hasGridTokens && art.title ? (
+            {art.title ? (
               <div className="gridview-titlewrap">
                 <span className={`gridview-title${hovered === art.id ? ' is-revealed' : ''}`}>{art.title}</span>
               </div>
             ) : null}
-            {hasGridTokens && art.collection ? <span className="gridview-label">{art.collection}</span> : null}
+            {art.collection ? <span className="gridview-label">{art.collection}</span> : null}
           </div>
         ))}
       </div>

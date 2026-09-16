@@ -10,15 +10,11 @@
   padding: var(--grid-padding, 4rem 5rem 5rem);
   pointer-events: auto;
   align-content: start;
-}
-
-/* Rendus spécifiques au design system (ex: julis) : scrollbar masquée */
-.gridview--ds {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
-.gridview--ds::-webkit-scrollbar {
+.gridview::-webkit-scrollbar {
   display: none;
 }
 
@@ -46,7 +42,7 @@
 
 .gridview-cell {
   position: relative;
-  display: var(--grid-cell-display, flex);
+  display: var(--grid-cell-display, block);
   align-items: center;
   justify-content: center;
   background: var(--grid-cell-bg, var(--color-surface));
@@ -80,6 +76,7 @@
 
 /* Titre révélé au hover — pattern juliencalot.com (text-wrapper overflow hidden, translate -200% -> 0) */
 .gridview-titlewrap {
+  display: var(--grid-title-display, none);
   overflow: hidden;
   padding-top: var(--grid-title-gap, max(8px, 0.44vw));
 }
@@ -93,13 +90,13 @@
   text-transform: uppercase;
   color: var(--grid-title-color, var(--color-gallery));
   text-align: var(--grid-title-align, center);
-  transform: translate3d(0, -200%, 0);
+  transform: var(--grid-title-hidden, translate3d(0, -200%, 0));
   transition: transform var(--grid-reveal-duration, 0.5s) var(--motion-ease-in-out-epic, cubic-bezier(0.75, 0.25, 0.25, 0.75));
 }
 
 .gridview-cell:hover .gridview-title,
 .gridview-title.is-revealed {
-  transform: translate3d(0, 0%, 0);
+  transform: var(--grid-title-visible, translate3d(0, 0%, 0));
 }
 
 .gridview-cell .gridview-card {
@@ -118,7 +115,7 @@
 }
 
 .gridview-label {
-  display: block;
+  display: var(--grid-label-display, none);
   margin-top: var(--grid-title-gap, max(8px, 0.44vw));
   font-family: var(--grid-title-family, var(--font-para));
   font-size: var(--grid-title-size, max(8px, 0.44vw));

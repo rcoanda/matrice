@@ -3,111 +3,18 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: var(--list-direction, row);
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+  justify-content: var(--list-justify, space-between);
+  gap: var(--list-row-gap, 1.5rem);
+  padding: var(--list-box-padding, 0);
   pointer-events: none;
-}
-
-.listview-stage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  pointer-events: auto;
-}
-
-.listview-photo {
-  position: relative;
-  background: var(--color-surface);
-  padding: 1rem 1rem 1.2rem;
-  box-shadow: var(--shadow-card);
-  cursor: zoom-in;
-}
-
-.listview-photo img {
-  display: block;
-  width: auto;
-  max-width: 58vw;
-  max-height: 58vh;
-  object-fit: contain;
-}
-
-.listview-photo .listview-glb {
-  width: min(58vw, 58vh);
-  aspect-ratio: 1;
-}
-
-.listview-photo .listview-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(58vw, 58vh);
-  aspect-ratio: 1;
-  background: var(--color-surface);
-  color: var(--color-gallery);
-  font-family: var(--font-para);
-  text-align: center;
-  padding: 2rem;
-}
-
-.listview-info {
-  text-align: center;
-  margin-top: 0.8rem;
-  color: var(--color-gallery);
-  font-family: var(--font-para);
-}
-
-.listview-info h3 {
-  font-family: var(--font-heading);
-  font-size: var(--type-cardTitle);
-}
-
-.listview-info p {
-  font-size: var(--type-base);
-  opacity: 0.85;
-}
-
-.listview-nav {
-  background: none;
-  border: none;
-  color: var(--color-gallery);
-  cursor: pointer;
-  padding: 0 0.5rem;
-  transition: color 0.2s, transform 0.2s;
-}
-
-.listview-nav svg {
-  width: 32px;
-  height: 32px;
-}
-
-.listview-nav:hover {
-  color: var(--color-gallery-muted2);
-  transform: scale(1.15);
-}
-
-.listview-counter {
-  font-family: var(--font-para);
-  font-size: var(--type-small);
-  color: var(--color-gallery);
-  letter-spacing: var(--tracking-wider);
-  pointer-events: auto;
-}
-
-/* --- Rendu spécifique au design system (ex: julis) ---------------------------------
-   Photo 4/12, série à gauche, titre + témoin à droite. Piloté par les tokens « list ». */
-.listview--ds {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--list-row-gap, max(60px, 3.33vw));
-  padding: var(--list-box-padding, max(20px, 1.11vw));
   overflow: hidden;
 }
 
-.listview--ds .listview-series {
+/* Texte de série à gauche du rectangle photo */
+.listview-series {
+  display: var(--list-series-display, block);
   flex-shrink: 1;
   min-width: 0;
   font-family: var(--list-series-family, var(--font-heading));
@@ -118,57 +25,72 @@
   color: var(--list-series-color, var(--color-gallery));
 }
 
-.listview--ds .listview-stage {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+/* Scène centrale : flèches + photo */
+.listview-stage {
+  position: var(--list-stage-position, absolute);
+  left: var(--list-stage-left, auto);
+  top: var(--list-stage-top, auto);
+  transform: var(--list-stage-transform, none);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: var(--list-stage-gap, 1.5rem);
+  pointer-events: auto;
 }
 
-.listview--ds .listview-photo {
+.listview-photo {
+  position: relative;
   width: var(--list-photo-width, calc((100% - 11 * var(--grid-gutter, 20px)) / 12 * 4 + var(--grid-gutter, 20px) * 3));
   padding: var(--list-photo-padding, 0);
   background: var(--list-photo-bg, transparent);
   border-radius: var(--list-photo-radius, var(--radius-sm));
   box-shadow: var(--list-photo-shadow, none);
+  cursor: zoom-in;
 }
 
-.listview--ds .listview-photo img,
-.listview--ds .listview-photo video {
-  width: 100%;
+.listview-photo img,
+.listview-photo video {
+  display: block;
+  width: var(--list-media-width, 100%);
   height: auto;
-  max-width: none;
+  max-width: var(--list-media-max-w, none);
   max-height: var(--list-media-max-h, calc(100vh - 12rem));
   aspect-ratio: var(--list-media-aspect, auto);
   object-fit: var(--list-media-fit, contain);
 }
 
-.listview--ds .listview-photo .listview-glb {
+.listview-photo .listview-glb {
+  display: block;
   width: 100%;
   aspect-ratio: var(--list-glb-aspect, 1);
 }
 
-.listview--ds .listview-photo .listview-card {
+.listview-photo .listview-card {
   width: 100%;
   aspect-ratio: var(--list-glb-aspect, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--list-card-bg, var(--color-gallery-light));
   color: var(--list-card-color, var(--color-gallery));
   font-family: var(--list-title-family, var(--font-para));
+  text-align: center;
+  padding: 2rem;
   border-radius: var(--list-card-radius, var(--radius-md));
 }
 
-.listview--ds .listview-info {
+/* Infos (titre + artiste + témoin) */
+.listview-info {
   flex-shrink: 1;
   min-width: 0;
-  width: var(--list-side-width, calc((100% - 11 * var(--grid-gutter, 20px)) / 12 * 4 + var(--grid-gutter, 20px) * 3));
-  text-align: right;
-  margin-top: 0;
+  width: var(--list-info-width, calc((100% - 11 * var(--grid-gutter, 20px)) / 12 * 4 + var(--grid-gutter, 20px) * 3));
+  text-align: var(--list-info-align, right);
+  margin-top: var(--list-info-margin, 0);
   opacity: var(--list-info-opacity, 1);
   pointer-events: auto;
 }
 
-.listview--ds .listview-info h3 {
+.listview-info h3 {
   font-family: var(--list-title-family, var(--font-heading));
   font-size: var(--list-title-size, max(18px, 1vw));
   font-weight: var(--list-title-weight, 900);
@@ -177,51 +99,62 @@
   color: var(--list-title-color, var(--color-gallery));
 }
 
-.listview--ds .listview-info p {
+.listview-info p {
   font-family: var(--font-para);
   font-size: var(--list-meta-size, max(10px, 0.6vw));
   color: var(--list-meta-color, var(--color-gallery-muted));
   opacity: var(--list-meta-opacity, 0.85);
 }
 
-.listview--ds .listview-nav svg {
-  width: var(--list-nav-size, max(24px, 2rem));
-  height: var(--list-nav-size, max(24px, 2rem));
+.listview-nav {
+  background: none;
+  border: none;
+  color: var(--list-nav-color, var(--color-gallery));
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: color var(--motion-transition-duration, 0.2s), transform var(--motion-transition-duration, 0.2s);
 }
 
-.listview--ds .listview-nav:hover {
+.listview-nav svg {
+  width: var(--list-nav-size, 32px);
+  height: var(--list-nav-size, 32px);
+}
+
+.listview-nav:hover {
   color: var(--list-nav-hover, var(--color-gallery-muted2));
   box-shadow: var(--shadow-glow, none);
   border-radius: var(--radius-full, 9999px);
+  transform: scale(1.15);
 }
 
-.listview--ds .listview-counter {
+.listview-counter {
   display: block;
-  font-size: var(--list-counter-size, max(8px, 0.44vw));
+  font-family: var(--font-para);
+  font-size: var(--list-counter-size, var(--type-small));
   color: var(--list-counter-color, var(--color-gallery));
   letter-spacing: var(--list-counter-spacing, 0.06em);
 }
 
 @media (max-width: 991px) {
-  .listview--ds .listview-info {
+  .listview-info {
     width: auto;
   }
 }
 
 @media (max-width: 767px) {
-  .listview--ds {
+  .listview {
     flex-direction: column;
     justify-content: center;
     gap: var(--list-row-gap, 1.5rem);
   }
-  .listview--ds .listview-series {
+  .listview-series {
     display: none;
   }
-  .listview--ds .listview-photo,
-  .listview--ds .listview-info {
+  .listview-photo,
+  .listview-info {
     width: 100%;
   }
-  .listview--ds .listview-info {
+  .listview-info {
     text-align: center;
   }
 }

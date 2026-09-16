@@ -11,7 +11,8 @@ export default function ViewSelector({ viewModeSelectorKey }) {
 
   const { dataSourceOptions, dataSource, setDataSource } = useContext(SelectionContext)
 
-  //metaDataSourceItem fictif , construit à partir de dataSourceOptions
+  //metaDataSourceItem fictif , construit à partir de dataSourceOptions et inséré dans dataConfigItems
+  // { key: 'metaKey', label: 'Categories', file: null, loader: loadMetaData }, 
   const metaDataSourceKey = null
 
 
