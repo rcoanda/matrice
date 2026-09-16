@@ -85,13 +85,16 @@ export async function getAllKeys() {
 export async function getList(keys) {
     //items
     const all = await getAllDataSources()
-    return list = keys ? all.filter((i) => keys.includes(i.key)) : all
-
+    return keys ? all.filter((i) => keys.includes(i.key)) : all
 }
 
 export async function getDataSource(key) {
     //item
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
     const all = await getAllDataSources()
-    return all.find((i) => i.key === key)
+    if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
+    // respecte la liste configurée (résultat de getList)
+    const keys = getConfiguredKeys()
+    const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
+    return scoped.find((i) => i.key === key) ?? null
 }
