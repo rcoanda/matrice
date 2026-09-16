@@ -21,13 +21,17 @@ export default function Home() {
       return null
     }
   })()
-  const Hero = (() => {
+  const heroType = (() => {
     try {
-      return getHeroType(getInit('heroConfig'))?.component ?? null
+      return getHeroType(getInit('heroConfig'))
     } catch {
       return null
     }
   })()
+  const Hero = heroType?.component ?? null
+  const heroProps = heroType
+    ? Object.fromEntries(Object.entries(heroType).filter(([k]) => k !== 'component' && k !== 'key'))
+    : {}
 
   useEffect(() => {
     reset()
@@ -52,7 +56,7 @@ export default function Home() {
       <main className="main-layout">
         <div className="home-wrapper">
           <div className="home-inner">
-            {Hero && <Hero />}
+            {Hero && <Hero {...heroProps} />}
           </div>
         </div>
         {SelectorComponent && <SelectorComponent />}

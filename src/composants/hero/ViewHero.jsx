@@ -4,11 +4,11 @@ import ViewScene from '../canvas/view/common/ViewScene'
 import { SelectionContext } from '../../providers/SelectionProvider'
 
 
-export default function CirclesHero() {
+export default function ViewHero({ viewMode }) {
   const { dataSource } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <ViewScene viewMode={'ellipseKey'} dataSource={dataSource} />
+      <ViewScene viewMode={viewMode} dataSource={dataSource} />
     </div>
   )
 }

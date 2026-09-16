@@ -2,7 +2,7 @@ import CameraHero from '../composants/hero/CameraHero'
 import AquaHero from '../composants/hero/AquaHero'
 import SpaceHero from '../composants/hero/SpaceHero'
 import CirclesHero from '../composants/hero/CirclesHero'
-import EllipseHero from '../composants/hero/EllipseHero'
+import ViewHero from '../composants/hero/ViewHero'
 
 
 const HERO_TYPES = [
@@ -10,7 +10,7 @@ const HERO_TYPES = [
   { key: 'aquaKey', label: 'aqua', component: AquaHero },
   { key: 'spaceKey', label: 'space', component: SpaceHero },
   { key: 'circlesKey', label: 'circles', component: CirclesHero },
-  { key: 'ellipseKey', label: 'ellipse', component: EllipseHero },
+  { key: 'ellipseKey', label: 'ellipse', component: ViewHero, viewMode: 'ellipseKey' },
 ]
 
 export function getAllHeroTypes() {
