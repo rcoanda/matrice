@@ -4,7 +4,7 @@ import ViewScene from '../canvas/view/common/ViewScene'
 import '../../styles/BtnSelector.css'
 
 export default function ViewSelector({ viewModeSelectorKey, dataSourceSelectorKey }) {
-  const { setDataSource, dataSourceOptions } = useContext(SelectionContext)
+  const { dataSource, setDataSource, dataSourceOptions } = useContext(SelectionContext)
 
   // Le sélecteur affiche la liste des catégories (metaKey) : au clic, on retrouve
   // la source correspondante par son label et on sélectionne sa clé.
@@ -13,10 +13,14 @@ export default function ViewSelector({ viewModeSelectorKey, dataSourceSelectorKe
     if (source) setDataSource(source.key)
   }
 
+  // La scène des catégories occupe tout l'écran : on ne l'affiche que tant qu'aucune
+  // source n'est choisie (accueil), pour ne pas masquer la galerie une fois sélectionnée.
+  const showCategories = !dataSource && viewModeSelectorKey && dataSourceSelectorKey
+
   return (
     <div className="overlay-content">
 
-      {viewModeSelectorKey && dataSourceSelectorKey && (
+      {showCategories && (
         <ViewScene
           viewModeKey={viewModeSelectorKey}
           dataSourceKey={dataSourceSelectorKey}
