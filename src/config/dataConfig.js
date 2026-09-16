@@ -18,6 +18,7 @@ async function buildPhotoSources() {
         key: file.key,
         label: file.label,
         file: file.file,
+        type: 'image',
         loader: () => loadCloudData(imgSource(file.file), 'image'),
     }))
     photoSourcesReady = true
@@ -30,6 +31,7 @@ async function buildVideoSources() {
         key: file.key,
         label: file.label,
         file: file.file,
+        type: 'video',
         loader: () => loadCloudData(videoSource(file.file), 'video'),
     }))
     videoSourcesReady = true
@@ -42,6 +44,7 @@ async function buildGlbSources() {
         key: file.key,
         label: file.label,
         file: file.file,
+        type: 'glb',
         loader: () => loadCloudData(glbSource(file.file), 'glb'),
     }))
     glbSourcesReady = true

@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { SelectionContext } from '../../providers/SelectionContext'
 import '../../styles/BtnSelector.css'
-
+//double selector: view et data
 function renderButtons(options, value, onChange) {
   return options.map(({ key, label }) => (
     <button
