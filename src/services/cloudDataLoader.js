@@ -10,6 +10,7 @@ export async function loadCloudData(source, type) {
       : await getPhotoUrls(source)
   return entries.map(({ url, title, artist, date, place }, i) => ({
     id: i + 1,
+    card: 'card',
     title: title || '',
     artist: artist || '',
     date: date || '',

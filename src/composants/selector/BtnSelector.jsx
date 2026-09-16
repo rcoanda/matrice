@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { SelectionContext } from '../../providers/SelectionProvider'
+import { SelectionContext } from '../../providers/SelectionContext'
 import '../../styles/BtnSelector.css'
 
 function renderButtons(options, value, onChange) {

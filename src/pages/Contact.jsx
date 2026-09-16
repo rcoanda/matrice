@@ -1,5 +1,5 @@
 import CloseButton from '../composants/buttons/CloseButton'
-import { useDico } from '../providers/DicoProvider'
+import { useDico } from '../providers/LanguageContext'
 import '../styles/shared.css'
 import '../styles/Contact.css'
 

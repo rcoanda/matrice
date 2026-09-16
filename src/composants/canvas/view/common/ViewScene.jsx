@@ -11,14 +11,14 @@ function GalleryFallback() {
   return null
 }
 
-export default function ViewScene({ viewMode, dataSource, onSelect }) {
-  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
+export default function ViewScene({ viewModeKey, dataSourceKey, onSelect }) {
+  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSourceKey)
   const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
-  const viewModeItem = getViewMode(viewMode)
+  const viewModeItem = getViewMode(viewModeKey)
   const ViewComponent = viewModeItem ? viewModeItem.component : null
 
-  if (!viewMode || !dataSource) return null
+  if (!viewModeKey || !dataSourceKey) return null
 
   if (loading) {
     return <LoadingScreen progress={progress} />

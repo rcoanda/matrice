@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import '../../styles/Hero.css'
 import MotionScene from '../canvas/motion/common/MotionScene'
-import { SelectionContext } from '../../providers/SelectionProvider'
+import { SelectionContext } from '../../providers/SelectionContext'
 
 
 export default function MotionHero({ motionMode }) {

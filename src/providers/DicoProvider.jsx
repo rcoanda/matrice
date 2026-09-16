@@ -1,8 +1,7 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { getInit } from '../config/config'
 import { getLangue } from '../config/langConfig'
-
-const LanguageContext = createContext(null)
+import { LanguageContext } from './LanguageContext'
 
 const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loadingScreen']
 
@@ -37,10 +36,4 @@ export function DicoProvider({ children }) {
       {children}
     </LanguageContext.Provider>
   )
-}
-
-export function useDico() {
-  const ctx = useContext(LanguageContext)
-  if (!ctx) throw new Error('useDico must be used within a DicoProvider')
-  return ctx
 }

@@ -5,7 +5,7 @@ import Header from '../composants/layout/Header'
 import { getInit } from '../config/config'
 import { getSelectorType } from '../config/selectorConfig'
 import { getHeroType } from '../config/heroConfig'
-import { SelectionContext } from '../providers/SelectionProvider'
+import { SelectionContext } from '../providers/SelectionContext'
 import '../styles/shared.css'
 import '../styles/Home.css'
 
@@ -28,7 +28,7 @@ export default function Home() {
       return null
     }
   })()
-  const Hero = heroType?.component ?? null
+  const HeroComponent = heroType?.component ?? null
   const heroProps = heroType
     ? Object.fromEntries(Object.entries(heroType).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
@@ -56,7 +56,7 @@ export default function Home() {
       <main className="main-layout">
         <div className="home-wrapper">
           <div className="home-inner">
-            {Hero && <Hero {...heroProps} />}
+            {HeroComponent && <HeroComponent {...heroProps} />}
           </div>
         </div>
         {SelectorComponent && <SelectorComponent />}

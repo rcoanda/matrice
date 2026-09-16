@@ -8,7 +8,7 @@ import { getInit } from '../config/config'
 import { getSelectorType } from '../config/selectorConfig'
 
 import Overlay from '../composants/effects/Overlay'
-import { SelectionContext } from '../providers/SelectionProvider'
+import { SelectionContext } from '../providers/SelectionContext'
 import '../styles/Gallery.css'
 
 export default function Gallery() {
@@ -38,7 +38,7 @@ export default function Gallery() {
       ) : (
         viewMode && (
           <>
-            <ViewScene viewMode={viewMode} dataSource={dataSource} onSelect={setSelectedArtwork} />
+            <ViewScene viewModeKey={viewMode} dataSourceKey={dataSource} onSelect={setSelectedArtwork} />
             <Overlay artwork={selectedArtwork} onClose={() => setSelectedArtwork(null)} />
           </>
         )

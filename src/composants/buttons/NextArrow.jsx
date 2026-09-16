@@ -1,7 +1,7 @@
 import { useContext } from 'react'
-import { SelectionContext } from '../../providers/SelectionProvider'
-import { useDico } from '../../providers/DicoProvider'
-
+import { SelectionContext } from '../../providers/SelectionContext'
+import { useDico } from '../../providers/LanguageContext'
+//next datasource
 export default function NextArrow() {
   const { dataSource, setDataSource, dataSourceOptions } = useContext(SelectionContext)
   const { t } = useDico()
