@@ -6,8 +6,6 @@ import { getInit } from './config'
 
 const DESIGN_SYSTEMS = [
   { key: 'matriceKey', label: 'Matrice', file: matrice },
-  { key: 'aquaKey', label: 'Aqua', file: aqua },
-  { key: 'neonKey', label: 'Neon', file: neon },
   { key: 'julisKey', label: 'Julis', file: julis },
 ]
 
