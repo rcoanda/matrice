@@ -38,6 +38,19 @@
   aspect-ratio: 1;
 }
 
+.listview-photo .listview-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(58vw, 58vh);
+  aspect-ratio: 1;
+  background: var(--color-surface);
+  color: var(--color-gallery);
+  font-family: var(--font-para);
+  text-align: center;
+  padding: 2rem;
+}
+
 .listview-info {
   text-align: center;
   margin-top: 0.8rem;

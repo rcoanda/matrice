@@ -8,7 +8,9 @@ export default function GridView({ artworks, onSelect }) {
       <div className="gridview">
         {artworks.map((art) => (
           <div key={art.id} className="gridview-cell" onClick={() => onSelect?.(art)}>
-            {art.image ? (
+            {art.card != null ? (
+              <div className="gridview-card">{art.card}</div>
+            ) : art.image ? (
               <img src={art.image} alt={art.title || ''} />
             ) : art.video ? (
               <video src={art.video} autoPlay muted loop playsInline />
