@@ -14,13 +14,14 @@ export default function Home() {
   const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
 
-  const SelectorComponent = (() => {
+  const selectorItem = (() => {
     try {
-      return getSelectorType(getInit('selectorConfig'))?.component ?? null
+      return getSelectorType(getInit('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
+  const SelectorComponent = selectorItem?.component ?? null
   const heroType = (() => {
     try {
       return getHeroType(getInit('heroConfig'))
@@ -59,7 +60,12 @@ export default function Home() {
             {HeroComponent && <HeroComponent {...heroProps} />}
           </div>
         </div>
-        {SelectorComponent && <SelectorComponent />}
+        {SelectorComponent && (
+          <SelectorComponent
+            viewModeSelectorKey={selectorItem.viewMode}
+            dataSourceSelectorKey={selectorItem.dataSource}
+          />
+        )}
       </main>
     </>
   )

@@ -1,8 +1,5 @@
-
-
-export async function loadMetaData(label) {
-
-  return entries.map((label, i) => ({
+export async function loadMetaData(labels = []) {
+  return labels.map((label, i) => ({
     id: i + 1,
     collection: label,
     title: '',

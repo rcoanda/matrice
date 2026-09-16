@@ -1,32 +1,29 @@
-import { useContext, useMemo } from 'react'
+import { useContext } from 'react'
 import { SelectionContext } from '../../providers/SelectionContext'
-import { loadMetaData } from '../../services/metaDataLoader'
-import { imgSource, videoSource, glbSource } from '../../utils/mediaPaths'
 import ViewScene from '../canvas/view/common/ViewScene'
 import '../../styles/BtnSelector.css'
 
+export default function ViewSelector({ viewModeSelectorKey, dataSourceSelectorKey }) {
+  const { setDataSource, dataSourceOptions } = useContext(SelectionContext)
 
-
-export default function ViewSelector({ viewModeSelectorKey }) {
-
-  const { dataSourceOptions, dataSource, setDataSource } = useContext(SelectionContext)
-
-  //metaDataSourceItem fictif , construit à partir de dataSourceOptions et inséré dans dataConfigItems
-  // { key: 'metaKey', label: 'Categories', file: null, loader: loadMetaData }, 
-  const metaDataSourceKey = null
-
-
-
+  // Le sélecteur affiche la liste des catégories (metaKey) : au clic, on retrouve
+  // la source correspondante par son label et on sélectionne sa clé.
+  const handleSelect = (art) => {
+    const source = dataSourceOptions.find((s) => s.label === art?.collection)
+    if (source) setDataSource(source.key)
+  }
 
   return (
-    <>
-      <div className="overlay-content">
-        <div className="selector-groups">
-          {viewModeSelectorKey && metaDataSourceKey && (
-            <ViewScene viewModeKey={viewModeSelectorKey} dataSourceItem={metaDataSourceKey} onSelect={setDataSource} />
-          )}
-        </div>
-      </div>
-    </>
+    <div className="overlay-content">
+
+      {viewModeSelectorKey && dataSourceSelectorKey && (
+        <ViewScene
+          viewModeKey={viewModeSelectorKey}
+          dataSourceKey={dataSourceSelectorKey}
+          onSelect={handleSelect}
+        />
+      )}
+
+    </div>
   )
 }

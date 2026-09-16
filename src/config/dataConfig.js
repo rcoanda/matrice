@@ -1,6 +1,8 @@
 import { loadCloudData } from '../services/cloudDataLoader'
+import { loadMetaData } from '../services/metaDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
+import { getAllInit } from './config'
 
 let photoSources = []
 let photoSourcesReady = false
@@ -50,29 +52,46 @@ async function buildGlbSources() {
     glbSourcesReady = true
 }
 
-export async function getAllDataSources() {
+// Liste configurée pour dataConfig (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
+function getConfiguredKeys() {
+    const entry = getAllInit().find((i) => i.config === 'dataConfig')
+    return entry ? (entry.list ?? null) : null
+}
+
+async function getAllDataSources() {
     await buildPhotoSources()
     await buildVideoSources()
     await buildGlbSources()
-    return [...photoSources, ...videoSources, ...glbSources]
+    const all = [...photoSources, ...videoSources, ...glbSources]
+    // metaKey = catégories restreintes à la liste configurée (résultat de getList)
+    const keys = getConfiguredKeys()
+    const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
+    return [
+        ...all,
+        {
+            key: 'metaKey',
+            label: 'Categories',
+            file: null,
+            loader: () => loadMetaData(metaItems.map((source) => source.label)),
+        },
+    ]
 }
 
 export async function getAllKeys() {
-    await buildPhotoSources()
-    await buildVideoSources()
-    await buildGlbSources()
-    return [...photoSources, ...videoSources, ...glbSources].map((i) => i.key)
+    const all = await getAllDataSources()
+    return all.map((i) => i.key)
 }
 
 export async function getList(keys) {
+    //items
     const all = await getAllDataSources()
-    return keys ? all.filter((i) => keys.includes(i.key)) : all
+    return list = keys ? all.filter((i) => keys.includes(i.key)) : all
+
 }
 
 export async function getDataSource(key) {
+    //item
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
-    await buildPhotoSources()
-    await buildVideoSources()
-    await buildGlbSources()
-    return [...photoSources, ...videoSources, ...glbSources].find((i) => i.key === key)
+    const all = await getAllDataSources()
+    return all.find((i) => i.key === key)
 }
