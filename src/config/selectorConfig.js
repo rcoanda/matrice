@@ -1,7 +1,9 @@
 import BtnSelector from '../composants/selector/BtnSelector'
+import ViewSelector from '../composants/selector/ViewSelector'
 
 const SELECTOR_TYPES = [
-  { key: 'btnKey', label: 'btn', component: BtnSelector },
+  { key: 'btnKey', label: 'btn', component: BtnSelector, viewMode: null },
+  { key: 'viewKey', label: 'view', component: ViewSelector, viewMode: 'ellipseKey' },
 ]
 
 export function getAllSelectorTypes() {
