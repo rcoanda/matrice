@@ -1,0 +1,14 @@
+import { useContext } from 'react'
+import '../../styles/Hero.css'
+import MotionScene from '../canvas/motion/common/MotionScene'
+import { SelectionContext } from '../../providers/SelectionProvider'
+
+
+export default function MotionHero({ motionMode }) {
+  const { dataSource } = useContext(SelectionContext)
+  return (
+    <div className="hero-container">
+      <MotionScene motionMode={motionMode} dataSource={dataSource} />
+    </div>
+  )
+}
