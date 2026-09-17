@@ -18,6 +18,6 @@ const INIT = [
     { config: 'dataConfig', list: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], default: null, init: 'natureKey' },
     { config: 'selectorConfig', list: null, default: null, init: 'btnKey' },
     { config: 'heroConfig', list: null, default: null, init: 'circlesKey' },
-    { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
+    { config: 'designSystemConfig', list: null, default: 'julisKey', init: null },
 ]
 export default INIT

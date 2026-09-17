@@ -27,7 +27,7 @@ export default function MotionScene({ motionMode, dataSource, onSelect }) {
   return (
     <>
       <HeadLine currentView={motionItem?.label} currentData={dataSourceItem?.label} />
-      <Canvas camera={{ position: [0, 5, 7], fov: 50, up: [0, 1, 0] }}>
+      <Canvas camera={{ position: [0, 0, 14], fov: 50, up: [0, 1, 0] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <MotionComponent source={source} />
