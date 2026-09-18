@@ -4,11 +4,11 @@ import ViewScene from '../canvas/view/common/ViewScene'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 
-export default function ViewHero({ view }) {
+export default function ViewHero({ viewKey }) {
   const { data } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <ViewScene viewKey={view} dataKey={data} />
+      <ViewScene viewKey={viewKey} dataKey={data} />
     </div>
   )
 }

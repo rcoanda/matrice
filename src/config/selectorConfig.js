@@ -2,11 +2,11 @@ import BtnSelector from '../composants/selector/BtnSelector'
 import ViewSelector from '../composants/selector/ViewSelector'
 
 const SELECTORS = [
-  { key: 'btnKey', label: 'btn', component: BtnSelector, view: null, data: null },
-  { key: 'gridKey', label: 'grid', component: ViewSelector, view: 'gridKey', data: 'metaKey' },
-  { key: 'ellipseKey', label: 'view', component: ViewSelector, view: 'ellipseKey', data: 'metaKey' },
-  { key: 'cylinderKey', label: 'view', component: ViewSelector, view: 'cylinderKey', data: 'metaKey' },
-  { key: 'sphereKey', label: 'view', component: ViewSelector, view: 'sphereKey', data: 'metaKey' },
+  { key: 'btnKey', label: 'btn', component: BtnSelector, viewKey: null, data: null },
+  { key: 'gridKey', label: 'grid', component: ViewSelector, viewKey: 'gridKey', data: 'metaKey' },
+  { key: 'ellipseKey', label: 'view', component: ViewSelector, viewKey: 'ellipseKey', data: 'metaKey' },
+  { key: 'cylinderKey', label: 'view', component: ViewSelector, viewKey: 'cylinderKey', data: 'metaKey' },
+  { key: 'sphereKey', label: 'view', component: ViewSelector, viewKey: 'sphereKey', data: 'metaKey' },
 ]
 
 export function getAllSelectors() {

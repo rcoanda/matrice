@@ -22,7 +22,7 @@ function renderButtons(options, value, onChange) {
 export default function BtnSelector() {
   const {
     motionOptions, motion, selectMotion,
-    viewOptions, view, selectView,
+    viewItems, viewKey, selectViewKey,
     dataOptions, data, setData,
   } = useContext(SelectionContext)
 
@@ -34,9 +34,9 @@ export default function BtnSelector() {
             {renderButtons(motionOptions, motion, selectMotion)}
           </div>
         )}
-        {viewOptions.length > 0 && (
+        {viewItems.length > 0 && (
           <div className="selector-row">
-            {renderButtons(viewOptions, view, selectView)}
+            {renderButtons(viewItems, viewKey, selectViewKey)}
           </div>
         )}
         {dataOptions.length > 0 && (

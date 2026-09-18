@@ -8,7 +8,7 @@ import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useHome() {
   const navigate = useNavigate()
-  const { motion, view, data, reset } = useContext(SelectionContext)
+  const { motion, viewKey, data, reset } = useContext(SelectionContext)
   const [stage, setStage] = useState('idle')
 
   //selector
@@ -50,7 +50,7 @@ export function useHome() {
 
   //ready
   useEffect(() => {
-    const ready = data && (motion || view)
+    const ready = data && (motion || viewKey)
     if (ready) {
       setStage('transition')
       setTimeout(() => {
@@ -59,7 +59,7 @@ export function useHome() {
     } else {
       setStage('idle')
     }
-  }, [motion, view, data, navigate])
+  }, [motion, viewKey, data, navigate])
 
   return {
     selectorProps,

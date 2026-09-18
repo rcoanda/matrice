@@ -4,7 +4,7 @@ import EllipseView from '../composants/canvas/view/EllipseView'
 import ListView from '../composants/canvas/view/ListView'
 import GridView from '../composants/canvas/view/GridView'
 
-const VIEW_MODES = [
+const VIEW_ITEMS = [
   { key: 'sphereKey', label: 'sphere', component: SphereView },
   { key: 'cylinderKey', label: 'cylinder', component: CylinderView },
   { key: 'ellipseKey', label: 'ellipse', component: EllipseView },
@@ -13,17 +13,17 @@ const VIEW_MODES = [
 ]
 
 export function getAllViews() {
-  return VIEW_MODES
+  return VIEW_ITEMS
 }
 
 export function getAllKeys() {
-  return VIEW_MODES.map((v) => v.key)
+  return VIEW_ITEMS.map((v) => v.key)
 }
 
 export function getList(keys) {
-  return keys ? VIEW_MODES.filter((v) => keys.includes(v.key)) : VIEW_MODES
+  return keys ? VIEW_ITEMS.filter((v) => keys.includes(v.key)) : VIEW_ITEMS
 }
 
 export function getView(key) {
-  return VIEW_MODES.find((m) => m.key === key)
+  return VIEW_ITEMS.find((m) => m.key === key)
 }
