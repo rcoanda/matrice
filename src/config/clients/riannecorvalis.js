@@ -7,6 +7,7 @@ const INIT2 = [
     { config: 'dataConfig', list: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], default: null, init: null },
     { config: 'selectorConfig', list: null, default: null, init: 'ellipseKey' },
     { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
+    { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
     { config: 'heroConfig', list: null, default: null, init: null },
     { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
 ]
@@ -19,6 +20,7 @@ const INIT = [
     { config: 'dataConfig', list: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], default: null, init: 'natureKey' },
     { config: 'selectorConfig', list: null, default: null, init: 'btnKey' },
     { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
+    { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
     { config: 'heroConfig', list: null, default: null, init: 'circlesKey' },
     { config: 'designSystemConfig', list: null, default: 'julisKey', init: null },
 ]

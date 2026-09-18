@@ -5,6 +5,7 @@ const INIT = [
   { config: 'dataConfig', list: null, default: null, init: null },
   { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
   { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
+  { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
   { config: 'heroConfig', list: null, default: null, init: null },
   { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
 ]

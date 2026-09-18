@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Transition from '../composants/effects/Transition'
 import Header from '../composants/layout/Header'
 import { getInit } from '../config/config'
 import { getSelectorType } from '../config/selectorConfig'
 import { getHeroType } from '../config/heroConfig'
+import { getTransitionType } from '../config/transitionConfig'
 import { SelectionContext } from '../providers/SelectionContext'
 import '../styles/shared.css'
 import '../styles/Home.css'
@@ -30,6 +30,14 @@ export default function Home() {
     }
   })()
   const HeroComponent = heroType?.component ?? null
+  const transitionType = (() => {
+    try {
+      return getTransitionType(getInit('transitionConfig')) ?? null
+    } catch {
+      return null
+    }
+  })()
+  const TransitionComponent = transitionType?.component ?? null
   const heroProps = heroType
     ? Object.fromEntries(Object.entries(heroType).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
@@ -52,7 +60,7 @@ export default function Home() {
 
   return (
     <>
-      <Transition visible={stage === 'transition'} />
+      {TransitionComponent && <TransitionComponent visible={stage === 'transition'} />}
       <Header />
       <main className="main-layout">
         <div className="home-wrapper">
