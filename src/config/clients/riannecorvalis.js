@@ -8,6 +8,7 @@ const INIT2 = [
     { config: 'selectorConfig', list: null, default: null, init: 'ellipseKey' },
     { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
     { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
+    { config: 'loadingScreenConfig', list: null, default: 'loadingScreenKey', init: null },
     { config: 'heroConfig', list: null, default: null, init: null },
     { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
 ]
@@ -21,6 +22,7 @@ const INIT = [
     { config: 'selectorConfig', list: null, default: null, init: 'btnKey' },
     { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
     { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
+    { config: 'loadingScreenConfig', list: null, default: 'loadingScreenKey', init: null },
     { config: 'heroConfig', list: null, default: null, init: 'circlesKey' },
     { config: 'designSystemConfig', list: null, default: 'julisKey', init: null },
 ]

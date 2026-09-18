@@ -2,9 +2,9 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getViewMode } from '../../../../config/viewConfig'
 import { getInit } from '../../../../config/config'
+import { getLoadingScreenType } from '../../../../config/loadingScreenConfig'
 import { getDesignSystem } from '../../../../config/designSystemConfig'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
-import LoadingScreen from '../../../effects/LoadingScreen'
 import HeadLine from '../../../layout/HeadLine'
 
 function GalleryFallback() {
@@ -17,11 +17,13 @@ export default function ViewScene({ viewModeKey, dataSourceKey, onSelect }) {
 
   const viewModeItem = getViewMode(viewModeKey)
   const ViewComponent = viewModeItem ? viewModeItem.component : null
+  const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
+  const LoadingComponent = loadingItem ? loadingItem.component : null
 
   if (!viewModeKey || !dataSourceKey) return null
 
   if (loading) {
-    return <LoadingScreen progress={progress} />
+    return LoadingComponent ? <LoadingComponent progress={progress} /> : null
   }
 
   return (
