@@ -4,11 +4,11 @@ import MotionScene from '../canvas/motion/common/MotionScene'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 
-export default function MotionHero({ motion }) {
-  const { data } = useContext(SelectionContext)
+export default function MotionHero({ motionKey }) {
+  const { dataKey } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <MotionScene motionKey={motion} dataKey={data} />
+      <MotionScene motionKey={motionKey} dataKey={dataKey} />
     </div>
   )
 }

@@ -3,7 +3,7 @@ import ViewHero from '../composants/hero/ViewHero'
 
 
 const HEROES = [
-  { key: 'circlesKey', label: 'circles', component: MotionHero, motion: 'circlesKey' },
+  { key: 'circlesKey', label: 'circles', component: MotionHero, motionKey: 'circlesKey' },
   { key: 'ellipseKey', label: 'ellipse', component: ViewHero, viewKey: 'ellipseKey' },
 ]
 

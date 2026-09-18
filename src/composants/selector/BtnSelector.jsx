@@ -21,17 +21,17 @@ function renderButtons(options, value, onChange) {
 
 export default function BtnSelector() {
   const {
-    motionOptions, motion, selectMotion,
+    motionItems, motionKey, selectMotionKey,
     viewItems, viewKey, selectViewKey,
-    dataOptions, data, setData,
+    dataItems, dataKey, setDataKey,
   } = useContext(SelectionContext)
 
   return (
     <div className="overlay-content">
       <div className="selector-groups">
-        {motionOptions.length > 0 && (
+        {motionItems.length > 0 && (
           <div className="selector-row">
-            {renderButtons(motionOptions, motion, selectMotion)}
+            {renderButtons(motionItems, motionKey, selectMotionKey)}
           </div>
         )}
         {viewItems.length > 0 && (
@@ -39,9 +39,9 @@ export default function BtnSelector() {
             {renderButtons(viewItems, viewKey, selectViewKey)}
           </div>
         )}
-        {dataOptions.length > 0 && (
+        {dataItems.length > 0 && (
           <div className="selector-row">
-            {renderButtons(dataOptions, data, setData)}
+            {renderButtons(dataItems, dataKey, setDataKey)}
           </div>
         )}
       </div>

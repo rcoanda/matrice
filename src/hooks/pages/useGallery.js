@@ -5,7 +5,7 @@ import { getOverlay } from '../../config/overlayConfig'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
-  const { motion, viewKey, data } = useContext(SelectionContext)
+  const { motionKey, viewKey, dataKey } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
   //selector
   const selectorProps = (() => {
@@ -32,9 +32,9 @@ export function useGallery() {
   }
 
   const sceneProps = {
-    motionKey: motion,
+    motionKey: motionKey,
     viewKey: viewKey,
-    dataKey: data,
+    dataKey: dataKey,
     onSelect: setSelectedArtwork,
   }
 

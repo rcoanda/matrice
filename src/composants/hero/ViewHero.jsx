@@ -5,10 +5,10 @@ import { SelectionContext } from '../../providers/SelectionContext'
 
 
 export default function ViewHero({ viewKey }) {
-  const { data } = useContext(SelectionContext)
+  const { dataKey } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <ViewScene viewKey={viewKey} dataKey={data} />
+      <ViewScene viewKey={viewKey} dataKey={dataKey} />
     </div>
   )
 }

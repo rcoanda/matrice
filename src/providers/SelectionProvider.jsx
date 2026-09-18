@@ -2,39 +2,39 @@ import { useState, useCallback, useEffect } from 'react'
 import { getInit, getInitList } from '../config/config'
 import { SelectionContext } from './SelectionContext'
 
-//motion, viewKey, data sont des Keys
+//motionKey, viewKey, dataKey sont des Keys
 export function SelectionProvider({ children }) {
-  const [motion, setMotion] = useState(getInit('motionConfig'))
+  const [motionKey, setMotionKey] = useState(getInit('motionConfig'))
   const [viewKey, setViewKey] = useState(getInit('viewConfig'))
-  const [data, setData] = useState(getInit('dataConfig'))
-  const [motionOptions, setMotionOptions] = useState([])
+  const [dataKey, setDataKey] = useState(getInit('dataConfig'))
+  const [motionItems, setMotionItems] = useState([])
   const [viewItems, setViewItems] = useState([])
-  const [dataOptions, setDataOptions] = useState([])
+  const [dataItems, setDataItems] = useState([])
 
   useEffect(() => {
-    getInitList('motionConfig').then(setMotionOptions)
+    getInitList('motionConfig').then(setMotionItems)
     getInitList('viewConfig').then(setViewItems)
-    getInitList('dataConfig').then(setDataOptions)
+    getInitList('dataConfig').then(setDataItems)
   }, [])
 
-  const selectMotion = useCallback((key) => {
-    setMotion(key)
+  const selectMotionKey = useCallback((key) => {
+    setMotionKey(key)
     setViewKey(null)
   }, [])
 
   const selectViewKey = useCallback((key) => {
     setViewKey(key)
-    setMotion(null)
+    setMotionKey(null)
   }, [])
 
   const reset = useCallback(() => {
-    setMotion(getInit('motionConfig'))
+    setMotionKey(getInit('motionConfig'))
     setViewKey(getInit('viewConfig'))
-    setData(getInit('dataConfig'))
+    setDataKey(getInit('dataConfig'))
   }, [])
 
   return (
-    <SelectionContext.Provider value={{ motion, selectMotion, viewKey, selectViewKey, data, setData, reset, motionOptions, viewItems, dataOptions }}>
+    <SelectionContext.Provider value={{ motionKey, selectMotionKey, viewKey, selectViewKey, dataKey, setDataKey, reset, motionItems, viewItems, dataItems }}>
       {children}
     </SelectionContext.Provider>
   )
