@@ -10,17 +10,17 @@ import HeadLine from '../../../layout/HeadLine'
 
 
 
-export default function MotionScene({ motionMode, dataSource, onSelect }) {
-  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSource)
+export default function MotionScene({ motionModeKey, dataSourceKey }) {
+  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSourceKey)
   const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
-  const motionItem = getMotionMode(motionMode)
+  const motionItem = getMotionMode(motionModeKey)
   const MotionComponent = motionItem ? motionItem.component : null
   const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 
-  if (!motionMode || !dataSource || !source || source.length === 0) return null
+  if (!motionModeKey || !dataSourceKey || !source || source.length === 0) return null
 
   if (loading) {
     return LoadingComponent ? <LoadingComponent progress={progress} /> : null

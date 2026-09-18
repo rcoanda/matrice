@@ -8,7 +8,7 @@ export default function MotionHero({ motionMode }) {
   const { dataSource } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <MotionScene motionMode={motionMode} dataSource={dataSource} />
+      <MotionScene motionModeKey={motionMode} dataSourceKey={dataSource} />
     </div>
   )
 }
