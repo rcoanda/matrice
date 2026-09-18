@@ -1,7 +1,9 @@
 import CirclesMotion from '../composants/canvas/motion/CirclesMotion'
+import LemniscatesMotion from '../composants/canvas/motion/LemniscatesMotion'
 
 const MOTION_MODES = [
   { key: 'circlesKey', label: 'circles', component: CirclesMotion },
+  { key: 'lemniscatesKey', label: 'lemniscates', component: LemniscatesMotion },
 ]
 
 export function getAllMotionModes() {
