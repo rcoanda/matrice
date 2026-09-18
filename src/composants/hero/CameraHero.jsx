@@ -2,11 +2,11 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { getInit } from '../../config/config'
-import { getDesignSystem } from '../../config/designSystemConfig'
+import { getDesign } from '../../config/designConfig'
 import '../../styles/Hero.css'
 import '../../styles/CameraHero.css'
 
-const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
+const background = getDesign(getInit('designConfig')).colors.galleryLight.value
 
 function CameraFrustum() {
   const groupRef = useRef()

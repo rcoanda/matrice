@@ -2,8 +2,8 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getView } from '../../../../config/viewConfig'
 import { getInit } from '../../../../config/config'
-import { getLoadingScreenType } from '../../../../config/loadingScreenConfig'
-import { getDesignSystem } from '../../../../config/designSystemConfig'
+import { getLoading } from '../../../../config/loadingConfig'
+import { getDesign } from '../../../../config/designConfig'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
 import HeadLine from '../../../layout/HeadLine'
 
@@ -13,11 +13,11 @@ function GalleryFallback() {
 
 export default function ViewScene({ viewKey, dataKey, onSelect }) {
   const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
+  const background = getDesign(getInit('designConfig')).colors.galleryLight.value
 
   const viewItem = getView(viewKey)
   const ViewComponent = viewItem ? viewItem.component : null
-  const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
+  const loadingItem = getLoading(getInit('loadingConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
 
   if (!viewKey || !dataKey) return null

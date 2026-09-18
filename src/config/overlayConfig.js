@@ -1,21 +1,21 @@
 import Overlay from '../composants/overlay/Overlay'
 
-const OVERLAY_TYPES = [
+const OVERLAYS = [
   { key: 'overlayKey', label: 'overlay', component: Overlay },
 ]
 
-export function getAllOverlayTypes() {
-  return OVERLAY_TYPES
+export function getAllOverlays() {
+  return OVERLAYS
 }
 
 export function getAllKeys() {
-  return OVERLAY_TYPES.map((o) => o.key)
+  return OVERLAYS.map((o) => o.key)
 }
 
 export function getList(keys) {
-  return keys ? OVERLAY_TYPES.filter((o) => keys.includes(o.key)) : OVERLAY_TYPES
+  return keys ? OVERLAYS.filter((o) => keys.includes(o.key)) : OVERLAYS
 }
 
-export function getOverlayType(key) {
-  return OVERLAY_TYPES.find((o) => o.key === key)
+export function getOverlay(key) {
+  return OVERLAYS.find((o) => o.key === key)
 }

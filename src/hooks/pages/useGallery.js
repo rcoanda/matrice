@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { getInit } from '../../config/config'
-import { getSelectorType } from '../../config/selectorConfig'
-import { getOverlayType } from '../../config/overlayConfig'
+import { getSelector } from '../../config/selectorConfig'
+import { getOverlay } from '../../config/overlayConfig'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
@@ -10,21 +10,21 @@ export function useGallery() {
   //selector
   const selectorProps = (() => {
     try {
-      return getSelectorType(getInit('selectorConfig')) ?? null
+      return getSelector(getInit('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
   const SelectorComponent = selectorProps?.component ?? null
   //overlay
-  const overlayType = (() => {
+  const overlay = (() => {
     try {
-      return getOverlayType(getInit('overlayConfig')) ?? null
+      return getOverlay(getInit('overlayConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const OverlayComponent = overlayType?.component ?? null
+  const OverlayComponent = overlay?.component ?? null
 
   const overlayProps = {
     artwork: selectedArtwork,

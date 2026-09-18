@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getInit } from '../../config/config'
-import { getSelectorType } from '../../config/selectorConfig'
-import { getHeroType } from '../../config/heroConfig'
-import { getTransitionType } from '../../config/transitionConfig'
+import { getSelector } from '../../config/selectorConfig'
+import { getHero } from '../../config/heroConfig'
+import { getTransition } from '../../config/transitionConfig'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useHome() {
@@ -14,7 +14,7 @@ export function useHome() {
   //selector
   const selectorProps = (() => {
     try {
-      return getSelectorType(getInit('selectorConfig')) ?? null
+      return getSelector(getInit('selectorConfig')) ?? null
     } catch {
       return null
     }
@@ -22,26 +22,26 @@ export function useHome() {
   const SelectorComponent = selectorProps?.component ?? null
 
   //hero
-  const heroType = (() => {
+  const hero = (() => {
     try {
-      return getHeroType(getInit('heroConfig'))
+      return getHero(getInit('heroConfig'))
     } catch {
       return null
     }
   })()
-  const HeroComponent = heroType?.component ?? null
-  const heroProps = heroType
-    ? Object.fromEntries(Object.entries(heroType).filter(([k]) => k !== 'component' && k !== 'key'))
+  const HeroComponent = hero?.component ?? null
+  const heroProps = hero
+    ? Object.fromEntries(Object.entries(hero).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
   //transition
-  const transitionType = (() => {
+  const transition = (() => {
     try {
-      return getTransitionType(getInit('transitionConfig')) ?? null
+      return getTransition(getInit('transitionConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const TransitionComponent = transitionType?.component ?? null
+  const TransitionComponent = transition?.component ?? null
 
   const transitionProps = { visible: stage === 'transition' }
   useEffect(() => {

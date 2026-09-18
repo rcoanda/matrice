@@ -6,9 +6,9 @@ const INIT = [
   { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
   { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
   { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
-  { config: 'loadingScreenConfig', list: null, default: 'loadingScreenKey', init: null },
+  { config: 'loadingConfig', list: null, default: 'loadingKey', init: null },
   { config: 'heroConfig', list: null, default: null, init: null },
-  { config: 'designSystemConfig', list: null, default: 'matriceKey', init: null },
+  { config: 'designConfig', list: null, default: 'matriceKey', init: null },
 ]
 
 export default INIT

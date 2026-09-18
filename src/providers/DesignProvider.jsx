@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { getInit } from '../config/config'
-import { getDesignSystem } from '../config/designSystemConfig'
+import { getDesign } from '../config/designConfig'
 import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
 function setToken(style, name, value) {
@@ -31,9 +31,9 @@ function applyGroup(style, prefix, node) {
 // Groupes déjà projetés explicitement (noms legacy) ci-dessous
 const MAPPED_GROUPS = new Set(['meta', 'key', 'label', 'colors', 'font', 'typography', 'spacing', 'motion', 'animations'])
 
-export default function DesignSystemeProvider({ children }) {
+export default function DesignProvider({ children }) {
   useEffect(() => {
-    const ds = getDesignSystem(getInit('designSystemConfig'))
+    const ds = getDesign(getInit('designConfig'))
     const { style, dataset } = document.documentElement
 
     // meta -> attributs data-ds-* sur <html>

@@ -5,11 +5,11 @@ import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
 import { SelectionProvider } from './providers/SelectionProvider'
 import { DicoProvider } from './providers/DicoProvider'
-import DesignSystemeProvider from './providers/DesignSystemeProvider'
+import DesignProvider from './providers/DesignProvider'
 
 function App() {
   return (
-    <DesignSystemeProvider>
+    <DesignProvider>
       <DicoProvider>
         <SelectionProvider>
           <Routes>
@@ -20,7 +20,7 @@ function App() {
           </Routes>
         </SelectionProvider>
       </DicoProvider>
-    </DesignSystemeProvider>
+    </DesignProvider>
   )
 }
 

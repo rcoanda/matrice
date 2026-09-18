@@ -1,8 +1,8 @@
 import '../../styles/shared.css'
-import '../../styles/LoadingScreen.css'
+import '../../styles/Loading.css'
 import { useDico } from '../../providers/LanguageContext'
 
-export default function LoadingScreen({ progress }) {
+export default function Loading({ progress }) {
   const { t } = useDico()
   return (
     <div className="loading-screen">
@@ -14,7 +14,7 @@ export default function LoadingScreen({ progress }) {
           />
         </div>
         <p className="loading-text">
-          {t('loadingMessage', 'loadingScreen')}
+          {t('loadingMessage', 'loading')}
           <span className="loading-dots" aria-hidden="true">
             <span />
             <span />

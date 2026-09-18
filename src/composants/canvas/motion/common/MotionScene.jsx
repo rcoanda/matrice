@@ -3,8 +3,8 @@ import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getMotion } from '../../../../config/motionConfig'
 import { getInit } from '../../../../config/config'
-import { getLoadingScreenType } from '../../../../config/loadingScreenConfig'
-import { getDesignSystem } from '../../../../config/designSystemConfig'
+import { getLoading } from '../../../../config/loadingConfig'
+import { getDesign } from '../../../../config/designConfig'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
 import HeadLine from '../../../layout/HeadLine'
 
@@ -12,11 +12,11 @@ import HeadLine from '../../../layout/HeadLine'
 
 export default function MotionScene({ motionKey, dataKey }) {
   const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
+  const background = getDesign(getInit('designConfig')).colors.galleryLight.value
 
   const motionItem = getMotion(motionKey)
   const MotionComponent = motionItem ? motionItem.component : null
-  const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
+  const loadingItem = getLoading(getInit('loadingConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 
