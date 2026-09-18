@@ -6,8 +6,7 @@ import Header from '../composants/layout/Header'
 import NextArrow from '../composants/buttons/NextArrow'
 import { getInit } from '../config/config'
 import { getSelectorType } from '../config/selectorConfig'
-
-import Overlay from '../composants/effects/Overlay'
+import { getOverlayType } from '../config/overlayConfig'
 import { SelectionContext } from '../providers/SelectionContext'
 import '../styles/Gallery.css'
 
@@ -23,6 +22,15 @@ export default function Gallery() {
     }
   })()
   const SelectorComponent = selectorItem?.component ?? null
+
+  const overlayType = (() => {
+    try {
+      return getOverlayType(getInit('overlayConfig')) ?? null
+    } catch {
+      return null
+    }
+  })()
+  const OverlayComponent = overlayType?.component ?? null
 
   if (!dataSource) {
     return <Navigate to="/" replace />
@@ -40,7 +48,9 @@ export default function Gallery() {
         viewMode && (
           <>
             <ViewScene viewModeKey={viewMode} dataSourceKey={dataSource} onSelect={setSelectedArtwork} />
-            <Overlay artwork={selectedArtwork} onClose={() => setSelectedArtwork(null)} />
+            {OverlayComponent && (
+              <OverlayComponent artwork={selectedArtwork} onClose={() => setSelectedArtwork(null)} />
+            )}
           </>
         )
       )}
