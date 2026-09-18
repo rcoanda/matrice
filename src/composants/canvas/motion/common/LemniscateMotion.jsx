@@ -3,8 +3,8 @@
 import { useLemniscateMotion } from '../../../../hooks/motion/useLemniscateMotion'
 import { usePhotoMeshTexture } from '../../../../hooks/model/usePhotoMeshTexture'
 
-export default function LemniscateMotion({ size, speed, direction, phase, length, width, index, source }) {
-  const ref = useLemniscateMotion(size, speed, direction, phase)
+export default function LemniscateMotion({ size, speed, direction, rotation, phase, length, width, index, source }) {
+  const ref = useLemniscateMotion(size, speed, direction, rotation, phase)
   const texture = usePhotoMeshTexture(index, source)
 
   return (
