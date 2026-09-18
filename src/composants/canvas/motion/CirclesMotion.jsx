@@ -2,6 +2,7 @@
 // circulaires, la source (liste d'URLs Cloudinary) est transmise en paramètre.
 import Motion from './common/Motion'
 import { circlesTrajectory } from '../../../utils/trajectory/circlesTrajectory'
+import { useCircularMotion } from '../../../hooks/motion/useCircularMotion'
 
 export default function CirclesMotion({ source }) {
   const trajectories = circlesTrajectory()
@@ -10,8 +11,16 @@ export default function CirclesMotion({ source }) {
 
   return (
     <group>
-      {trajectories.map((props, i) => (
-        <Motion key={i} {...props} index={i} source={source} />
+      {trajectories.map((t, i) => (
+        <Motion
+          key={i}
+          useMotion={useCircularMotion}
+          motionArgs={[t.radius, t.speed, t.direction, t.phase]}
+          length={t.length}
+          width={t.width}
+          index={i}
+          source={source}
+        />
       ))}
     </group>
   )

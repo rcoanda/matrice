@@ -1,10 +1,10 @@
-// Photos qui se déplace sur UNE trajectoire circulaire
+// Photo qui se déplace sur UNE trajectoire, la trajectoire étant pilotée par
+// le hook de mouvement reçu en props (ex: useCircularMotion, useLemniscateMotion).
 // moving photos
-import { useCircularMotion } from '../../../../hooks/motion/useCircularMotion'
 import { usePhotoMeshTexture } from '../../../../hooks/model/usePhotoMeshTexture'
 
-export default function Motion({ radius, speed, direction, phase, length, width, index, source }) {
-  const ref = useCircularMotion(radius, speed, direction, phase)
+export default function Motion({ useMotion, motionArgs, length, width, index, source }) {
+  const ref = useMotion(...motionArgs)
   const texture = usePhotoMeshTexture(index, source)
 
   return (
