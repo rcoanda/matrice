@@ -1,66 +1,21 @@
-import { useEffect, useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Header from '../composants/layout/Header'
-import { getInit } from '../config/config'
-import { getSelectorType } from '../config/selectorConfig'
-import { getHeroType } from '../config/heroConfig'
-import { getTransitionType } from '../config/transitionConfig'
-import { SelectionContext } from '../providers/SelectionContext'
+import { useHome } from '../hooks/pages/useHome'
 import '../styles/shared.css'
 import '../styles/Home.css'
 
 export default function Home() {
-  const navigate = useNavigate()
-  const { motionMode, viewMode, dataSource, reset } = useContext(SelectionContext)
-  const [stage, setStage] = useState('idle')
-
-  const selectorItem = (() => {
-    try {
-      return getSelectorType(getInit('selectorConfig')) ?? null
-    } catch {
-      return null
-    }
-  })()
-  const SelectorComponent = selectorItem?.component ?? null
-  const heroType = (() => {
-    try {
-      return getHeroType(getInit('heroConfig'))
-    } catch {
-      return null
-    }
-  })()
-  const HeroComponent = heroType?.component ?? null
-  const transitionType = (() => {
-    try {
-      return getTransitionType(getInit('transitionConfig')) ?? null
-    } catch {
-      return null
-    }
-  })()
-  const TransitionComponent = transitionType?.component ?? null
-  const heroProps = heroType
-    ? Object.fromEntries(Object.entries(heroType).filter(([k]) => k !== 'component' && k !== 'key'))
-    : {}
-
-  useEffect(() => {
-    reset()
-  }, [reset])
-
-  useEffect(() => {
-    const ready = dataSource && (motionMode || viewMode)
-    if (ready) {
-      setStage('transition')
-      setTimeout(() => {
-        navigate('/galerie')
-      }, 1500)
-    } else {
-      setStage('idle')
-    }
-  }, [motionMode, viewMode, dataSource, navigate])
+  const {
+    selectorProps,
+    SelectorComponent,
+    heroProps,
+    HeroComponent,
+    transitionProps,
+    TransitionComponent,
+  } = useHome()
 
   return (
     <>
-      {TransitionComponent && <TransitionComponent visible={stage === 'transition'} />}
+      {TransitionComponent && <TransitionComponent {...transitionProps} />}
       <Header />
       <main className="main-layout">
         <div className="home-wrapper">
@@ -68,12 +23,7 @@ export default function Home() {
             {HeroComponent && <HeroComponent {...heroProps} />}
           </div>
         </div>
-        {SelectorComponent && (
-          <SelectorComponent
-            viewModeSelectorKey={selectorItem.viewMode}
-            dataSourceSelectorKey={selectorItem.dataSource}
-          />
-        )}
+        {SelectorComponent && <SelectorComponent {...selectorProps} />}
       </main>
     </>
   )
