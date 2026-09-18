@@ -3,14 +3,14 @@ import { SelectionContext } from '../../providers/SelectionContext'
 import { useDico } from '../../providers/LanguageContext'
 //next datasource
 export default function NextArrow() {
-  const { dataSource, setDataSource, dataSourceOptions } = useContext(SelectionContext)
+  const { data, setData, dataOptions } = useContext(SelectionContext)
   const { t } = useDico()
 
   const handleNext = () => {
-    if (!dataSourceOptions.length) return
-    const index = dataSourceOptions.findIndex((item) => item.key === dataSource)
-    const next = dataSourceOptions[(index + 1) % dataSourceOptions.length]
-    setDataSource(next.key)
+    if (!dataOptions.length) return
+    const index = dataOptions.findIndex((item) => item.key === data)
+    const next = dataOptions[(index + 1) % dataOptions.length]
+    setData(next.key)
   }
 
   return (

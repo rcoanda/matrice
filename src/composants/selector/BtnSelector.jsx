@@ -21,9 +21,9 @@ function renderButtons(options, value, onChange) {
 
 export default function BtnSelector() {
   const {
-    motionOptions, motionMode, selectMotion,
-    viewModeOptions, viewMode, selectView,
-    dataSourceOptions, dataSource, setDataSource,
+    motionOptions, motion, selectMotion,
+    viewOptions, view, selectView,
+    dataOptions, data, setData,
   } = useContext(SelectionContext)
 
   return (
@@ -31,17 +31,17 @@ export default function BtnSelector() {
       <div className="selector-groups">
         {motionOptions.length > 0 && (
           <div className="selector-row">
-            {renderButtons(motionOptions, motionMode, selectMotion)}
+            {renderButtons(motionOptions, motion, selectMotion)}
           </div>
         )}
-        {viewModeOptions.length > 0 && (
+        {viewOptions.length > 0 && (
           <div className="selector-row">
-            {renderButtons(viewModeOptions, viewMode, selectView)}
+            {renderButtons(viewOptions, view, selectView)}
           </div>
         )}
-        {dataSourceOptions.length > 0 && (
+        {dataOptions.length > 0 && (
           <div className="selector-row">
-            {renderButtons(dataSourceOptions, dataSource, setDataSource)}
+            {renderButtons(dataOptions, data, setData)}
           </div>
         )}
       </div>

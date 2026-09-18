@@ -2,39 +2,39 @@ import { useState, useCallback, useEffect } from 'react'
 import { getInit, getInitList } from '../config/config'
 import { SelectionContext } from './SelectionContext'
 
-//motionMode, viewMode, dataSources sont des Keys
+//motion, view, data sont des Keys
 export function SelectionProvider({ children }) {
-  const [motionMode, setMotionMode] = useState(getInit('motionConfig'))
-  const [viewMode, setViewMode] = useState(getInit('viewConfig'))
-  const [dataSource, setDataSource] = useState(getInit('dataConfig'))
+  const [motion, setMotion] = useState(getInit('motionConfig'))
+  const [view, setView] = useState(getInit('viewConfig'))
+  const [data, setData] = useState(getInit('dataConfig'))
   const [motionOptions, setMotionOptions] = useState([])
-  const [viewModeOptions, setViewModeOptions] = useState([])
-  const [dataSourceOptions, setDataSourceOptions] = useState([])
+  const [viewOptions, setViewOptions] = useState([])
+  const [dataOptions, setDataOptions] = useState([])
 
   useEffect(() => {
     getInitList('motionConfig').then(setMotionOptions)
-    getInitList('viewConfig').then(setViewModeOptions)
-    getInitList('dataConfig').then(setDataSourceOptions)
+    getInitList('viewConfig').then(setViewOptions)
+    getInitList('dataConfig').then(setDataOptions)
   }, [])
 
   const selectMotion = useCallback((key) => {
-    setMotionMode(key)
-    setViewMode(null)
+    setMotion(key)
+    setView(null)
   }, [])
 
   const selectView = useCallback((key) => {
-    setViewMode(key)
-    setMotionMode(null)
+    setView(key)
+    setMotion(null)
   }, [])
 
   const reset = useCallback(() => {
-    setMotionMode(getInit('motionConfig'))
-    setViewMode(getInit('viewConfig'))
-    setDataSource(getInit('dataConfig'))
+    setMotion(getInit('motionConfig'))
+    setView(getInit('viewConfig'))
+    setData(getInit('dataConfig'))
   }, [])
 
   return (
-    <SelectionContext.Provider value={{ motionMode, selectMotion, viewMode, selectView, dataSource, setDataSource, reset, motionOptions, viewModeOptions, dataSourceOptions }}>
+    <SelectionContext.Provider value={{ motion, selectMotion, view, selectView, data, setData, reset, motionOptions, viewOptions, dataOptions }}>
       {children}
     </SelectionContext.Provider>
   )

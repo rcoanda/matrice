@@ -2,11 +2,11 @@ import BtnSelector from '../composants/selector/BtnSelector'
 import ViewSelector from '../composants/selector/ViewSelector'
 
 const SELECTOR_TYPES = [
-  { key: 'btnKey', label: 'btn', component: BtnSelector, viewMode: null, dataSource: null },
-  { key: 'gridKey', label: 'grid', component: ViewSelector, viewMode: 'gridKey', dataSource: 'metaKey' },
-  { key: 'ellipseKey', label: 'view', component: ViewSelector, viewMode: 'ellipseKey', dataSource: 'metaKey' },
-  { key: 'cylinderKey', label: 'view', component: ViewSelector, viewMode: 'cylinderKey', dataSource: 'metaKey' },
-  { key: 'sphereKey', label: 'view', component: ViewSelector, viewMode: 'sphereKey', dataSource: 'metaKey' },
+  { key: 'btnKey', label: 'btn', component: BtnSelector, view: null, data: null },
+  { key: 'gridKey', label: 'grid', component: ViewSelector, view: 'gridKey', data: 'metaKey' },
+  { key: 'ellipseKey', label: 'view', component: ViewSelector, view: 'ellipseKey', data: 'metaKey' },
+  { key: 'cylinderKey', label: 'view', component: ViewSelector, view: 'cylinderKey', data: 'metaKey' },
+  { key: 'sphereKey', label: 'view', component: ViewSelector, view: 'sphereKey', data: 'metaKey' },
 ]
 
 export function getAllSelectorTypes() {

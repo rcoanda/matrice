@@ -9,8 +9,8 @@ const HERO_TYPES = [
   { key: 'cameraKey', label: 'camera frustum', component: CameraHero },
   { key: 'aquaKey', label: 'aqua', component: AquaHero },
   { key: 'spaceKey', label: 'space', component: SpaceHero },
-  { key: 'circlesKey', label: 'circles', component: MotionHero, motionMode: 'circlesKey' },
-  { key: 'ellipseKey', label: 'ellipse', component: ViewHero, viewMode: 'ellipseKey' },
+  { key: 'circlesKey', label: 'circles', component: MotionHero, motion: 'circlesKey' },
+  { key: 'ellipseKey', label: 'ellipse', component: ViewHero, view: 'ellipseKey' },
 ]
 
 export function getAllHeroTypes() {

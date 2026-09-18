@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getMotionMode } from '../../../../config/motionConfig'
+import { getMotion } from '../../../../config/motionConfig'
 import { getInit } from '../../../../config/config'
 import { getLoadingScreenType } from '../../../../config/loadingScreenConfig'
 import { getDesignSystem } from '../../../../config/designSystemConfig'
@@ -10,17 +10,17 @@ import HeadLine from '../../../layout/HeadLine'
 
 
 
-export default function MotionScene({ motionModeKey, dataSourceKey }) {
-  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSourceKey)
+export default function MotionScene({ motionKey, dataKey }) {
+  const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
   const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
-  const motionItem = getMotionMode(motionModeKey)
+  const motionItem = getMotion(motionKey)
   const MotionComponent = motionItem ? motionItem.component : null
   const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 
-  if (!motionModeKey || !dataSourceKey || !source || source.length === 0) return null
+  if (!motionKey || !dataKey || !source || source.length === 0) return null
 
   if (loading) {
     return LoadingComponent ? <LoadingComponent progress={progress} /> : null
@@ -28,7 +28,7 @@ export default function MotionScene({ motionModeKey, dataSourceKey }) {
 
   return (
     <>
-      <HeadLine currentView={motionItem?.label} currentData={dataSourceItem?.label} />
+      <HeadLine currentView={motionItem?.label} currentData={dataItem?.label} />
       <Canvas camera={{ position: [0, 0, 14], fov: 50, up: [0, 1, 0] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />

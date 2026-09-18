@@ -6,7 +6,7 @@ const MOTION_MODES = [
   { key: 'lemniscatesKey', label: 'lemniscates', component: LemniscatesMotion },
 ]
 
-export function getAllMotionModes() {
+export function getAllMotions() {
   return MOTION_MODES
 }
 
@@ -18,6 +18,6 @@ export function getList(keys) {
   return keys ? MOTION_MODES.filter((m) => keys.includes(m.key)) : MOTION_MODES
 }
 
-export function getMotionMode(key) {
+export function getMotion(key) {
   return MOTION_MODES.find((m) => m.key === key)
 }

@@ -58,7 +58,7 @@ function getConfiguredKeys() {
     return entry ? (entry.list ?? null) : null
 }
 
-async function getAllDataSources() {
+async function getAllData() {
     await buildPhotoSources()
     await buildVideoSources()
     await buildGlbSources()
@@ -78,20 +78,20 @@ async function getAllDataSources() {
 }
 
 export async function getAllKeys() {
-    const all = await getAllDataSources()
+    const all = await getAllData()
     return all.map((i) => i.key)
 }
 
 export async function getList(keys) {
     //items
-    const all = await getAllDataSources()
+    const all = await getAllData()
     return keys ? all.filter((i) => keys.includes(i.key)) : all
 }
 
-export async function getDataSource(key) {
+export async function getData(key) {
     //item
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
-    const all = await getAllDataSources()
+    const all = await getAllData()
     if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
     // respecte la liste configurée (résultat de getList)
     const keys = getConfiguredKeys()

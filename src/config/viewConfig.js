@@ -12,7 +12,7 @@ const VIEW_MODES = [
   { key: 'gridKey', label: 'grid', component: GridView },
 ]
 
-export function getAllViewModes() {
+export function getAllViews() {
   return VIEW_MODES
 }
 
@@ -24,6 +24,6 @@ export function getList(keys) {
   return keys ? VIEW_MODES.filter((v) => keys.includes(v.key)) : VIEW_MODES
 }
 
-export function getViewMode(key) {
+export function getView(key) {
   return VIEW_MODES.find((m) => m.key === key)
 }

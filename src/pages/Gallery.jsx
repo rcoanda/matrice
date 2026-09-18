@@ -9,7 +9,7 @@ import '../styles/Gallery.css'
 export default function Gallery() {
   const { sceneProps, selectorProps, SelectorComponent, overlayProps, OverlayComponent } = useGallery()
 
-  if (!sceneProps.dataSourceKey) {
+  if (!sceneProps.dataKey) {
     return <Navigate to="/" replace />
   }
 
@@ -17,10 +17,10 @@ export default function Gallery() {
     <div className="gallery-layout">
       <Header />
       <NextArrow />
-      {sceneProps.motionModeKey ? (
+      {sceneProps.motionKey ? (
         <MotionScene {...sceneProps} />
       ) : (
-        sceneProps.viewModeKey && (
+        sceneProps.viewKey && (
           <>
             <ViewScene {...sceneProps} />
             {OverlayComponent && <OverlayComponent {...overlayProps} />}

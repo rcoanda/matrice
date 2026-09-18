@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getViewMode } from '../../../../config/viewConfig'
+import { getView } from '../../../../config/viewConfig'
 import { getInit } from '../../../../config/config'
 import { getLoadingScreenType } from '../../../../config/loadingScreenConfig'
 import { getDesignSystem } from '../../../../config/designSystemConfig'
@@ -11,16 +11,16 @@ function GalleryFallback() {
   return null
 }
 
-export default function ViewScene({ viewModeKey, dataSourceKey, onSelect }) {
-  const { artworks, dataSourceItem, loading, progress } = useArtworkLoader(dataSourceKey)
+export default function ViewScene({ viewKey, dataKey, onSelect }) {
+  const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
   const background = getDesignSystem(getInit('designSystemConfig')).colors.galleryLight.value
 
-  const viewModeItem = getViewMode(viewModeKey)
-  const ViewComponent = viewModeItem ? viewModeItem.component : null
+  const viewItem = getView(viewKey)
+  const ViewComponent = viewItem ? viewItem.component : null
   const loadingItem = getLoadingScreenType(getInit('loadingScreenConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
 
-  if (!viewModeKey || !dataSourceKey) return null
+  if (!viewKey || !dataKey) return null
 
   if (loading) {
     return LoadingComponent ? <LoadingComponent progress={progress} /> : null
@@ -28,7 +28,7 @@ export default function ViewScene({ viewModeKey, dataSourceKey, onSelect }) {
 
   return (
     <>
-      <HeadLine currentView={viewModeItem?.label} currentData={dataSourceItem?.label} />
+      <HeadLine currentView={viewItem?.label} currentData={dataItem?.label} />
       <Canvas
         camera={{ position: [0, 0.5, 5], fov: 60, near: 0.1, far: 100 }}
         gl={{ antialias: true, alpha: false }}

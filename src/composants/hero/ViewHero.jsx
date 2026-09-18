@@ -4,11 +4,11 @@ import ViewScene from '../canvas/view/common/ViewScene'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 
-export default function ViewHero({ viewMode }) {
-  const { dataSource } = useContext(SelectionContext)
+export default function ViewHero({ view }) {
+  const { data } = useContext(SelectionContext)
   return (
     <div className="hero-container">
-      <ViewScene viewModeKey={viewMode} dataSourceKey={dataSource} />
+      <ViewScene viewKey={view} dataKey={data} />
     </div>
   )
 }

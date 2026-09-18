@@ -3,27 +3,27 @@ import { SelectionContext } from '../../providers/SelectionContext'
 import ViewScene from '../canvas/view/common/ViewScene'
 import '../../styles/BtnSelector.css'
 
-export default function ViewSelector({ viewModeSelectorKey, dataSourceSelectorKey }) {
-  const { dataSource, setDataSource, dataSourceOptions } = useContext(SelectionContext)
+export default function ViewSelector({ viewSelectorKey, dataSelectorKey }) {
+  const { data, setData, dataOptions } = useContext(SelectionContext)
 
   // Le sélecteur affiche la liste des catégories (metaKey) : au clic, on retrouve
   // la source correspondante par son label et on sélectionne sa clé.
   const handleSelect = (art) => {
-    const source = dataSourceOptions.find((s) => s.label === art?.collection)
-    if (source) setDataSource(source.key)
+    const source = dataOptions.find((s) => s.label === art?.collection)
+    if (source) setData(source.key)
   }
 
   // La scène des catégories occupe tout l'écran : on ne l'affiche que tant qu'aucune
   // source n'est choisie (accueil), pour ne pas masquer la galerie une fois sélectionnée.
-  const showCategories = !dataSource && viewModeSelectorKey && dataSourceSelectorKey
+  const showCategories = !data && viewSelectorKey && dataSelectorKey
 
   return (
     <div className="overlay-content">
 
       {showCategories && (
         <ViewScene
-          viewModeKey={viewModeSelectorKey}
-          dataSourceKey={dataSourceSelectorKey}
+          viewKey={viewSelectorKey}
+          dataKey={dataSelectorKey}
           onSelect={handleSelect}
         />
       )}
