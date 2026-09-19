@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getInit } from '../../config/config'
+import { getKey } from '../../config/config'
 import { getSelector } from '../../config/selectorConfig'
 import { getHero } from '../../config/heroConfig'
 import { getTransition } from '../../config/transitionConfig'
@@ -14,7 +14,7 @@ export function useHome() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelector(getInit('selectorConfig')) ?? null
+      return getSelector(getKey('selectorConfig')) ?? null
     } catch {
       return null
     }
@@ -24,7 +24,7 @@ export function useHome() {
   //hero
   const heroItem = (() => {
     try {
-      return getHero(getInit('heroConfig'))
+      return getHero(getKey('heroConfig'))
     } catch {
       return null
     }
@@ -36,7 +36,7 @@ export function useHome() {
   //transition
   const transitionItem = (() => {
     try {
-      return getTransition(getInit('transitionConfig')) ?? null
+      return getTransition(getKey('transitionConfig')) ?? null
     } catch {
       return null
     }

@@ -20,19 +20,19 @@ function getConfigModules() {
   return CONFIG_MODULES
 }
 
-export function getAllInit() {
+export function getAllItems() {
   return INIT
 }
 
-export function getInit(config) {
+export function getKey(config) {
   const item = INIT.find((i) => i.config === config)
-  return item ? item.init ?? item.default : undefined
+  return item ? item.key : undefined
 }
 
-export async function getInitList(config) {
+export async function getItems(config) {
   const item = INIT.find((i) => i.config === config)
   const mod = await getConfigModules()[config]?.()
   if (!mod) return []
-  const keys = item?.list ?? await mod.getAllKeys()
+  const keys = item?.keys ?? await mod.getAllKeys()
   return mod.getList(keys)
 }

@@ -1,29 +1,29 @@
 // riannecorvalis artiste : img, video, glb
 //selector - julis
 const INIT2 = [
-    { config: 'langConfig', list: null, default: 'frKey', init: 'frKey' },
-    { config: 'motionConfig', list: [], default: null, init: null },
-    { config: 'viewConfig', list: null, default: null, init: 'gridKey' },
-    { config: 'dataConfig', list: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], default: null, init: null },
-    { config: 'selectorConfig', list: null, default: null, init: 'ellipseKey' },
-    { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
-    { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
-    { config: 'loadingConfig', list: null, default: 'loadingKey', init: null },
-    { config: 'heroConfig', list: null, default: null, init: null },
-    { config: 'designConfig', list: null, default: 'matriceKey', init: null },
+    { config: 'langConfig', keys: null, key: 'frKey' },
+    { config: 'motionConfig', keys: [], key: null },
+    { config: 'viewConfig', keys: null, key: 'gridKey' },
+    { config: 'dataConfig', keys: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], key: null },
+    { config: 'selectorConfig', keys: null, key: 'ellipseKey' },
+    { config: 'overlayConfig', keys: null, key: 'overlayKey' },
+    { config: 'transitionConfig', keys: null, key: 'transitionKey' },
+    { config: 'loadingConfig', keys: null, key: 'loadingKey' },
+    { config: 'heroConfig', keys: null, key: null },
+    { config: 'designConfig', keys: null, key: 'matriceKey' },
 ]
 
 //hero et selector - corentis
 const INIT = [
-    { config: 'langConfig', list: null, default: 'frKey', init: 'frKey' },
-    { config: 'motionConfig', list: [], default: null, init: null },
-    { config: 'viewConfig', list: ['gridKey', 'listKey'], default: null, init: null },
-    { config: 'dataConfig', list: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], default: null, init: 'natureKey' },
-    { config: 'selectorConfig', list: null, default: null, init: 'btnKey' },
-    { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
-    { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
-    { config: 'loadingConfig', list: null, default: 'loadingKey', init: null },
-    { config: 'heroConfig', list: null, default: null, init: 'circlesKey' },
-    { config: 'designConfig', list: null, default: 'julisKey', init: null },
+    { config: 'langConfig', keys: null, key: 'frKey' },
+    { config: 'motionConfig', keys: [], key: null },
+    { config: 'viewConfig', keys: ['gridKey', 'listKey'], key: null },
+    { config: 'dataConfig', keys: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], key: 'natureKey' },
+    { config: 'selectorConfig', keys: null, key: 'btnKey' },
+    { config: 'overlayConfig', keys: null, key: 'overlayKey' },
+    { config: 'transitionConfig', keys: null, key: 'transitionKey' },
+    { config: 'loadingConfig', keys: null, key: 'loadingKey' },
+    { config: 'heroConfig', keys: null, key: 'circlesKey' },
+    { config: 'designConfig', keys: null, key: 'julisKey' },
 ]
 export default INIT

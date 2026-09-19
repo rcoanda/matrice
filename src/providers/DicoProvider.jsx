@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { getInit } from '../config/config'
+import { getKey } from '../config/config'
 import { getLangue } from '../config/langConfig'
 import { LanguageContext } from './LanguageContext'
 
 const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loading']
 
 export function DicoProvider({ children }) {
-  const [lang, setLang] = useState(getInit('langConfig'))
+  const [lang, setLang] = useState(getKey('langConfig'))
   const [translations, setTranslations] = useState({})
 
   useEffect(() => {

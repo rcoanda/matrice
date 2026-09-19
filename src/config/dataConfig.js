@@ -2,7 +2,7 @@ import { loadCloudData } from '../services/cloudDataLoader'
 import { loadMetaData } from '../services/metaDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
-import { getAllInit } from './config'
+import { getAllItems } from './config'
 
 let photoSources = []
 let photoSourcesReady = false
@@ -54,8 +54,8 @@ async function buildGlbSources() {
 
 // Liste configurée pour dataConfig (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
 function getConfiguredKeys() {
-    const entry = getAllInit().find((i) => i.config === 'dataConfig')
-    return entry ? (entry.list ?? null) : null
+    const entry = getAllItems().find((i) => i.config === 'dataConfig')
+    return entry ? (entry.keys ?? null) : null
 }
 
 async function getAllData() {

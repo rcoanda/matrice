@@ -1,16 +1,16 @@
 const INIT = [
-  { config: 'langConfig', list: null, default: 'frKey', init: null },
+  { config: 'langConfig', keys: null, key: 'frKey' },
 
-  { config: 'motionConfig', list: null, default: null, init: null },
-  { config: 'viewConfig', list: null, default: null, init: null },
-  { config: 'dataConfig', list: null, default: null, init: null },
+  { config: 'motionConfig', keys: null, key: null },
+  { config: 'viewConfig', keys: null, key: null },
+  { config: 'dataConfig', keys: null, key: null },
 
-  { config: 'selectorConfig', list: null, default: 'btnKey', init: null },
-  { config: 'overlayConfig', list: null, default: 'overlayKey', init: null },
-  { config: 'transitionConfig', list: null, default: 'transitionKey', init: null },
-  { config: 'loadingConfig', list: null, default: 'loadingKey', init: null },
-  { config: 'heroConfig', list: null, default: null, init: null },
-  { config: 'designConfig', list: null, default: 'matriceKey', init: null },
+  { config: 'selectorConfig', keys: null, key: 'btnKey' },
+  { config: 'overlayConfig', keys: null, key: 'overlayKey' },
+  { config: 'transitionConfig', keys: null, key: 'transitionKey' },
+  { config: 'loadingConfig', keys: null, key: 'loadingKey' },
+  { config: 'heroConfig', keys: null, key: null },
+  { config: 'designConfig', keys: null, key: 'matriceKey' },
 ]
 
 export default INIT
