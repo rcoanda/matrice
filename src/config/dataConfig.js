@@ -2,7 +2,7 @@ import { loadCloudData } from '../services/cloudDataLoader'
 import { loadMetaData } from '../services/metaDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
-import { getAllItems as getConfigItems } from './config'
+import { getAllItems as getConfigItems } from './common/config'
 
 let photoSources = []
 let photoSourcesReady = false

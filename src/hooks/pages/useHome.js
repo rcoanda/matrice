@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getKey } from '../../config/config'
+import { getKey } from '../../config/common/config'
 import { getItem as getSelectorItem } from '../../config/selectorConfig'
 import { getItem as getHeroItem } from '../../config/heroConfig'
 import { getItem as getTransitionItem } from '../../config/transitionConfig'

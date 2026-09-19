@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { getKey } from '../../config/config'
+import { getKey } from '../../config/common/config'
 import { getItem as getSelectorItem } from '../../config/selectorConfig'
 import { getItem as getOverlayItem } from '../../config/overlayConfig'
 import { SelectionContext } from '../../providers/SelectionContext'

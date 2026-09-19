@@ -1,11 +1,11 @@
 export const IS_LOCAL = import.meta.env.DEV
 
 const CLIENT = import.meta.env.VITE_CLIENT || 'demo'
-const clientModules = import.meta.glob('./clients/*.js', { eager: true })
-const clientPath = `./clients/${CLIENT}.js`
+const clientModules = import.meta.glob('../clients/*.js', { eager: true })
+const clientPath = `../clients/${CLIENT}.js`
 const INIT = clientModules[clientPath]?.default || []
 
-const configModules = import.meta.glob('./*Config.js')
+const configModules = import.meta.glob('../*Config.js')
 const configKeys = Object.keys(configModules)
 
 let CONFIG_MODULES = null
@@ -13,7 +13,7 @@ function getConfigModules() {
   if (!CONFIG_MODULES) {
     CONFIG_MODULES = {}
     for (const key of configKeys) {
-      const name = key.replace('./', '').replace('.js', '')
+      const name = key.replace('../', '').replace('.js', '')
       CONFIG_MODULES[name] = configModules[key]
     }
   }

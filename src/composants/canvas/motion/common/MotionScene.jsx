@@ -2,7 +2,7 @@
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getItem } from '../../../../config/motionConfig'
-import { getKey } from '../../../../config/config'
+import { getKey } from '../../../../config/common/config'
 import { getItem as getLoadingItem } from '../../../../config/loadingConfig'
 import { getItem as getDesignItem } from '../../../../config/designConfig'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'

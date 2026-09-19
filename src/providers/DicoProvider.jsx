@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getKey } from '../config/config'
+import { getKey } from '../config/common/config'
 import { getItem } from '../config/langConfig'
 import { LanguageContext } from './LanguageContext'
 
