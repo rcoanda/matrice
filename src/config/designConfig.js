@@ -6,7 +6,7 @@ const DESIGNS = [
   { key: 'julisKey', label: 'Julis', file: julis },
 ]
 
-export function getAllDesigns() {
+export function getAllItems() {
   return DESIGNS
 }
 
@@ -14,11 +14,11 @@ export function getAllKeys() {
   return DESIGNS.map((d) => d.key)
 }
 
-export function getList(keys) {
+export function getItems(keys) {
   return keys ? DESIGNS.filter((d) => keys.includes(d.key)) : DESIGNS
 }
 
-export function getDesign(key) {
+export function getItem(key) {
   const found = DESIGNS.find((d) => d.key === key)
-  return found ? found.file : DESIGNS[0].file
+  return found ? found : DESIGNS[0]
 }

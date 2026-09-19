@@ -34,5 +34,5 @@ export async function getItems(config) {
   const mod = await getConfigModules()[config]?.()
   if (!mod) return []
   const keys = item?.keys ?? await mod.getAllKeys()
-  return mod.getList(keys)
+  return mod.getItems(keys)
 }

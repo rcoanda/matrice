@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getData } from '../../config/dataConfig'
+import { getItem } from '../../config/dataConfig'
 
 const PROGRESS_START = 10
 const PROGRESS_READY = 100
@@ -14,7 +14,7 @@ export function useArtworkLoader(dataKey) {
   const [dataItem, setDataItem] = useState(null)
 
   useEffect(() => {
-    getData(dataKey).then(setDataItem)
+    getItem(dataKey).then(setDataItem)
   }, [dataKey])
 
   useEffect(() => {

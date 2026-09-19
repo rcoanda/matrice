@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getKey } from '../config/config'
-import { getLangue } from '../config/langConfig'
+import { getItem } from '../config/langConfig'
 import { LanguageContext } from './LanguageContext'
 
 const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loading']
@@ -10,7 +10,7 @@ export function DicoProvider({ children }) {
   const [translations, setTranslations] = useState({})
 
   useEffect(() => {
-    document.documentElement.lang = getLangue(lang).codeHTML
+    document.documentElement.lang = getItem(lang).codeHTML
   }, [lang])
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function DicoProvider({ children }) {
     async function load() {
       const results = await Promise.all(
         NAMESPACES.map(async (ns) => {
-          const res = await fetch(`${getLangue(lang).path}/${ns}.json`)
+          const res = await fetch(`${getItem(lang).path}/${ns}.json`)
           const data = await res.json()
           return { [ns]: data }
         })

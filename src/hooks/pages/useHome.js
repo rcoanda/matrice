@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getKey } from '../../config/config'
-import { getSelector } from '../../config/selectorConfig'
-import { getHero } from '../../config/heroConfig'
-import { getTransition } from '../../config/transitionConfig'
+import { getItem as getSelectorItem } from '../../config/selectorConfig'
+import { getItem as getHeroItem } from '../../config/heroConfig'
+import { getItem as getTransitionItem } from '../../config/transitionConfig'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useHome() {
@@ -14,17 +14,20 @@ export function useHome() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelector(getKey('selectorConfig')) ?? null
+      return getSelectorItem(getKey('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
   const SelectorComponent = selectorItem?.component ?? null
+  const selectorProps = selectorItem
+    ? Object.fromEntries(Object.entries(selectorItem).filter(([k]) => k !== 'component' && k !== 'key'))
+    : {}
 
   //hero
   const heroItem = (() => {
     try {
-      return getHero(getKey('heroConfig'))
+      return getHeroItem(getKey('heroConfig'))
     } catch {
       return null
     }
@@ -36,7 +39,7 @@ export function useHome() {
   //transition
   const transitionItem = (() => {
     try {
-      return getTransition(getKey('transitionConfig')) ?? null
+      return getTransitionItem(getKey('transitionConfig')) ?? null
     } catch {
       return null
     }
@@ -62,7 +65,7 @@ export function useHome() {
   }, [motionKey, viewKey, dataKey, navigate])
 
   return {
-    selectorItem,
+    selectorProps,
     SelectorComponent,
     heroProps,
     HeroComponent,

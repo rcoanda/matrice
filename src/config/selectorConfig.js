@@ -9,7 +9,7 @@ const SELECTORS = [
   { key: 'sphereKey', label: 'view', component: ViewSelector, viewKey: 'sphereKey', dataKey: 'metaKey' },
 ]
 
-export function getAllSelectors() {
+export function getAllItems() {
   return SELECTORS
 }
 
@@ -17,10 +17,10 @@ export function getAllKeys() {
   return SELECTORS.map((s) => s.key)
 }
 
-export function getList(keys) {
+export function getItems(keys) {
   return keys ? SELECTORS.filter((s) => keys.includes(s.key)) : SELECTORS
 }
 
-export function getSelector(key) {
+export function getItem(key) {
   return SELECTORS.find((s) => s.key === key)
 }

@@ -6,7 +6,7 @@ const MOTIONS = [
   { key: 'lemniscatesKey', label: 'lemniscates', component: LemniscatesMotion },
 ]
 
-export function getAllMotions() {
+export function getAllItems() {
   return MOTIONS
 }
 
@@ -14,10 +14,10 @@ export function getAllKeys() {
   return MOTIONS.map((m) => m.key)
 }
 
-export function getList(keys) {
+export function getItems(keys) {
   return keys ? MOTIONS.filter((m) => keys.includes(m.key)) : MOTIONS
 }
 
-export function getMotion(key) {
+export function getItem(key) {
   return MOTIONS.find((m) => m.key === key)
 }

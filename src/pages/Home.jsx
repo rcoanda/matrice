@@ -5,7 +5,7 @@ import '../styles/Home.css'
 
 export default function Home() {
   const {
-    selectorItem,
+    selectorProps,
     SelectorComponent,
     heroProps,
     HeroComponent,
@@ -23,7 +23,7 @@ export default function Home() {
             {HeroComponent && <HeroComponent {...heroProps} />}
           </div>
         </div>
-        {SelectorComponent && <SelectorComponent {...selectorItem} />}
+        {SelectorComponent && <SelectorComponent {...selectorProps} />}
       </main>
     </>
   )

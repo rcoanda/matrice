@@ -7,7 +7,7 @@ import { useGallery } from '../hooks/pages/useGallery'
 import '../styles/Gallery.css'
 
 export default function Gallery() {
-  const { sceneProps, selectorItem, SelectorComponent, overlayProps, OverlayComponent } = useGallery()
+  const { sceneProps, selectorProps, SelectorComponent, overlayProps, OverlayComponent } = useGallery()
 
   if (!sceneProps.dataKey) {
     return <Navigate to="/" replace />
@@ -27,7 +27,7 @@ export default function Gallery() {
           </>
         )
       )}
-      {SelectorComponent && <SelectorComponent {...selectorItem} />}
+      {SelectorComponent && <SelectorComponent {...selectorProps} />}
     </div>
   )
 }

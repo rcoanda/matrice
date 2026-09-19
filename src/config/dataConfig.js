@@ -2,7 +2,7 @@ import { loadCloudData } from '../services/cloudDataLoader'
 import { loadMetaData } from '../services/metaDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
-import { getAllItems } from './config'
+import { getAllItems as getConfigItems } from './config'
 
 let photoSources = []
 let photoSourcesReady = false
@@ -54,16 +54,16 @@ async function buildGlbSources() {
 
 // Liste configurée pour dataConfig (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
 function getConfiguredKeys() {
-    const entry = getAllItems().find((i) => i.config === 'dataConfig')
+    const entry = getConfigItems().find((i) => i.config === 'dataConfig')
     return entry ? (entry.keys ?? null) : null
 }
 
-async function getAllData() {
+export async function getAllItems() {
     await buildPhotoSources()
     await buildVideoSources()
     await buildGlbSources()
     const all = [...photoSources, ...videoSources, ...glbSources]
-    // metaKey = catégories restreintes à la liste configurée (résultat de getList)
+    // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
     const keys = getConfiguredKeys()
     const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
     return [
@@ -78,22 +78,22 @@ async function getAllData() {
 }
 
 export async function getAllKeys() {
-    const all = await getAllData()
+    const all = await getAllItems()
     return all.map((i) => i.key)
 }
 
-export async function getList(keys) {
+export async function getItems(keys) {
     //items
-    const all = await getAllData()
+    const all = await getAllItems()
     return keys ? all.filter((i) => keys.includes(i.key)) : all
 }
 
-export async function getData(key) {
+export async function getItem(key) {
     //item
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
-    const all = await getAllData()
+    const all = await getAllItems()
     if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
-    // respecte la liste configurée (résultat de getList)
+    // respecte la liste configurée (résultat de getItems)
     const keys = getConfiguredKeys()
     const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
     return scoped.find((i) => i.key === key) ?? null

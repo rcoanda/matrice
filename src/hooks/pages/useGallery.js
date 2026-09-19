@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { getKey } from '../../config/config'
-import { getSelector } from '../../config/selectorConfig'
-import { getOverlay } from '../../config/overlayConfig'
+import { getItem as getSelectorItem } from '../../config/selectorConfig'
+import { getItem as getOverlayItem } from '../../config/overlayConfig'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
@@ -10,16 +10,19 @@ export function useGallery() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelector(getKey('selectorConfig')) ?? null
+      return getSelectorItem(getKey('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
   const SelectorComponent = selectorItem?.component ?? null
+  const selectorProps = selectorItem
+    ? Object.fromEntries(Object.entries(selectorItem).filter(([k]) => k !== 'component' && k !== 'key'))
+    : {}
   //overlay
   const overlayItem = (() => {
     try {
-      return getOverlay(getKey('overlayConfig')) ?? null
+      return getOverlayItem(getKey('overlayConfig')) ?? null
     } catch {
       return null
     }
@@ -40,7 +43,7 @@ export function useGallery() {
 
   return {
     sceneProps,
-    selectorItem,
+    selectorProps,
     SelectorComponent,
     overlayProps,
     OverlayComponent,

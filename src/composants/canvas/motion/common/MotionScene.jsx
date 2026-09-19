@@ -1,10 +1,10 @@
 
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getMotion } from '../../../../config/motionConfig'
+import { getItem } from '../../../../config/motionConfig'
 import { getKey } from '../../../../config/config'
-import { getLoading } from '../../../../config/loadingConfig'
-import { getDesign } from '../../../../config/designConfig'
+import { getItem as getLoadingItem } from '../../../../config/loadingConfig'
+import { getItem as getDesignItem } from '../../../../config/designConfig'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
 import HeadLine from '../../../layout/HeadLine'
 
@@ -12,11 +12,11 @@ import HeadLine from '../../../layout/HeadLine'
 
 export default function MotionScene({ motionKey, dataKey }) {
   const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const background = getDesign(getKey('designConfig')).colors.galleryLight.value
+  const background = getDesignItem(getKey('designConfig')).file.colors.galleryLight.value
 
-  const motionItem = getMotion(motionKey)
+  const motionItem = getItem(motionKey)
   const MotionComponent = motionItem ? motionItem.component : null
-  const loadingItem = getLoading(getKey('loadingConfig'))
+  const loadingItem = getLoadingItem(getKey('loadingConfig'))
   const LoadingComponent = loadingItem ? loadingItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 
