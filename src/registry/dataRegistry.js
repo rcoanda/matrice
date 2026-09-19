@@ -52,9 +52,9 @@ async function buildGlbSources() {
     glbSourcesReady = true
 }
 
-// Liste configurée pour dataConfig (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
+// Liste configurée pour dataRegistry (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
 function getConfiguredKeys() {
-    const entry = getConfigItems().find((i) => i.config === 'dataConfig')
+    const entry = getConfigItems().find((i) => i.config === 'dataRegistry')
     return entry ? (entry.keys ?? null) : null
 }
 

@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
-import { getKey } from '../../config/common/config'
-import { getItem as getSelectorItem } from '../../config/selectorConfig'
-import { getItem as getOverlayItem } from '../../config/overlayConfig'
+import { getKey } from '../../registry/common/config'
+import { getItem as getSelectorItem } from '../../registry/selectorRegistry'
+import { getItem as getOverlayItem } from '../../registry/overlayRegistry'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
@@ -10,7 +10,7 @@ export function useGallery() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelectorItem(getKey('selectorConfig')) ?? null
+      return getSelectorItem(getKey('selectorRegistry')) ?? null
     } catch {
       return null
     }
@@ -22,7 +22,7 @@ export function useGallery() {
   //overlay
   const overlayItem = (() => {
     try {
-      return getOverlayItem(getKey('overlayConfig')) ?? null
+      return getOverlayItem(getKey('overlayRegistry')) ?? null
     } catch {
       return null
     }

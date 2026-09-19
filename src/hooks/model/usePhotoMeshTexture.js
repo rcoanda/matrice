@@ -1,5 +1,5 @@
 // Hook qui charge la texture d'une photo à la position `index` dans la liste
-// source (URLs Cloudinary transmises depuis la datasource dataConfig).
+// source (URLs Cloudinary transmises depuis la datasource dataRegistry).
 // Le canvas réduit/orienté est mis en cache au niveau du module : le réseau et
 // le décodage n'ont lieu qu'une seule fois, au premier passage sur la page.
 import { useEffect, useState } from 'react'
