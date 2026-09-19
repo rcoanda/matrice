@@ -1,23 +1,23 @@
 import CirclesMotion from '../composants/canvas/motion/CirclesMotion'
 import LemniscatesMotion from '../composants/canvas/motion/LemniscatesMotion'
 
-const MOTION_ITEMS = [
+const MOTIONS = [
   { key: 'circlesKey', label: 'circles', component: CirclesMotion },
   { key: 'lemniscatesKey', label: 'lemniscates', component: LemniscatesMotion },
 ]
 
 export function getAllMotions() {
-  return MOTION_ITEMS
+  return MOTIONS
 }
 
 export function getAllKeys() {
-  return MOTION_ITEMS.map((m) => m.key)
+  return MOTIONS.map((m) => m.key)
 }
 
 export function getList(keys) {
-  return keys ? MOTION_ITEMS.filter((m) => keys.includes(m.key)) : MOTION_ITEMS
+  return keys ? MOTIONS.filter((m) => keys.includes(m.key)) : MOTIONS
 }
 
 export function getMotion(key) {
-  return MOTION_ITEMS.find((m) => m.key === key)
+  return MOTIONS.find((m) => m.key === key)
 }
