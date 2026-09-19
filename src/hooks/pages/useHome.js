@@ -12,36 +12,36 @@ export function useHome() {
   const [stage, setStage] = useState('idle')
 
   //selector
-  const selectorProps = (() => {
+  const selectorItem = (() => {
     try {
       return getSelector(getInit('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const SelectorComponent = selectorProps?.component ?? null
+  const SelectorComponent = selectorItem?.component ?? null
 
   //hero
-  const hero = (() => {
+  const heroItem = (() => {
     try {
       return getHero(getInit('heroConfig'))
     } catch {
       return null
     }
   })()
-  const HeroComponent = hero?.component ?? null
-  const heroProps = hero
-    ? Object.fromEntries(Object.entries(hero).filter(([k]) => k !== 'component' && k !== 'key'))
+  const HeroComponent = heroItem?.component ?? null
+  const heroProps = heroItem
+    ? Object.fromEntries(Object.entries(heroItem).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
   //transition
-  const transition = (() => {
+  const transitionItem = (() => {
     try {
       return getTransition(getInit('transitionConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const TransitionComponent = transition?.component ?? null
+  const TransitionComponent = transitionItem?.component ?? null
 
   const transitionProps = { visible: stage === 'transition' }
   useEffect(() => {
@@ -62,7 +62,7 @@ export function useHome() {
   }, [motionKey, viewKey, dataKey, navigate])
 
   return {
-    selectorProps,
+    selectorItem,
     SelectorComponent,
     heroProps,
     HeroComponent,

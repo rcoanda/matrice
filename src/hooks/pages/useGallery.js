@@ -8,23 +8,23 @@ export function useGallery() {
   const { motionKey, viewKey, dataKey } = useContext(SelectionContext)
   const [selectedArtwork, setSelectedArtwork] = useState(null)
   //selector
-  const selectorProps = (() => {
+  const selectorItem = (() => {
     try {
       return getSelector(getInit('selectorConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const SelectorComponent = selectorProps?.component ?? null
+  const SelectorComponent = selectorItem?.component ?? null
   //overlay
-  const overlay = (() => {
+  const overlayItem = (() => {
     try {
       return getOverlay(getInit('overlayConfig')) ?? null
     } catch {
       return null
     }
   })()
-  const OverlayComponent = overlay?.component ?? null
+  const OverlayComponent = overlayItem?.component ?? null
 
   const overlayProps = {
     artwork: selectedArtwork,
@@ -40,7 +40,7 @@ export function useGallery() {
 
   return {
     sceneProps,
-    selectorProps,
+    selectorItem,
     SelectorComponent,
     overlayProps,
     OverlayComponent,
