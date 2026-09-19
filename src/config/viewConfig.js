@@ -12,7 +12,7 @@ const VIEWS = [
   { key: 'gridKey', label: 'grid', component: GridView },
 ]
 
-export function getAllViews() {
+export function getAllItems() {
   return VIEWS
 }
 
@@ -20,10 +20,10 @@ export function getAllKeys() {
   return VIEWS.map((v) => v.key)
 }
 
-export function getList(keys) {
+export function getItems(keys) {
   return keys ? VIEWS.filter((v) => keys.includes(v.key)) : VIEWS
 }
 
-export function getView(key) {
+export function getItem(key) {
   return VIEWS.find((m) => m.key === key)
 }
