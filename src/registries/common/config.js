@@ -2,19 +2,19 @@ import { INIT } from '../../tenants/index.js'
 
 export const IS_LOCAL = import.meta.env.DEV
 
-const configModules = import.meta.glob('../*Registry.js')
-const configKeys = Object.keys(configModules)
+const configRegistries = import.meta.glob('../*Registry.js')
+const configKeys = Object.keys(configRegistries)
 
-let CONFIG_MODULES = null
-function getConfigModules() {
-  if (!CONFIG_MODULES) {
-    CONFIG_MODULES = {}
+let CONFIG_REGISTRIES = null
+function getConfigRegistries() {
+  if (!CONFIG_REGISTRIES) {
+    CONFIG_REGISTRIES = {}
     for (const key of configKeys) {
       const name = key.replace('../', '').replace('.js', '')
-      CONFIG_MODULES[name] = configModules[key]
+      CONFIG_REGISTRIES[name] = configRegistries[key]
     }
   }
-  return CONFIG_MODULES
+  return CONFIG_REGISTRIES
 }
 
 export function getAllItems() {
@@ -28,8 +28,8 @@ export function getKey(config) {
 
 export async function getItems(config) {
   const item = INIT.find((i) => i.config === config)
-  const mod = await getConfigModules()[config]?.()
-  if (!mod) return []
-  const keys = item?.keys ?? await mod.getAllKeys()
-  return mod.getItems(keys)
+  const registry = await getConfigRegistries()[config]?.()
+  if (!registry) return []
+  const keys = item?.keys ?? await registry.getAllKeys()
+  return registry.getItems(keys)
 }
