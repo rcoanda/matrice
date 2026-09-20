@@ -20,7 +20,7 @@ function renderButtons(options, value, onChange) {
   ))
 }
 
-export default function BtnSelector() {
+export default function ControlPanelSelector() {
   const {
     motionKey, selectMotionKey,
     viewKey, selectViewKey,
