@@ -1,10 +1,10 @@
-import Header from '../composants/layout/Header'
 import { useHome } from '../hooks/pages/useHome'
 import '../styles/shared.css'
 import '../styles/Home.css'
 
 export default function Home() {
   const {
+    HeaderComponent,
     selectorProps,
     SelectorComponent,
     heroProps,
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       {TransitionComponent && <TransitionComponent {...transitionProps} />}
-      <Header />
+      {HeaderComponent && <HeaderComponent />}
       <main className="main-layout">
         <div className="home-wrapper">
           <div className="home-inner">

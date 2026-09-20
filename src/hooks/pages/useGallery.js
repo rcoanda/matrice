@@ -4,8 +4,10 @@ import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
   const { motionKey, viewKey, dataKey } = useContext(SelectionContext)
-  const { selectorItem, overlayItem } = useTenant()
+  const { selectorItem, overlayItem, headerItem } = useTenant()
   const [selectedArtwork, setSelectedArtwork] = useState(null)
+  //header
+  const HeaderComponent = headerItem?.component ?? null
   //selector
   const SelectorComponent = selectorItem?.component ?? null
   const selectorProps = selectorItem
@@ -27,6 +29,7 @@ export function useGallery() {
   }
 
   return {
+    HeaderComponent,
     sceneProps,
     selectorProps,
     SelectorComponent,

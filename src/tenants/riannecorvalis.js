@@ -16,6 +16,7 @@ const RESOURCES2 = [
 //hero et selector - corentis
 const RESOURCES = [
     { registry: 'langRegistry', keys: null, key: 'frKey' },
+    { registry: 'headerRegistry', keys: null, key: 'headerKey' },
     { registry: 'motionRegistry', keys: [], key: null },
     { registry: 'viewRegistry', keys: ['gridKey', 'listKey'], key: null },
     { registry: 'dataRegistry', keys: ['natureKey', 'karnakKey', 'peopleKey', 'cosmosKey', 'astroKey'], key: 'natureKey' },

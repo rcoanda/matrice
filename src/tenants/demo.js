@@ -1,5 +1,6 @@
 const RESOURCES = [
   { registry: 'langRegistry', keys: null, key: 'frKey' },
+  { registry: 'headerRegistry', keys: null, key: 'headerKey' },
 
   { registry: 'motionRegistry', keys: null, key: null },
   { registry: 'viewRegistry', keys: null, key: null },

@@ -6,8 +6,11 @@ import { SelectionContext } from '../../providers/SelectionContext'
 export function useHome() {
   const navigate = useNavigate()
   const { motionKey, viewKey, dataKey, reset } = useContext(SelectionContext)
-  const { selectorItem, heroItem, transitionItem } = useTenant()
+  const { selectorItem, heroItem, transitionItem, headerItem } = useTenant()
   const [stage, setStage] = useState('idle')
+
+  //header
+  const HeaderComponent = headerItem?.component ?? null
 
   //selector
   const SelectorComponent = selectorItem?.component ?? null
@@ -42,6 +45,7 @@ export function useHome() {
   }, [motionKey, viewKey, dataKey, navigate])
 
   return {
+    HeaderComponent,
     selectorProps,
     SelectorComponent,
     heroProps,
