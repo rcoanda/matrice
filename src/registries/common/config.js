@@ -1,35 +1,35 @@
-import { INIT } from '../../tenants/index.js'
+import { RESOURCES } from '../../tenants/index.js'
 
 export const IS_LOCAL = import.meta.env.DEV
 
-const configRegistries = import.meta.glob('../*Registry.js')
-const configKeys = Object.keys(configRegistries)
+const filenamesRegistries = import.meta.glob('../*Registry.js')
+const keys = Object.keys(filenamesRegistries)
 
-let CONFIG_REGISTRIES = null
-function getConfigRegistries() {
-  if (!CONFIG_REGISTRIES) {
-    CONFIG_REGISTRIES = {}
-    for (const key of configKeys) {
+let REGISTRIES = null
+function getResources() {
+  if (!REGISTRIES) {
+    REGISTRIES = {}
+    for (const key of keys) {
       const name = key.replace('../', '').replace('.js', '')
-      CONFIG_REGISTRIES[name] = configRegistries[key]
+      REGISTRIES[name] = filenamesRegistries[key]
     }
   }
-  return CONFIG_REGISTRIES
+  return REGISTRIES
 }
 
 export function getAllItems() {
-  return INIT
+  return RESOURCES
 }
 
-export function getKey(config) {
-  const item = INIT.find((i) => i.config === config)
+export function getKey(registry) {
+  const item = RESOURCES.find((i) => i.registry === registry)
   return item ? item.key : undefined
 }
 
-export async function getItems(config) {
-  const item = INIT.find((i) => i.config === config)
-  const registry = await getConfigRegistries()[config]?.()
-  if (!registry) return []
-  const keys = item?.keys ?? await registry.getAllKeys()
-  return registry.getItems(keys)
+export async function getItems(registry) {
+  const item = RESOURCES.find((i) => i.registry === registry)
+  const resource = await getResources()[registry]?.()
+  if (!resource) return []
+  const keys = item?.keys ?? await resource.getAllKeys()
+  return resource.getItems(keys)
 }
