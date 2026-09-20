@@ -2,7 +2,7 @@
 // le hook de mouvement reçu en props (ex: useCircularMotion, useLemniscateMotion).
 // moving photos
 //cree le mouvement/le film (toutes les frames / le comportement) de la source (une liste des artwork) sur la trajectoire (points) deja calculées dans utils/trajectoire
-import { usePhotoMeshTexture } from '../../../../hooks/model/usePhotoMeshTexture'
+import { usePhotoMeshTexture } from '../../../../hooks/texture/usePhotoMeshTexture'
 
 export default function Motion({ useMotion, motionArgs, length, width, index, source }) {
   const ref = useMotion(...motionArgs)
