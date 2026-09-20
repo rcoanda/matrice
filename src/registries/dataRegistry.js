@@ -98,3 +98,10 @@ export async function getItem(key) {
     const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
     return scoped.find((i) => i.key === key) ?? null
 }
+
+/*
+ items: [
+    { key: 'natureKey',  label: 'Nature',  loader: () => loadCloudData(...) },   // clés fichier du tenant
+    { key: 'karnakKey',  label: 'Karnak',  loader: () => loadCloudData(...) },
+    { key: 'metaKey',    label: 'Categories', loader: () => loadMetaData(...) }, 
+     */
