@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { useTenant } from '../../../../hooks/tenant/useTenant'
-import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
+import { useViewScene } from '../../../../hooks/scene/useViewScene'
 import HeadLine from '../../../layout/HeadLine'
 
 function GalleryFallback() {
@@ -9,13 +8,10 @@ function GalleryFallback() {
 }
 
 export default function ViewScene({ viewKey, dataKey, onSelect }) {
-  const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const { designItem, loadingItem, viewItems } = useTenant()
-
-  const background = designItem?.file.colors.galleryLight.value
-  const viewItem = viewItems?.find((i) => i.key === viewKey)
-  const ViewComponent = viewItem ? viewItem.component : null
-  const LoadingComponent = loadingItem ? loadingItem.component : null
+  const {
+    artworks, dataItem, loading, progress,
+    background, viewItem, ViewComponent, LoadingComponent,
+  } = useViewScene({ viewKey, dataKey })
 
   if (!viewKey || !dataKey) return null
   if (!background) return null
