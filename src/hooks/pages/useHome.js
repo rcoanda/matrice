@@ -1,49 +1,26 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getKey, SELECTOR, HERO, TRANSITION } from '../../registries/common/config'
-import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
-import { getItem as getHeroItem } from '../../registries/heroRegistry'
-import { getItem as getTransitionItem } from '../../registries/transitionRegistry'
+import { useTenant } from '../tenant/useTenant'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useHome() {
   const navigate = useNavigate()
   const { motionKey, viewKey, dataKey, reset } = useContext(SelectionContext)
+  const { selectorItem, heroItem, transitionItem } = useTenant()
   const [stage, setStage] = useState('idle')
 
   //selector
-  const selectorItem = (() => {
-    try {
-      return getSelectorItem(getKey(SELECTOR)) ?? null
-    } catch {
-      return null
-    }
-  })()
   const SelectorComponent = selectorItem?.component ?? null
   const selectorProps = selectorItem
     ? Object.fromEntries(Object.entries(selectorItem).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
 
   //hero
-  const heroItem = (() => {
-    try {
-      return getHeroItem(getKey(HERO))
-    } catch {
-      return null
-    }
-  })()
   const HeroComponent = heroItem?.component ?? null
   const heroProps = heroItem
     ? Object.fromEntries(Object.entries(heroItem).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
   //transition
-  const transitionItem = (() => {
-    try {
-      return getTransitionItem(getKey(TRANSITION)) ?? null
-    } catch {
-      return null
-    }
-  })()
   const TransitionComponent = transitionItem?.component ?? null
 
   const transitionProps = { visible: stage === 'transition' }

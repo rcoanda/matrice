@@ -2,18 +2,6 @@ import { RESOURCES } from '../../tenants/index.js'
 
 export const IS_LOCAL = import.meta.env.DEV
 
-// Un const par fichier *Registry.js
-export const LANG = 'langRegistry'
-export const MOTION = 'motionRegistry'
-export const VIEW = 'viewRegistry'
-export const DATA = 'dataRegistry'
-export const SELECTOR = 'selectorRegistry'
-export const OVERLAY = 'overlayRegistry'
-export const TRANSITION = 'transitionRegistry'
-export const LOADING = 'loadingRegistry'
-export const HERO = 'heroRegistry'
-export const DESIGN = 'designRegistry'
-
 
 
 const filenamesRegistries = import.meta.glob('../*Registry.js')

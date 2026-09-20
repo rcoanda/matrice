@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getItem } from '../../registries/dataRegistry'
+import { useTenant } from '../tenant/useTenant'
 
 const PROGRESS_START = 10
 const PROGRESS_READY = 100
@@ -8,14 +8,15 @@ const APPLY_DELAY = 300
 //dataItem à partir d'un Key = un elem dans dataconfig (key, label, filename, loader)
 //artwork suite dataItem.loader = une structure avec les infos de l'elem (url, date, lieu, artist)
 export function useArtworkLoader(dataKey) {
+  const { dataItems = [] } = useTenant()
   const [artworks, setArtworks] = useState([])
   const [loading, setLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [dataItem, setDataItem] = useState(null)
 
   useEffect(() => {
-    getItem(dataKey).then(setDataItem)
-  }, [dataKey])
+    setDataItem(dataItems.find((i) => i.key === dataKey) ?? null)
+  }, [dataKey, dataItems])
 
   useEffect(() => {
     if (!dataItem) return
@@ -23,9 +24,9 @@ export function useArtworkLoader(dataKey) {
     setProgress(PROGRESS_START)
 
     const load = async () => {
-      const dataItems = await dataItem.loader()
+      const items = await dataItem.loader()
       setProgress(PROGRESS_READY)
-      setArtworks(dataItems)
+      setArtworks(items)
       setTimeout(() => setLoading(false), APPLY_DELAY)
     }
     load()

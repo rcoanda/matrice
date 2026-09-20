@@ -2,21 +2,20 @@ import { useState, useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDico } from '../../providers/LanguageContext'
 import { SelectionContext } from '../../providers/SelectionContext'
-import { getKey, getItems, LANG } from '../../registries/common/config'
+import { useTenant } from '../../hooks/tenant/useTenant'
 import '../../styles/shared.css'
 import '../../styles/Header.css'
 
 export default function Header() {
   const { t, lang, setLang } = useDico()
   const { reset } = useContext(SelectionContext)
-  const currentLang = lang || getKey(LANG)
+  const { langItems, langItem } = useTenant()
+  const currentLang = lang || langItem?.key
   const [nextLangue, setNextLangue] = useState(null)
 
   useEffect(() => {
-    getItems(LANG).then((list) => {
-      setNextLangue(list.find((l) => l.key !== currentLang))
-    })
-  }, [currentLang])
+    setNextLangue(langItems?.find((l) => l.key !== currentLang) ?? null)
+  }, [langItems, currentLang])
 
   if (!nextLangue) return null
 

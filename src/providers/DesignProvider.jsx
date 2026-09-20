@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
-import { getKey, DESIGN } from '../registries/common/config'
-import { getItem } from '../registries/designRegistry'
+import { useTenant } from '../hooks/tenant/useTenant'
 import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
 function setToken(style, name, value) {
@@ -32,8 +31,11 @@ function applyGroup(style, prefix, node) {
 const MAPPED_GROUPS = new Set(['meta', 'key', 'label', 'colors', 'font', 'typography', 'spacing', 'motion', 'animations'])
 
 export default function DesignProvider({ children }) {
+  const { designItem } = useTenant()
+
   useEffect(() => {
-    const designFile = getItem(getKey(DESIGN)).file
+    if (!designItem) return
+    const designFile = designItem.file
     const { style, dataset } = document.documentElement
 
     // meta -> attributs data-ds-* sur <html>
@@ -110,7 +112,7 @@ export default function DesignProvider({ children }) {
         document.head.appendChild(link)
       }
     }
-  }, [])
+  }, [designItem])
 
   return children
 }

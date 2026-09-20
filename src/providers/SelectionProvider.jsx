@@ -1,21 +1,19 @@
 import { useState, useCallback, useEffect } from 'react'
-import { getKey, getItems, MOTION, VIEW, DATA } from '../registries/common/config'
+import { useTenant } from '../hooks/tenant/useTenant'
 import { SelectionContext } from './SelectionContext'
 
 //motionKey, viewKey, dataKey sont des Keys
 export function SelectionProvider({ children }) {
-  const [motionKey, setMotionKey] = useState(getKey(MOTION))
-  const [viewKey, setViewKey] = useState(getKey(VIEW))
-  const [dataKey, setDataKey] = useState(getKey(DATA))
-  const [motionItems, setMotionItems] = useState([])
-  const [viewItems, setViewItems] = useState([])
-  const [dataItems, setDataItems] = useState([])
+  const { motionItem, viewItem, dataItem } = useTenant()
+  const [motionKey, setMotionKey] = useState(null)
+  const [viewKey, setViewKey] = useState(null)
+  const [dataKey, setDataKey] = useState(null)
 
   useEffect(() => {
-    getItems(MOTION).then(setMotionItems)
-    getItems(VIEW).then(setViewItems)
-    getItems(DATA).then(setDataItems)
-  }, [])
+    if (motionItem) setMotionKey((k) => k ?? motionItem.key)
+    if (viewItem) setViewKey((k) => k ?? viewItem.key)
+    if (dataItem) setDataKey((k) => k ?? dataItem.key)
+  }, [motionItem, viewItem, dataItem])
 
   const selectMotionKey = useCallback((key) => {
     setMotionKey(key)
@@ -28,13 +26,13 @@ export function SelectionProvider({ children }) {
   }, [])
 
   const reset = useCallback(() => {
-    setMotionKey(getKey(MOTION))
-    setViewKey(getKey(VIEW))
-    setDataKey(getKey(DATA))
-  }, [])
+    setMotionKey(motionItem?.key ?? null)
+    setViewKey(viewItem?.key ?? null)
+    setDataKey(dataItem?.key ?? null)
+  }, [motionItem, viewItem, dataItem])
 
   return (
-    <SelectionContext.Provider value={{ motionKey, selectMotionKey, viewKey, selectViewKey, dataKey, setDataKey, reset, motionItems, viewItems, dataItems }}>
+    <SelectionContext.Provider value={{ motionKey, selectMotionKey, viewKey, selectViewKey, dataKey, setDataKey, reset }}>
       {children}
     </SelectionContext.Provider>
   )

@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react'
-import { getKey, LANG } from '../registries/common/config'
-import { getItem } from '../registries/langRegistry'
+import { useTenant } from '../hooks/tenant/useTenant'
 import { LanguageContext } from './LanguageContext'
 
 const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loading']
 
 export function DicoProvider({ children }) {
-  const [lang, setLang] = useState(getKey(LANG))
+  const { langItems, langItem } = useTenant()
+  const [lang, setLang] = useState(null)
   const [translations, setTranslations] = useState({})
 
   useEffect(() => {
-    document.documentElement.lang = getItem(lang).codeHTML
-  }, [lang])
+    if (lang === null && langItem) setLang(langItem.key)
+  }, [lang, langItem])
+
+  const currentItem = lang ? (langItems?.find((l) => l.key === lang) ?? null) : (langItem ?? null)
 
   useEffect(() => {
+    if (!currentItem) return
+    document.documentElement.lang = currentItem.codeHTML
+  }, [currentItem])
+
+  useEffect(() => {
+    if (!currentItem) return
     let cancelled = false
     async function load() {
       const results = await Promise.all(
         NAMESPACES.map(async (ns) => {
-          const res = await fetch(`${getItem(lang).path}/${ns}.json`)
+          const res = await fetch(`${currentItem.path}/${ns}.json`)
           const data = await res.json()
           return { [ns]: data }
         })
@@ -27,7 +35,7 @@ export function DicoProvider({ children }) {
     }
     load()
     return () => { cancelled = true }
-  }, [lang])
+  }, [currentItem])
 
   const t = (key, namespace) => translations[namespace]?.[key] ?? key
 

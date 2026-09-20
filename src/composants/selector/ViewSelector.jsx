@@ -1,10 +1,12 @@
 import { useContext } from 'react'
 import { SelectionContext } from '../../providers/SelectionContext'
+import { useTenant } from '../../hooks/tenant/useTenant'
 import ViewScene from '../canvas/view/common/ViewScene'
 import '../../styles/BtnSelector.css'
 
 export default function ViewSelector({ viewSelectorKey, dataSelectorKey }) {
-  const { dataKey, setDataKey, dataItems } = useContext(SelectionContext)
+  const { dataKey, setDataKey } = useContext(SelectionContext)
+  const { dataItems = [] } = useTenant()
 
   // Le sélecteur affiche la liste des catégories (metaKey) : au clic, on retrouve
   // la source correspondante par son label et on sélectionne sa clé.

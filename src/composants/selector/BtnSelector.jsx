@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { SelectionContext } from '../../providers/SelectionContext'
+import { useTenant } from '../../hooks/tenant/useTenant'
 import '../../styles/BtnSelector.css'
 //double selector: view et data
 function renderButtons(options, value, onChange) {
@@ -21,10 +22,11 @@ function renderButtons(options, value, onChange) {
 
 export default function BtnSelector() {
   const {
-    motionItems, motionKey, selectMotionKey,
-    viewItems, viewKey, selectViewKey,
-    dataItems, dataKey, setDataKey,
+    motionKey, selectMotionKey,
+    viewKey, selectViewKey,
+    dataKey, setDataKey,
   } = useContext(SelectionContext)
+  const { motionItems = [], viewItems = [], dataItems = [] } = useTenant()
 
   return (
     <div className="overlay-content">

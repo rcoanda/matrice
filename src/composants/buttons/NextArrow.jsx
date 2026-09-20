@@ -1,9 +1,11 @@
 import { useContext } from 'react'
 import { SelectionContext } from '../../providers/SelectionContext'
 import { useDico } from '../../providers/LanguageContext'
+import { useTenant } from '../../hooks/tenant/useTenant'
 //next datasource
 export default function NextArrow() {
-  const { dataKey, setDataKey, dataItems } = useContext(SelectionContext)
+  const { dataKey, setDataKey } = useContext(SelectionContext)
+  const { dataItems = [] } = useTenant()
   const { t } = useDico()
 
   const handleNext = () => {

@@ -1,32 +1,17 @@
 import { useState, useContext } from 'react'
-import { getKey, SELECTOR, OVERLAY } from '../../registries/common/config'
-import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
-import { getItem as getOverlayItem } from '../../registries/overlayRegistry'
+import { useTenant } from '../tenant/useTenant'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {
   const { motionKey, viewKey, dataKey } = useContext(SelectionContext)
+  const { selectorItem, overlayItem } = useTenant()
   const [selectedArtwork, setSelectedArtwork] = useState(null)
   //selector
-  const selectorItem = (() => {
-    try {
-      return getSelectorItem(getKey(SELECTOR)) ?? null
-    } catch {
-      return null
-    }
-  })()
   const SelectorComponent = selectorItem?.component ?? null
   const selectorProps = selectorItem
     ? Object.fromEntries(Object.entries(selectorItem).filter(([k]) => k !== 'component' && k !== 'key'))
     : {}
   //overlay
-  const overlayItem = (() => {
-    try {
-      return getOverlayItem(getKey(OVERLAY)) ?? null
-    } catch {
-      return null
-    }
-  })()
   const OverlayComponent = overlayItem?.component ?? null
 
   const overlayProps = {
