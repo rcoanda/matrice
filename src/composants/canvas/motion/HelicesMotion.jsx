@@ -16,7 +16,7 @@ export default function HelicesMotion({ source }) {
         <Motion
           key={i}
           useMotion={useHeliceMotion}
-          motionArgs={[t.radius, t.cVert, t.speed, t.direction, t.phase]}
+          motionArgs={[t.radius, t.cVert, t.speed, t.direction, t.phase, t.period, t.offsetX]}
           length={t.length}
           width={t.width}
           index={i}
