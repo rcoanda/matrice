@@ -1,10 +1,10 @@
 
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { getItem } from '../../../../registry/motionRegistry'
-import { getKey } from '../../../../registry/common/config'
-import { getItem as getLoadingItem } from '../../../../registry/loadingRegistry'
-import { getItem as getDesignItem } from '../../../../registry/designRegistry'
+import { getItem } from '../../../../registries/motionRegistry'
+import { getKey } from '../../../../registries/common/config'
+import { getItem as getLoadingItem } from '../../../../registries/loadingRegistry'
+import { getItem as getDesignItem } from '../../../../registries/designRegistry'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
 import HeadLine from '../../../layout/HeadLine'
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getKey } from '../registry/common/config'
-import { getItem } from '../registry/langRegistry'
+import { getKey } from '../registries/common/config'
+import { getItem } from '../registries/langRegistry'
 import { LanguageContext } from './LanguageContext'
 
 const NAMESPACES = ['header', 'about', 'contact', 'gallery', 'backArrow', 'closeButton', 'nextArrow', 'loading']

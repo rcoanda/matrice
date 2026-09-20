@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { getKey } from '../registry/common/config'
-import { getItem } from '../registry/designRegistry'
+import { getKey } from '../registries/common/config'
+import { getItem } from '../registries/designRegistry'
 import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
 function setToken(style, name, value) {

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDico } from '../../providers/LanguageContext'
 import { SelectionContext } from '../../providers/SelectionContext'
-import { getKey, getItems } from '../../registry/common/config'
+import { getKey, getItems } from '../../registries/common/config'
 import '../../styles/shared.css'
 import '../../styles/Header.css'
 

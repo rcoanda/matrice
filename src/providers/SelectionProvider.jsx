@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
-import { getKey, getItems } from '../registry/common/config'
+import { getKey, getItems } from '../registries/common/config'
 import { SelectionContext } from './SelectionContext'
 
 //motionKey, viewKey, dataKey sont des Keys

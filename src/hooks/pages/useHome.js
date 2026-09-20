@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getKey } from '../../registry/common/config'
-import { getItem as getSelectorItem } from '../../registry/selectorRegistry'
-import { getItem as getHeroItem } from '../../registry/heroRegistry'
-import { getItem as getTransitionItem } from '../../registry/transitionRegistry'
+import { getKey } from '../../registries/common/config'
+import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
+import { getItem as getHeroItem } from '../../registries/heroRegistry'
+import { getItem as getTransitionItem } from '../../registries/transitionRegistry'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useHome() {

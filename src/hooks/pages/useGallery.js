@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
-import { getKey } from '../../registry/common/config'
-import { getItem as getSelectorItem } from '../../registry/selectorRegistry'
-import { getItem as getOverlayItem } from '../../registry/overlayRegistry'
+import { getKey } from '../../registries/common/config'
+import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
+import { getItem as getOverlayItem } from '../../registries/overlayRegistry'
 import { SelectionContext } from '../../providers/SelectionContext'
 
 export function useGallery() {

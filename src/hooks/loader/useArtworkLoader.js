@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getItem } from '../../registry/dataRegistry'
+import { getItem } from '../../registries/dataRegistry'
 
 const PROGRESS_START = 10
 const PROGRESS_READY = 100
