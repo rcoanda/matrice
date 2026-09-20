@@ -4,13 +4,14 @@
 //cree le mouvement/le film (toutes les frames / le comportement) de la source (une liste des artwork) sur la trajectoire (points) deja calculées dans utils/trajectoire
 import { usePhotoMeshTexture } from '../../../../hooks/texture/usePhotoMeshTexture'
 
-export default function Motion({ useMotion, motionArgs, length, width, index, source }) {
+export default function Motion({ useMotion, motionArgs, length, width, segments, index, source }) {
   const ref = useMotion(...motionArgs)
   const texture = usePhotoMeshTexture(index, source)
+  const geometryArgs = segments ? [length, width, segments, 1] : [length, width]
 
   return (
     <mesh ref={ref}>
-      <planeGeometry args={[length, width]} />
+      <planeGeometry args={geometryArgs} />
       {texture && <meshBasicMaterial map={texture} side={2} />}
     </mesh>
   )
