@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getKey } from '../../registries/common/config'
+import { getKey, SELECTOR, HERO, TRANSITION } from '../../registries/common/config'
 import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
 import { getItem as getHeroItem } from '../../registries/heroRegistry'
 import { getItem as getTransitionItem } from '../../registries/transitionRegistry'
@@ -14,7 +14,7 @@ export function useHome() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelectorItem(getKey('selectorRegistry')) ?? null
+      return getSelectorItem(getKey(SELECTOR)) ?? null
     } catch {
       return null
     }
@@ -27,7 +27,7 @@ export function useHome() {
   //hero
   const heroItem = (() => {
     try {
-      return getHeroItem(getKey('heroRegistry'))
+      return getHeroItem(getKey(HERO))
     } catch {
       return null
     }
@@ -39,7 +39,7 @@ export function useHome() {
   //transition
   const transitionItem = (() => {
     try {
-      return getTransitionItem(getKey('transitionRegistry')) ?? null
+      return getTransitionItem(getKey(TRANSITION)) ?? null
     } catch {
       return null
     }

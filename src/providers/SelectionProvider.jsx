@@ -1,20 +1,20 @@
 import { useState, useCallback, useEffect } from 'react'
-import { getKey, getItems } from '../registries/common/config'
+import { getKey, getItems, MOTION, VIEW, DATA } from '../registries/common/config'
 import { SelectionContext } from './SelectionContext'
 
 //motionKey, viewKey, dataKey sont des Keys
 export function SelectionProvider({ children }) {
-  const [motionKey, setMotionKey] = useState(getKey('motionRegistry'))
-  const [viewKey, setViewKey] = useState(getKey('viewRegistry'))
-  const [dataKey, setDataKey] = useState(getKey('dataRegistry'))
+  const [motionKey, setMotionKey] = useState(getKey(MOTION))
+  const [viewKey, setViewKey] = useState(getKey(VIEW))
+  const [dataKey, setDataKey] = useState(getKey(DATA))
   const [motionItems, setMotionItems] = useState([])
   const [viewItems, setViewItems] = useState([])
   const [dataItems, setDataItems] = useState([])
 
   useEffect(() => {
-    getItems('motionRegistry').then(setMotionItems)
-    getItems('viewRegistry').then(setViewItems)
-    getItems('dataRegistry').then(setDataItems)
+    getItems(MOTION).then(setMotionItems)
+    getItems(VIEW).then(setViewItems)
+    getItems(DATA).then(setDataItems)
   }, [])
 
   const selectMotionKey = useCallback((key) => {
@@ -28,9 +28,9 @@ export function SelectionProvider({ children }) {
   }, [])
 
   const reset = useCallback(() => {
-    setMotionKey(getKey('motionRegistry'))
-    setViewKey(getKey('viewRegistry'))
-    setDataKey(getKey('dataRegistry'))
+    setMotionKey(getKey(MOTION))
+    setViewKey(getKey(VIEW))
+    setDataKey(getKey(DATA))
   }, [])
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { getKey } from '../../registries/common/config'
+import { getKey, SELECTOR, OVERLAY } from '../../registries/common/config'
 import { getItem as getSelectorItem } from '../../registries/selectorRegistry'
 import { getItem as getOverlayItem } from '../../registries/overlayRegistry'
 import { SelectionContext } from '../../providers/SelectionContext'
@@ -10,7 +10,7 @@ export function useGallery() {
   //selector
   const selectorItem = (() => {
     try {
-      return getSelectorItem(getKey('selectorRegistry')) ?? null
+      return getSelectorItem(getKey(SELECTOR)) ?? null
     } catch {
       return null
     }
@@ -22,7 +22,7 @@ export function useGallery() {
   //overlay
   const overlayItem = (() => {
     try {
-      return getOverlayItem(getKey('overlayRegistry')) ?? null
+      return getOverlayItem(getKey(OVERLAY)) ?? null
     } catch {
       return null
     }

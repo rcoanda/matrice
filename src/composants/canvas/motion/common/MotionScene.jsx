@@ -2,7 +2,7 @@
 import { useMemo } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { getItem } from '../../../../registries/motionRegistry'
-import { getKey } from '../../../../registries/common/config'
+import { getKey, DESIGN, LOADING } from '../../../../registries/common/config'
 import { getItem as getLoadingItem } from '../../../../registries/loadingRegistry'
 import { getItem as getDesignItem } from '../../../../registries/designRegistry'
 import { useArtworkLoader } from '../../../../hooks/loader/useArtworkLoader'
@@ -12,11 +12,11 @@ import HeadLine from '../../../layout/HeadLine'
 
 export default function MotionScene({ motionKey, dataKey }) {
   const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const background = getDesignItem(getKey('designRegistry')).file.colors.galleryLight.value
+  const background = getDesignItem(getKey(DESIGN)).file.colors.galleryLight.value
 
   const motionItem = getItem(motionKey)
   const MotionComponent = motionItem ? motionItem.component : null
-  const loadingItem = getLoadingItem(getKey('loadingRegistry'))
+  const loadingItem = getLoadingItem(getKey(LOADING))
   const LoadingComponent = loadingItem ? loadingItem.component : null
   const source = useMemo(() => artworks.map((a) => a.image), [artworks])
 

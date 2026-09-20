@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { getKey } from '../registries/common/config'
+import { getKey, DESIGN } from '../registries/common/config'
 import { getItem } from '../registries/designRegistry'
 import { buildCssStack, buildGoogleFontsUrl } from '../utils/designTokens'
 
@@ -33,7 +33,7 @@ const MAPPED_GROUPS = new Set(['meta', 'key', 'label', 'colors', 'font', 'typogr
 
 export default function DesignProvider({ children }) {
   useEffect(() => {
-    const designFile = getItem(getKey('designRegistry')).file
+    const designFile = getItem(getKey(DESIGN)).file
     const { style, dataset } = document.documentElement
 
     // meta -> attributs data-ds-* sur <html>
