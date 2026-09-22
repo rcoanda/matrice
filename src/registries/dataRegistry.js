@@ -57,6 +57,7 @@ async function buildGlbSources() {
 }
 
 function buildMetaSource(all) {
+    //projet création des metadatas  en cours
     // metas (categories + grid) restreintes à la liste configurée (résultat de getItems)
     const keys = getTenantItem(registry)?.keys
     const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
