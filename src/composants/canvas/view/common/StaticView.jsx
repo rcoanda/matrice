@@ -1,5 +1,4 @@
 import GlbView from './GlbView'
-import CardView from './CardView'
 
 export default function StaticView({ artWork, onSelect, css = 'gridview' }) {
   return artWork.image ? (
@@ -11,6 +10,8 @@ export default function StaticView({ artWork, onSelect, css = 'gridview' }) {
   ) : artWork.transformations?.length ? (
     artWork.transformations.map((Component, i) => <Component key={i} />)
   ) : (
-    <CardView dom className={`${css}-card`} collection={artWork.collection} onClick={() => onSelect?.(artWork)} />
+    <div className={`${css}-card`} onClick={() => onSelect?.(artWork)}>
+      {artWork.collection}
+    </div>
   )
 }

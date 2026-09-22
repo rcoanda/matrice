@@ -1,5 +1,5 @@
 // Hook qui charge la texture d'une photo à la position `index` dans la liste
-// source (URLs Cloudinary transmises depuis la datasource dataRegistry).
+// artworks (URLs Cloudinary transmises depuis la datasource dataRegistry).
 // Le canvas réduit/orienté est mis en cache au niveau du module : le réseau et
 // le décodage n'ont lieu qu'une seule fois, au premier passage sur la page.
 import { useEffect, useState } from 'react'
@@ -54,16 +54,16 @@ function loadCanvas(url) {
   return pendingLoads.get(url)
 }
 
-export function usePhotoMeshTexture(index, source) {
+export function usePhotoMeshTexture(index, artworks) {
   const [texture, setTexture] = useState(null)
 
   useEffect(() => {
-    if (!source || source.length === 0) return
+    if (!artworks || artworks.length === 0) return
     let cancelled = false
     let texture = null
     const dispose = () => { if (texture) { texture.dispose(); texture = null } }
 
-    const url = source[index % source.length]
+    const url = artworks[index % artworks.length]
     if (!url) return
 
     loadCanvas(url).then((canvas) => {
@@ -76,7 +76,7 @@ export function usePhotoMeshTexture(index, source) {
     })
 
     return () => { cancelled = true; dispose() }
-  }, [index, source])
+  }, [index, artworks])
 
   return texture
 }

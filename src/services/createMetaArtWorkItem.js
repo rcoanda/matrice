@@ -1,5 +1,4 @@
 import { createElement } from 'react'
-import ViewScene from '../composants/canvas/view/common/ViewScene'
 import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import { createArtWorkItem } from './createArtWorkItem'
 
