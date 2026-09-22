@@ -6,6 +6,8 @@ import { getItem as getTenantItem } from './common/tenantRegistry'
 
 const registry = import.meta.url.split('/').pop().replace(/\.js$/, '')
 
+const META_KEYS = ['metaKey']
+
 let photoSources = []
 let photoSourcesReady = false
 
@@ -54,6 +56,18 @@ async function buildGlbSources() {
     glbSourcesReady = true
 }
 
+function buildMetaSource(all) {
+    // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
+    const keys = getTenantItem(registry)?.keys
+    const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
+    return {
+        key: META_KEYS[0],
+        label: 'Categories',
+        file: null,
+        loader: () => loadMetaData(metaItems.map((source) => source.label)),
+    }
+}
+
 //les getters des ressouces 
 
 export async function getAllItems() {
@@ -61,18 +75,7 @@ export async function getAllItems() {
     await buildVideoSources()
     await buildGlbSources()
     const all = [...photoSources, ...videoSources, ...glbSources]
-    // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
-    const keys = getTenantItem(registry)?.keys
-    const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
-    return [
-        ...all,
-        {
-            key: 'metaKey',
-            label: 'Categories',
-            file: null,
-            loader: () => loadMetaData(metaItems.map((source) => source.label)),
-        },
-    ]
+    return [...all, buildMetaSource(all)]
 }
 
 export async function getAllKeys() {
@@ -90,7 +93,7 @@ export async function getItem(key) {
     //item
     //{ key: 'peopleKey', label: 'People', file: 'people.json', loader: loadCloudData }, 
     const all = await getAllItems()
-    if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
+    if (META_KEYS.includes(key)) return all.find((i) => META_KEYS.includes(i.key))
     // respecte la liste configurée (résultat de getItems)
     const keys = getTenantItem(registry)?.keys
     const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
