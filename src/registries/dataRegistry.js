@@ -2,7 +2,7 @@ import { loadCloudData } from '../services/cloudDataLoader'
 import { loadMetaData } from '../services/metaDataLoader'
 import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileListService'
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
-import { getAllItems as getConfigItems } from './common/config'
+import { getKeys } from './common/tenantRegistry'
 
 let photoSources = []
 let photoSourcesReady = false
@@ -52,11 +52,7 @@ async function buildGlbSources() {
     glbSourcesReady = true
 }
 
-// Liste configurée pour dataRegistry (ex: ['natureKey', 'karnakKey']) — limite les catégories de metaKey
-function getConfiguredKeys() {
-    const entry = getConfigItems().find((i) => i.config === 'dataRegistry')
-    return entry ? (entry.keys ?? null) : null
-}
+//les getters des ressouces 
 
 export async function getAllItems() {
     await buildPhotoSources()
@@ -64,7 +60,7 @@ export async function getAllItems() {
     await buildGlbSources()
     const all = [...photoSources, ...videoSources, ...glbSources]
     // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
-    const keys = getConfiguredKeys()
+    const keys = await getKeys('dataRegistry')
     const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
     return [
         ...all,
@@ -94,12 +90,12 @@ export async function getItem(key) {
     const all = await getAllItems()
     if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
     // respecte la liste configurée (résultat de getItems)
-    const keys = getConfiguredKeys()
+    const keys = getKeys('dataRegistry')
     const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
     return scoped.find((i) => i.key === key) ?? null
 }
-
-/*
+//les ressources (items) 
+/* 
  items: [
     { key: 'natureKey',  label: 'Nature',  loader: () => loadCloudData(...) },   // clés fichier du tenant
     { key: 'karnakKey',  label: 'Karnak',  loader: () => loadCloudData(...) },

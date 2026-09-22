@@ -1,8 +1,9 @@
 import Transition from '../composants/transition/Transition'
-import { createItemsConfig } from './common/createItemsConfig'
+import { createGettersRegistry } from './common/createGettersRegistry'
 
-const TRANSITIONS = [
+const TRANSITION_REGISTRY = [
+  //des ressources (items) 
   { key: 'transitionKey', label: 'transition', component: Transition },
 ]
-
-export const { getAllItems, getAllKeys, getItems, getItem } = createItemsConfig(TRANSITIONS)
+//les getters des ressouces 
+export const { getAllItems, getAllKeys, getItems, getItem } = createGettersRegistry(TRANSITION_REGISTRY)

@@ -1,12 +1,13 @@
 import CirclesMotion from '../composants/canvas/motion/CirclesMotion'
 import HelicesMotion from '../composants/canvas/motion/HelicesMotion'
 import LemniscatesMotion from '../composants/canvas/motion/LemniscatesMotion'
-import { createItemsConfig } from './common/createItemsConfig'
+import { createGettersRegistry } from './common/createGettersRegistry'
 
-const MOTIONS = [
+const MOTION_REGISTRY = [
+  //des ressources (items) 
   { key: 'circlesKey', label: 'circles', component: CirclesMotion },
   { key: 'lemniscatesKey', label: 'lemniscates', component: LemniscatesMotion },
   { key: 'helicesKey', label: 'helices', component: HelicesMotion },
 ]
-
-export const { getAllItems, getAllKeys, getItems, getItem } = createItemsConfig(MOTIONS)
+//les getters des ressouces 
+export const { getAllItems, getAllKeys, getItems, getItem } = createGettersRegistry(MOTION_REGISTRY)

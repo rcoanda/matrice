@@ -1,6 +1,7 @@
+//les ressources du tenant 'riannecorvalis'
 // riannecorvalis artiste : img, video, glb
 //selector - julis
-const RESOURCES2 = [
+const TENANT_REGISTRY_OLD = [
     { registry: 'langRegistry', keys: null, key: 'frKey' },
     { registry: 'motionRegistry', keys: [], key: null },
     { registry: 'viewRegistry', keys: null, key: 'gridKey' },
@@ -14,7 +15,7 @@ const RESOURCES2 = [
 ]
 
 //hero et selector - corentis
-const RESOURCES = [
+const TENANT_REGISTRY = [
     { registry: 'langRegistry', keys: null, key: 'frKey' },
     { registry: 'headerRegistry', keys: null, key: 'headerKey' },
     { registry: 'motionRegistry', keys: [], key: null },
@@ -27,4 +28,4 @@ const RESOURCES = [
     { registry: 'heroRegistry', keys: null, key: 'circlesKey' },
     { registry: 'designRegistry', keys: null, key: 'julisKey' },
 ]
-export default RESOURCES
+export default TENANT_REGISTRY

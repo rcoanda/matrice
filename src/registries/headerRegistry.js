@@ -1,8 +1,9 @@
 import Header from '../composants/layout/Header'
-import { createItemsConfig } from './common/createItemsConfig'
+import { createGettersRegistry } from './common/createGettersRegistry'
 
-const HEADERS = [
+const HEADER_REGISTRY = [
+  //des ressources (items) 
   { key: 'headerKey', label: 'header', component: Header },
 ]
-
-export const { getAllItems, getAllKeys, getItems, getItem } = createItemsConfig(HEADERS)
+//les getters des ressouces 
+export const { getAllItems, getAllKeys, getItems, getItem } = createGettersRegistry(HEADER_REGISTRY)

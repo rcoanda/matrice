@@ -1,13 +1,14 @@
 import ControlPanelSelector from '../composants/selector/ControlPanelSelector'
 import ViewSelector from '../composants/selector/ViewSelector'
-import { createItemsConfig } from './common/createItemsConfig'
+import { createGettersRegistry } from './common/createGettersRegistry'
 
-const SELECTORS = [
+const SELECTOR_REGISTRY = [
+  //des ressources (items) 
   { key: 'btnKey', label: 'btn', component: ControlPanelSelector, viewKey: null, dataKey: null },
   { key: 'gridKey', label: 'grid', component: ViewSelector, viewKey: 'gridKey', dataKey: 'metaKey' },
   { key: 'ellipseKey', label: 'view', component: ViewSelector, viewKey: 'ellipseKey', dataKey: 'metaKey' },
   { key: 'cylinderKey', label: 'view', component: ViewSelector, viewKey: 'cylinderKey', dataKey: 'metaKey' },
   { key: 'sphereKey', label: 'view', component: ViewSelector, viewKey: 'sphereKey', dataKey: 'metaKey' },
 ]
-
-export const { getAllItems, getAllKeys, getItems, getItem } = createItemsConfig(SELECTORS)
+//les getters des ressouces 
+export const { getAllItems, getAllKeys, getItems, getItem } = createGettersRegistry(SELECTOR_REGISTRY)

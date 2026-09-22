@@ -1,4 +1,4 @@
-export function createItemsConfig(items, { fallback = false } = {}) {
+export function createGettersRegistry(items, { fallback = false } = {}) {
   return {
     getAllItems: () => items,
     getAllKeys: () => items.map((i) => i.key),

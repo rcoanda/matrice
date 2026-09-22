@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAllItems, getResources } from '../../registries/common/config'
+import { getAllItems, getAllRegistries } from '../../registries/common/tenantRegistry'
 
 export function useTenant() {
   const [tenant, setTenant] = useState({})
@@ -10,12 +10,12 @@ export function useTenant() {
     async function load() {
       const result = {}
       for (const { registry, keys, key } of getAllItems()) {
-        const module = await getResources()[registry]?.()
-        if (!module) continue
+        const resourceRegistry = await getAllRegistries()[registry]?.()
+        if (!resourceRegistry) continue
         const base = registry.replace('Registry', '')
         const name = `${base.charAt(0).toLowerCase()}${base.slice(1)}`
-        result[`${name}Items`] = keys ? await module.getItems(keys) : await module.getAllItems()
-        if (key) result[`${name}Item`] = await module.getItem(key)
+        result[`${name}Items`] = keys ? await resourceRegistry.getItems(keys) : await resourceRegistry.getAllItems()
+        if (key) result[`${name}Item`] = await resourceRegistry.getItem(key)
       }
       if (!cancelled) setTenant(result)
     }

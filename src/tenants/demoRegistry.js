@@ -1,4 +1,6 @@
-const RESOURCES = [
+//les ressources du tenant 'demo'
+
+const TENANT_REGISTRY = [
   { registry: 'langRegistry', keys: null, key: 'frKey' },
   { registry: 'headerRegistry', keys: null, key: 'headerKey' },
 
@@ -14,4 +16,4 @@ const RESOURCES = [
   { registry: 'designRegistry', keys: null, key: 'matriceKey' },
 ]
 
-export default RESOURCES
+export default TENANT_REGISTRY
