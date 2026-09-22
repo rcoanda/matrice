@@ -4,7 +4,7 @@ import ViewScene from '../composants/canvas/view/common/ViewScene'
 import { createArtWorkItem } from './createArtWorkItem'
 
 export function createMetaArtWorkItem({ id, collection = null, text = null, dataKey = null, viewKey = null, motionKey = null }) {
-
+  //projet création des metadatas  en cours
   // Sans dataKey : simple artwork, sans vue embarquée
   if (!dataKey) {
     return createArtWorkItem({ id, collection, text })
