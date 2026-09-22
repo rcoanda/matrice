@@ -4,28 +4,31 @@ import ViewScene from '../composants/canvas/view/common/ViewScene'
 import { createArtWorkItem } from './createArtWorkItem'
 
 export function createMetaArtWorkItem({ id, collection = null, text = null, title = '', artist = '', date = '', place = '',
-  url = null,
-  type = null, dataKey = null }) {
+  url = null, type = null, dataKey = null, viewKey = null, motionKey = null }) {
 
   // Sans dataKey : simple artwork, sans vue embarquée
   if (!dataKey) {
     return createArtWorkItem({ id, collection, text, title, artist, date, place, url, type, transformations: null })
   }
 
-  // Avec dataKey : en cours
+  // Avec dataKey : vue (viewKey) et motion (motionKey) de la source jointes à l'artwork
   const transformations = []
 
-  const ViewSceneView = (props) => createElement(ViewScene, { viewKey: 'gridKey', dataKey, ...props })
-  if (!transformations.some((Component) => Component._dataKey === dataKey)) {
-    ViewSceneView._dataKey = dataKey
-    transformations.push(ViewSceneView)
+  if (viewKey) {
+    const ViewSceneView = (props) => createElement(ViewScene, { viewKey, dataKey, ...props })
+    if (!transformations.some((Component) => Component._viewKey === viewKey)) {
+      ViewSceneView._viewKey = viewKey
+      transformations.push(ViewSceneView)
+    }
   }
-  /*
-const MotionSceneView = (props) => createElement(MotionScene, { motionKey: 'circlesKey', dataKey, ...props })
-if (!transformations.some((Component) => Component._motionKey === 'circlesKey')) {
-  MotionSceneView._motionKey = 'circlesKey'
-  transformations.push(MotionSceneView)
-}
-*/
-  return createArtWorkItem({ id, collection, transformations: transformations })
+
+  if (motionKey) {
+    const MotionSceneView = (props) => createElement(MotionScene, { motionKey, dataKey, ...props })
+    if (!transformations.some((Component) => Component._motionKey === motionKey)) {
+      MotionSceneView._motionKey = motionKey
+      transformations.push(MotionSceneView)
+    }
+  }
+
+  return createArtWorkItem({ id, collection, text, title, artist, date, place, url, type, transformations })
 }

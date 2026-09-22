@@ -57,15 +57,23 @@ async function buildGlbSources() {
 }
 
 function buildMetaSource(all) {
-    // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
+    // metas (categories + grid) restreintes à la liste configurée (résultat de getItems)
     const keys = getTenantItem(registry)?.keys
     const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
-    return {
-        key: META_KEYS[0],
-        label: 'Categories',
-        file: null,
-        loader: () => loadMetaData(metaItems.map((source) => ({ key: null, label: source.label }))),
-    }
+    return [
+        {
+            key: META_KEYS[0],
+            label: 'Categories',
+            file: null,
+            loader: () => loadMetaData(metaItems.map((source) => ({ key: null, label: source.label }))),
+        },
+        {
+            key: META_KEYS[1],
+            label: 'MetaGrid',
+            file: null,
+            loader: () => loadMetaData(metaItems.map((source) => ({ key: source.key, label: source.label }))),
+        },
+    ]
 }
 
 //les getters des ressouces 
@@ -75,7 +83,7 @@ export async function getAllItems() {
     await buildVideoSources()
     await buildGlbSources()
     const all = [...photoSources, ...videoSources, ...glbSources]
-    return [...all, buildMetaSource(all)]
+    return [...all, ...buildMetaSource(all)]
 }
 
 export async function getAllKeys() {
