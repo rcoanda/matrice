@@ -4,6 +4,8 @@ import { getFileList, getVideoFileList, getGlbFileList } from '../services/fileL
 import { imgSource, videoSource, glbSource } from '../utils/mediaPaths'
 import { getItem as getTenantItem } from './common/tenantRegistry'
 
+const registry = import.meta.url.split('/').pop().replace(/\.js$/, '')
+
 let photoSources = []
 let photoSourcesReady = false
 
@@ -60,7 +62,7 @@ export async function getAllItems() {
     await buildGlbSources()
     const all = [...photoSources, ...videoSources, ...glbSources]
     // metaKey = catégories restreintes à la liste configurée (résultat de getItems)
-    const keys = getTenantItem('dataRegistry')?.keys
+    const keys = getTenantItem(registry)?.keys
     const metaItems = keys ? all.filter((i) => keys.includes(i.key)) : all
     return [
         ...all,
@@ -90,7 +92,7 @@ export async function getItem(key) {
     const all = await getAllItems()
     if (key === 'metaKey') return all.find((i) => i.key === 'metaKey')
     // respecte la liste configurée (résultat de getItems)
-    const keys = getTenantItem('dataRegistry')?.keys
+    const keys = getTenantItem(registry)?.keys
     const scoped = keys ? all.filter((i) => keys.includes(i.key)) : all
     return scoped.find((i) => i.key === key) ?? null
 }
