@@ -13,11 +13,11 @@ export function useViewScene({ viewKey, dataKey }) {
   return {
     artworks,
     dataItem,
-    loading,
-    progress,
-    background,
     viewItem,
     ViewComponent,
     LoadingComponent,
+    background,
+    progress,
+    loading,
   }
 }

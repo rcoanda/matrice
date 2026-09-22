@@ -9,11 +9,10 @@ function GalleryFallback() {
 
 export default function ViewScene({ viewKey, dataKey, onSelect }) {
   const {
-    artworks, dataItem, loading, progress,
-    background, viewItem, ViewComponent, LoadingComponent,
+    artworks, dataItem, viewItem, ViewComponent, LoadingComponent, background, progress, loading,
   } = useViewScene({ viewKey, dataKey })
 
-  if (!viewKey || !dataKey) return null
+  if (!viewKey || !dataKey || !artworks || artworks.length === 0) return null
   if (!background) return null
 
   if (loading) {

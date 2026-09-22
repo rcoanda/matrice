@@ -4,11 +4,10 @@ import HeadLine from '../../../layout/HeadLine'
 
 export default function MotionScene({ motionKey, dataKey }) {
   const {
-    source, dataItem, loading, progress,
-    background, motionItem, MotionComponent, LoadingComponent,
+    artWorksImage, dataItem, motionItem, MotionComponent, LoadingComponent, background, progress, loading,
   } = useMotionScene({ motionKey, dataKey })
 
-  if (!motionKey || !dataKey || !source || source.length === 0) return null
+  if (!motionKey || !dataKey || !artWorksImage || artWorksImage.length === 0) return null
   if (!background) return null
 
   if (loading) {
@@ -21,7 +20,7 @@ export default function MotionScene({ motionKey, dataKey }) {
       <Canvas camera={{ position: [0, 0, 14], fov: 50, up: [0, 1, 0] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <MotionComponent source={source} />
+        <MotionComponent source={artWorksImage} />
       </Canvas>
     </>
   )

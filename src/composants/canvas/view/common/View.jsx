@@ -1,6 +1,4 @@
-import SpriteView from './SpriteView'
-import GlbView from './GlbView'
-import CardView from './CardView'
+import DynamicView from './DynamicView'
 import { useViewMotion } from '../../../../hooks/motion/useViewMotion'
 
 export default function View({ cameraZ, artworks, positions, onSelect }) {
@@ -9,30 +7,7 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
   return (
     <group ref={groupRef}>
       {artworks.map((art, i) => (
-        art.image || art.video ? (
-          <SpriteView
-            key={art.id}
-            image={art.image}
-            video={art.video}
-            position={positions[i] || [0, 0, 0]}
-            onClick={() => onSelect?.(art)}
-          />
-        ) : art.glb ? (
-          <GlbView
-            key={art.id}
-            scene
-            url={art.glb}
-            position={positions[i] || [0, 0, 0]}
-            onClick={() => onSelect?.(art)}
-          />
-        ) : (
-          <CardView
-            key={art.id}
-            collection={art.collection}
-            position={positions[i] || [0, 0, 0]}
-            onClick={() => onSelect?.(art)}
-          />
-        )
+        <DynamicView key={art.id} art={art} position={positions[i]} onSelect={onSelect} />
       ))}
     </group>
   )

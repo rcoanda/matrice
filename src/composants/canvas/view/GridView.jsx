@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Html } from '@react-three/drei'
-import GlbView from './common/GlbView'
-import CardView from './common/CardView'
+import StaticView from './common/StaticView'
 import '../../../styles/GridView.css'
 
 export default function GridView({ artworks, onSelect }) {
@@ -48,15 +47,7 @@ export default function GridView({ artworks, onSelect }) {
             onMouseEnter={() => setHovered(art.id)}
             onMouseLeave={() => setHovered(null)}
           >
-            {art.image ? (
-              <img src={art.image} alt={art.title || ''} />
-            ) : art.video ? (
-              <video src={art.video} autoPlay muted loop playsInline />
-            ) : art.glb ? (
-              <GlbView url={art.glb} className="gridview-glb" />
-            ) : (
-              <CardView dom className="gridview-card" collection={art.collection} onClick={() => onSelect?.(art)} />
-            )}
+            <StaticView art={art} onSelect={onSelect} />
             {art.title ? (
               <div className="gridview-titlewrap">
                 <span className={`gridview-title${hovered === art.id ? ' is-revealed' : ''}`}>{art.title}</span>

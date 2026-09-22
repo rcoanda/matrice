@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Html } from '@react-three/drei'
-import GlbView from './common/GlbView'
-import CardView from './common/CardView'
+import StaticView from './common/StaticView'
 import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {
@@ -27,15 +26,7 @@ export default function ListView({ artworks, onSelect }) {
   const art = artworks[Math.min(index, count - 1)]
   if (!art) return null
 
-  const media = art.image ? (
-    <img src={art.image} alt={art.title || ''} />
-  ) : art.video ? (
-    <video src={art.video} autoPlay muted loop playsInline />
-  ) : art.glb ? (
-    <GlbView url={art.glb} className="listview-glb" />
-  ) : (
-    <CardView dom className="listview-card" collection={art.collection} onClick={() => onSelect?.(art)} />
-  )
+  const media = <StaticView art={art} onSelect={onSelect} css="listview" />
 
   const info = (
     <>
