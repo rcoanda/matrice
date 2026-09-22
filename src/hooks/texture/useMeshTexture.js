@@ -204,7 +204,7 @@ export function useMeshTexture(index, artworks = []) {
   const isVideo = !!url && type === 'video'
   const imageTexture = useImageMeshTexture(url && !isVideo ? index : -1, url && !isVideo ? sources : [])
   const videoTexture = useVideoMeshTexture(url && isVideo ? index : -1, url && isVideo ? sources : [])
-  const { texture: textTexture, size: textSize } = useTextMeshTexture(url ? null : entry?.collection)
+  const { texture: textTexture, size: textSize } = useTextMeshTexture(url ? null : entry?.text)
 
   if (!url) return { texture: textTexture, size: textSize }
   return { texture: isVideo ? videoTexture : imageTexture, size: DEFAULT_SIZE }
