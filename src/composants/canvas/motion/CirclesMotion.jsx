@@ -1,13 +1,13 @@
 // Scène de la galerie People : des photos défilent sur des trajectoires
-// circulaires, la source (liste d'URLs Cloudinary) est transmise en paramètre.
+// circulaires, les artworks (liste d'URLs Cloudinary) sont transmis en paramètre.
 import Motion from './common/Motion'
 import { circlesTrajectory } from '../../../utils/trajectory/circlesTrajectory'
 import { useCircularMotion } from '../../../hooks/motion/useCircularMotion'
 
-export default function CirclesMotion({ source }) {
+export default function CirclesMotion({ artworks }) {
   const trajectories = circlesTrajectory()
 
-  if (!source || source.length === 0) return null
+  if (!artworks || artworks.length === 0) return null
 
   return (
     <group>
@@ -19,7 +19,7 @@ export default function CirclesMotion({ source }) {
           length={t.length}
           width={t.width}
           index={i}
-          source={source}
+          artworks={artworks}
         />
       ))}
     </group>

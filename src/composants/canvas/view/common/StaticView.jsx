@@ -1,14 +1,14 @@
 import GlbView from './GlbView'
 import CardView from './CardView'
 
-export default function StaticView({ art, onSelect, css = 'gridview' }) {
-  return art.image ? (
-    <img src={art.image} alt={art.title || ''} />
-  ) : art.video ? (
-    <video src={art.video} autoPlay muted loop playsInline />
-  ) : art.glb ? (
-    <GlbView url={art.glb} className={`${css}-glb`} />
+export default function StaticView({ artWork, onSelect, css = 'gridview' }) {
+  return artWork.image ? (
+    <img src={artWork.image} alt={artWork.title || ''} />
+  ) : artWork.video ? (
+    <video src={artWork.video} autoPlay muted loop playsInline />
+  ) : artWork.glb ? (
+    <GlbView url={artWork.glb} className={`${css}-glb`} />
   ) : (
-    <CardView dom className={`${css}-card`} collection={art.collection} onClick={() => onSelect?.(art)} />
+    <CardView dom className={`${css}-card`} collection={artWork.collection} onClick={() => onSelect?.(artWork)} />
   )
 }

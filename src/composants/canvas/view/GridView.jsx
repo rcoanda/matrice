@@ -39,21 +39,21 @@ export default function GridView({ artworks, onSelect }) {
   return (
     <Html fullscreen zIndexRange={[0, 0]}>
       <div ref={scrollRef} className="gridview">
-        {artworks.map((art) => (
+        {artworks.map((artWork) => (
           <div
-            key={art.id}
+            key={artWork.id}
             className="gridview-cell"
-            onClick={() => onSelect?.(art)}
-            onMouseEnter={() => setHovered(art.id)}
+            onClick={() => onSelect?.(artWork)}
+            onMouseEnter={() => setHovered(artWork.id)}
             onMouseLeave={() => setHovered(null)}
           >
-            <StaticView art={art} onSelect={onSelect} />
-            {art.title ? (
+            <StaticView artWork={artWork} onSelect={onSelect} />
+            {artWork.title ? (
               <div className="gridview-titlewrap">
-                <span className={`gridview-title${hovered === art.id ? ' is-revealed' : ''}`}>{art.title}</span>
+                <span className={`gridview-title${hovered === artWork.id ? ' is-revealed' : ''}`}>{artWork.title}</span>
               </div>
             ) : null}
-            {art.collection ? <span className="gridview-label">{art.collection}</span> : null}
+            {artWork.collection ? <span className="gridview-label">{artWork.collection}</span> : null}
           </div>
         ))}
       </div>

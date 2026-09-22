@@ -2,17 +2,17 @@
 // hélicoïdales verticales identiques (double hélice, brin d'ADN), formant un
 // ruban continu : chaque photo est déformée selon la courbure et la torsion de
 // l'hélice (voir useHeliceMotion), le bas de l'une étant collé au haut de la
-// précédente. La source (liste d'URLs Cloudinary) est transmise en paramètre.
+// précédente. Les artworks (liste d'URLs Cloudinary) sont transmis en paramètre.
 import Motion from './common/Motion'
 import { helicesTrajectory } from '../../../utils/trajectory/helicesTrajectory'
 import { useHeliceMotion } from '../../../hooks/motion/useHeliceMotion'
 
 const SEGMENTS = 12
 
-export default function HelicesMotion({ source }) {
+export default function HelicesMotion({ artworks }) {
   const trajectories = helicesTrajectory()
 
-  if (!source || source.length === 0) return null
+  if (!artworks || artworks.length === 0) return null
 
   return (
     <group>
@@ -29,7 +29,7 @@ export default function HelicesMotion({ source }) {
           width={t.width}
           segments={SEGMENTS}
           index={i}
-          source={source}
+          artworks={artworks}
         />
       ))}
     </group>

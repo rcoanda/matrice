@@ -2,29 +2,29 @@ import SpriteView from './SpriteView'
 import GlbView from './GlbView'
 import CardView from './CardView'
 
-export default function DynamicView({ art, position, onSelect }) {
-  return art.image || art.video ? (
+export default function DynamicView({ artWork, position, onSelect }) {
+  return artWork.image || artWork.video ? (
     <SpriteView
-      key={art.id}
-      image={art.image}
-      video={art.video}
+      key={artWork.id}
+      image={artWork.image}
+      video={artWork.video}
       position={position || [0, 0, 0]}
-      onClick={() => onSelect?.(art)}
+      onClick={() => onSelect?.(artWork)}
     />
-  ) : art.glb ? (
+  ) : artWork.glb ? (
     <GlbView
-      key={art.id}
+      key={artWork.id}
       scene
-      url={art.glb}
+      url={artWork.glb}
       position={position || [0, 0, 0]}
-      onClick={() => onSelect?.(art)}
+      onClick={() => onSelect?.(artWork)}
     />
   ) : (
     <CardView
-      key={art.id}
-      collection={art.collection}
+      key={artWork.id}
+      collection={artWork.collection}
       position={position || [0, 0, 0]}
-      onClick={() => onSelect?.(art)}
+      onClick={() => onSelect?.(artWork)}
     />
   )
 }

@@ -6,8 +6,8 @@ export default function View({ cameraZ, artworks, positions, onSelect }) {
 
   return (
     <group ref={groupRef}>
-      {artworks.map((art, i) => (
-        <DynamicView key={art.id} art={art} position={positions[i]} onSelect={onSelect} />
+      {artworks.map((artWork, i) => (
+        <DynamicView key={artWork.id} artWork={artWork} position={positions[i]} onSelect={onSelect} />
       ))}
     </group>
   )

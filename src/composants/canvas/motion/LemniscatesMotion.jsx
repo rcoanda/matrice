@@ -1,14 +1,14 @@
 // Scène de la galerie : des photos défilent sur des trajectoires en lemniscate
-// de même centre et de même taille, la source (liste d'URLs Cloudinary) est
-// transmise en paramètre.
+// de même centre et de même taille, les artworks (liste d'URLs Cloudinary) sont
+// transmis en paramètre.
 import Motion from './common/Motion'
 import { lemniscatesTrajectory } from '../../../utils/trajectory/lemniscatesTrajectory'
 import { useLemniscateMotion } from '../../../hooks/motion/useLemniscateMotion'
 
-export default function LemniscatesMotion({ source }) {
+export default function LemniscatesMotion({ artworks }) {
   const trajectories = lemniscatesTrajectory()
 
-  if (!source || source.length === 0) return null
+  if (!artworks || artworks.length === 0) return null
 
   return (
     <group>
@@ -20,7 +20,7 @@ export default function LemniscatesMotion({ source }) {
           length={t.length}
           width={t.width}
           index={i}
-          source={source}
+          artworks={artworks}
         />
       ))}
     </group>
