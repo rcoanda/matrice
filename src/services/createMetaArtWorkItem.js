@@ -3,12 +3,11 @@ import MotionScene from '../composants/canvas/motion/common/MotionScene'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 import { createArtWorkItem } from './createArtWorkItem'
 
-export function createMetaArtWorkItem({ id, collection = null, text = null, title = '', artist = '', date = '', place = '',
-  url = null, type = null, dataKey = null, viewKey = null, motionKey = null }) {
+export function createMetaArtWorkItem({ id, collection = null, text = null, dataKey = null, viewKey = null, motionKey = null }) {
 
   // Sans dataKey : simple artwork, sans vue embarquée
   if (!dataKey) {
-    return createArtWorkItem({ id, collection, text, title, artist, date, place, url, type, transformations: null })
+    return createArtWorkItem({ id, collection, text })
   }
 
   // Avec dataKey : vue (viewKey) et motion (motionKey) de la source jointes à l'artwork
@@ -30,5 +29,5 @@ export function createMetaArtWorkItem({ id, collection = null, text = null, titl
     }
   }
 
-  return createArtWorkItem({ id, collection, text, title, artist, date, place, url, type, transformations })
+  return createArtWorkItem({ id, collection, transformations })
 }

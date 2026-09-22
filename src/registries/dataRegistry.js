@@ -6,7 +6,7 @@ import { getItem as getTenantItem } from './common/tenantRegistry'
 
 const registry = import.meta.url.split('/').pop().replace(/\.js$/, '')
 
-const META_KEYS = ['categoriesKey', 'gridMetaKey']
+const META_KEYS = ['categoriesKey', 'gridMetaKey', 'circlesMetaKey']
 
 let photoSources = []
 let photoSourcesReady = false
@@ -71,7 +71,13 @@ function buildMetaSource(all) {
             key: META_KEYS[1],
             label: 'MetaGrid',
             file: null,
-            loader: () => loadMetaData(metaItems.map((source) => ({ key: source.key, label: source.label }))),
+            loader: () => loadMetaData(metaItems.map((source) => ({ key: source.key, label: source.label })), 'gridKey', null),
+        },
+        {
+            key: META_KEYS[2],
+            label: 'MetaCircles',
+            file: null,
+            loader: () => loadMetaData(metaItems.map((source) => ({ key: source.key, label: source.label })), null, 'circlesKey'),
         },
     ]
 }
