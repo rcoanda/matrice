@@ -64,7 +64,7 @@ function buildMetaSource(all) {
         key: META_KEYS[0],
         label: 'Categories',
         file: null,
-        loader: () => loadMetaData(metaItems.map((source) => source.label)),
+        loader: () => loadMetaData(metaItems.map((source) => ({ key: source.key, label: source.label }))),
     }
 }
 

@@ -8,6 +8,8 @@ export default function StaticView({ artWork, onSelect, css = 'gridview' }) {
     <video src={artWork.video} autoPlay muted loop playsInline />
   ) : artWork.glb ? (
     <GlbView url={artWork.glb} className={`${css}-glb`} />
+  ) : artWork.views?.length ? (
+    artWork.views.map((Component, i) => <Component key={i} />)
   ) : (
     <CardView dom className={`${css}-card`} collection={artWork.collection} onClick={() => onSelect?.(artWork)} />
   )

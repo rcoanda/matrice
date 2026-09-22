@@ -19,6 +19,8 @@ export default function DynamicView({ artWork, position, onSelect }) {
       position={position || [0, 0, 0]}
       onClick={() => onSelect?.(artWork)}
     />
+  ) : artWork.views?.length ? (
+    artWork.views.map((Component, i) => <Component key={i} />)
   ) : (
     <CardView
       key={artWork.id}
