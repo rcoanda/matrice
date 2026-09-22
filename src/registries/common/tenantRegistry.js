@@ -1,7 +1,5 @@
 import { TENANT_REGISTRY } from '../../tenants/tenant.js'
 
-export const IS_LOCAL = import.meta.env.DEV
-
 //registry = un fichier resourceRegistry.js , 
 // conenant un registre (array) RESOURCEREGISTRY de ressources (items) de même type et des getters
 //les types de ressources : view, motion, data
@@ -33,29 +31,7 @@ export function getAllRegistries() {
 export function getAllItems() {
   return TENANT_REGISTRY
 }
-export function getKey(registry) {
-  const item = TENANT_REGISTRY.find((i) => i.registry === registry)
-  return item ? item.key : undefined
-}
-
-export async function getKeys(registry) {
-  const item = TENANT_REGISTRY.find((i) => i.registry === registry)
-
-  const resourceRegistry = await getAllRegistries()[registry]?.()
-  if (!resourceRegistry) return []
-  const keys = item?.keys ?? await resourceRegistry.getAllKeys()
-  return keys
-}
-
 export function getItem(registry) {
   const item = TENANT_REGISTRY.find((i) => i.registry === registry)
   return item
-}
-
-export async function getItems(registry) {
-  const item = TENANT_REGISTRY.find((i) => i.registry === registry)
-  const resourceRegistry = await getAllRegistries()[registry]?.()
-  if (!resourceRegistry) return []
-  const keys = item?.keys ?? await resourceRegistry.getAllKeys()
-  return resourceRegistry.getItems(keys)
 }
