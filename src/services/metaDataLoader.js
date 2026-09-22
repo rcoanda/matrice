@@ -1,5 +1,5 @@
-import { createArtWorkItem } from './createArtWorkItem'
+import { createMetaArtWorkItem } from './createMetaArtWorkItem'
 
 export async function loadMetaData(items = []) {
-  return items.map(({ key, label }, i) => createArtWorkItem({ dataKey: key ?? null, id: i + 1, collection: label }))
+  return items.map(({ key, label }, i) => createMetaArtWorkItem({ dataKey: key ?? null, id: i + 1, collection: label }))
 }

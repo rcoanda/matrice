@@ -9,10 +9,14 @@ function setToken(style, name, value) {
 }
 
 // Applique récursivement chaque token du design system en variable CSS --<group>-<key>
+function kebab(key) {
+  return key.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+}
+
 function applyGroup(style, prefix, node) {
   if (!node || typeof node !== 'object') return
   for (const [key, val] of Object.entries(node)) {
-    const name = `${prefix}-${key}`
+    const name = `--${prefix}-${kebab(key)}`
     if (val && typeof val === 'object') {
       if (Array.isArray(val)) {
         setToken(style, name, val.join(', '))

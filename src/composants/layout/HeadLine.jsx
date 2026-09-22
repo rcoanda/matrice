@@ -3,7 +3,8 @@ import '../../styles/HeadLine.css'
 export default function HeadLine({ currentView, currentData }) {
   const marqueeText = `${currentData} · ${currentView}`
 
-  return (
+  return null /*(
+    
     <section className="headline-section">
       <h1 className="headline-title">{currentData}</h1>
       <p className="headline-subtitle">{currentView}</p>
@@ -13,5 +14,6 @@ export default function HeadLine({ currentView, currentData }) {
         ))}
       </div>
     </section>
-  )
+    
+  )*/
 }

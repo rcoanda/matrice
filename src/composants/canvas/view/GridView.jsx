@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Html } from '@react-three/drei'
+import { Html, useContextBridge } from '@react-three/drei'
 import StaticView from './common/StaticView'
+import { LanguageContext } from '../../../providers/LanguageContext'
+import { SelectionContext } from '../../../providers/SelectionContext'
 import '../../../styles/GridView.css'
 
 export default function GridView({ artworks, onSelect }) {
+  const Bridge = useContextBridge(LanguageContext, SelectionContext)
   const scrollRef = useRef(null)
   const [hovered, setHovered] = useState(null)
 
@@ -38,7 +41,8 @@ export default function GridView({ artworks, onSelect }) {
 
   return (
     <Html fullscreen zIndexRange={[0, 0]}>
-      <div ref={scrollRef} className="gridview">
+      <Bridge>
+        <div ref={scrollRef} className="gridview">
         {artworks.map((artWork) => (
           <div
             key={artWork.id}
@@ -57,6 +61,7 @@ export default function GridView({ artworks, onSelect }) {
           </div>
         ))}
       </div>
+      </Bridge>
     </Html>
   )
 }

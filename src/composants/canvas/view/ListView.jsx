@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Html } from '@react-three/drei'
+import { Html, useContextBridge } from '@react-three/drei'
 import StaticView from './common/StaticView'
+import { LanguageContext } from '../../../providers/LanguageContext'
+import { SelectionContext } from '../../../providers/SelectionContext'
 import '../../../styles/ListView.css'
 
 export default function ListView({ artworks, onSelect }) {
+  const Bridge = useContextBridge(LanguageContext, SelectionContext)
   const [index, setIndex] = useState(0)
   const count = artworks.length
 
@@ -40,7 +43,8 @@ export default function ListView({ artworks, onSelect }) {
 
   return (
     <Html fullscreen zIndexRange={[0, 0]}>
-      <div className="listview">
+      <Bridge>
+        <div className="listview">
         <span className="listview-series">{artWork.collection}</span>
         <div className="listview-stage">
           <button className="listview-nav listview-prev" onClick={prev} aria-label="Photo précédente">
@@ -59,6 +63,7 @@ export default function ListView({ artworks, onSelect }) {
         </div>
         <div className="listview-info">{info}</div>
       </div>
+      </Bridge>
     </Html>
   )
 }

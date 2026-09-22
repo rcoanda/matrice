@@ -1,6 +1,9 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { useContextBridge } from '@react-three/drei'
 import { useViewScene } from '../../../../hooks/scene/useViewScene'
+import { LanguageContext } from '../../../../providers/LanguageContext'
+import { SelectionContext } from '../../../../providers/SelectionContext'
 import HeadLine from '../../../layout/HeadLine'
 
 function GalleryFallback() {
@@ -8,6 +11,7 @@ function GalleryFallback() {
 }
 
 export default function ViewScene({ viewKey, dataKey, onSelect }) {
+  const Bridge = useContextBridge(LanguageContext, SelectionContext)
   const {
     artworks, dataItem, viewItem, ViewComponent, LoadingComponent, background, progress, loading,
   } = useViewScene({ viewKey, dataKey })
@@ -31,8 +35,10 @@ export default function ViewScene({ viewKey, dataKey, onSelect }) {
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} intensity={0.5} />
         <Suspense fallback={<GalleryFallback />}>
-          {/* affichage artworks */}
-          {ViewComponent && <ViewComponent artworks={artworks} onSelect={onSelect} />}
+          <Bridge>
+            {/* affichage artworks */}
+            {ViewComponent && <ViewComponent artworks={artworks} onSelect={onSelect} />}
+          </Bridge>
         </Suspense>
       </Canvas>
     </>
