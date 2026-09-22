@@ -2,7 +2,7 @@ import { createElement } from 'react'
 import ViewScene from '../composants/canvas/view/common/ViewScene'
 
 export function createArtWorkItem({ id, collection = null, title = '', artist = '', date = '', place = '', url = null, type = null,
-  datas = null, views = null, dataKey = null }) {
+  views = null, dataKey = null }) {
   const viewList = views ? [...views] : []
   if (dataKey) {
     const ViewSceneView = (props) => createElement(ViewScene, { viewKey: 'gridKey', dataKey, ...props })
@@ -21,7 +21,7 @@ export function createArtWorkItem({ id, collection = null, title = '', artist = 
     image: type === 'image' ? url : null,
     video: type === 'video' ? url : null,
     glb: type === 'glb' ? url : null,
-    datas: datas ?? null,
+    dataset: dataKey ?? null,
     views: viewList.length ? viewList : null,
   }
 }
