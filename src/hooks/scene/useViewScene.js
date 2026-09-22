@@ -3,10 +3,10 @@ import { useArtworkLoader } from '../loader/useArtworkLoader'
 
 export function useViewScene({ viewKey, dataKey }) {
   const { artworks, dataItem, loading, progress } = useArtworkLoader(dataKey)
-  const { designItem, loadingItem, viewItems } = useTenant()
+  const { designItem, loadingItem, viewItems, viewHiddenItems } = useTenant()
 
   const background = designItem?.file.colors.galleryLight.value
-  const viewItem = viewItems?.find((i) => i.key === viewKey)
+  const viewItem = viewItems?.find((i) => i.key === viewKey) ?? viewHiddenItems?.find((i) => i.key === viewKey)
   const ViewComponent = viewItem ? viewItem.component : null
   const LoadingComponent = loadingItem ? loadingItem.component : null
 
