@@ -4,7 +4,7 @@ import { SRGBColorSpace, TextureLoader, VideoTexture } from 'three'
 const DEFAULT_HEIGHT = 1.6
 const MAX_ASPECT = 1.8
 
-function useImageTexture(url) {
+function useImageSpriteTexture(url) {
   const [texture, setTexture] = useState(null)
   const [aspect, setAspect] = useState(1)
 
@@ -31,7 +31,7 @@ function useImageTexture(url) {
   return { texture, size: [w, h] }
 }
 
-function useVideoTexture(url) {
+function useVideoSpriteTexture(url) {
   const { video, texture } = useMemo(() => {
     if (!url) return { video: null, texture: null }
     const video = document.createElement('video')
@@ -40,7 +40,7 @@ function useVideoTexture(url) {
     video.loop = true
     video.muted = true
     video.playsInline = true
-    video.play().catch(() => {})
+    video.play().catch(() => { })
     const texture = new VideoTexture(video)
     texture.colorSpace = SRGBColorSpace
     return { video, texture }
@@ -68,8 +68,8 @@ function useVideoTexture(url) {
 }
 
 export function useSpriteTexture(url, type) {
-  const image = useImageTexture(type === 'image' ? url : undefined)
-  const video = useVideoTexture(type === 'video' ? url : undefined)
+  const image = useImageSpriteTexture(type === 'image' ? url : undefined)
+  const video = useVideoSpriteTexture(type === 'video' ? url : undefined)
 
   return type === 'video' ? video : image
 }

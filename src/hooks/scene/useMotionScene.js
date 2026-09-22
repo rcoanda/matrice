@@ -10,10 +10,10 @@ export function useMotionScene({ motionKey, dataKey }) {
   const motionItem = motionItems?.find((i) => i.key === motionKey)
   const MotionComponent = motionItem ? motionItem.component : null
   const LoadingComponent = loadingItem ? loadingItem.component : null
-  const artWorksImage = useMemo(() => artworks.map((a) => a.image), [artworks])
+
 
   return {
-    artWorksImage,
+    artworks,
     dataItem,
     motionItem,
     MotionComponent,

@@ -1,12 +1,11 @@
-// Photo qui se déplace sur UNE trajectoire, la trajectoire étant pilotée par
-// le hook de mouvement reçu en props (ex: useCircularMotion, useLemniscateMotion).
-// moving photos
-//cree le mouvement/le film (toutes les frames / le comportement) des artworks (une liste des urls images) sur la trajectoire (points) deja calculées dans utils/trajectoire
-import { usePhotoMeshTexture } from '../../../../hooks/texture/usePhotoMeshTexture'
+// Texture d'un mesh : useMeshTexture retourne { texture, size } — photo
+// (image/video) si l'artwork porte une URL, sinon texture du texte générée
+// depuis artwork.collection.
+import { useMeshTexture } from '../../../../hooks/texture/useMeshTexture'
 
 export default function Motion({ useMotion, motionArgs, length, width, segments, index, artworks }) {
   const ref = useMotion(...motionArgs)
-  const texture = usePhotoMeshTexture(index, artworks)
+  const { texture } = useMeshTexture(index, artworks)
   const geometryArgs = segments ? [length, width, segments, 1] : [length, width]
 
   return (

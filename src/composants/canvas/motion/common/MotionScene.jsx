@@ -8,10 +8,10 @@ import HeadLine from '../../../layout/HeadLine'
 export default function MotionScene({ motionKey, dataKey }) {
   const Bridge = useContextBridge(LanguageContext, SelectionContext)
   const {
-    artWorksImage, dataItem, motionItem, MotionComponent, LoadingComponent, background, progress, loading,
+    artworks, dataItem, motionItem, MotionComponent, LoadingComponent, background, progress, loading,
   } = useMotionScene({ motionKey, dataKey })
 
-  if (!motionKey || !dataKey || !artWorksImage || artWorksImage.length === 0) return null
+  if (!motionKey || !dataKey || !artworks || artworks.length === 0) return null
   if (!background) return null
 
   if (loading) {
@@ -25,7 +25,7 @@ export default function MotionScene({ motionKey, dataKey }) {
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Bridge>
-          <MotionComponent artworks={artWorksImage} />
+          <MotionComponent artworks={artworks} />
         </Bridge>
       </Canvas>
     </>
